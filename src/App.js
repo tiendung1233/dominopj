@@ -5,17 +5,19 @@ import Cart from './pages/Cart/Cart';
 import Follow from './pages/Follow/Follow';
 import Promotion from './pages/Promotion/Promotion';
 import Voucher from './pages/Voucher/Voucher';
-
+import {DefaultLayout} from './components/Layout';
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/menu' element={<Menu/>}/>
-        <Route path='/cart' element={<Cart/>}/>
-        <Route path='/follow' element={<Follow/>}/>
-        <Route path='/promotion' element={<Promotion/>}/>
-        <Route path='/voucher' element={<Voucher/>}/>
+        
+          <Route path='/' element={<DefaultLayout><Home/></DefaultLayout>}/>
+          <Route path='/menu' element={<DefaultLayout><Menu/></DefaultLayout>}/>
+          <Route path='/cart' element={<DefaultLayout><Cart/></DefaultLayout>}/>
+          <Route path='/follow' element={<DefaultLayout><Follow/></DefaultLayout>}/>
+          <Route path='/promotion' element={<DefaultLayout><Promotion/></DefaultLayout>}/>
+          <Route path='/voucher' element={<DefaultLayout><Voucher/></DefaultLayout>}/>
+        
 
 
       </Routes>
