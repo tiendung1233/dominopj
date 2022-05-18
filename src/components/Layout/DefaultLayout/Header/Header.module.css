@@ -4,6 +4,7 @@
 
 .bk{
     background-color: #044666 !important;
+    height: 80px;
 }
 
 .text_cl{
@@ -17,11 +18,16 @@
 
 .block{
     display: block;
+    line-height: 80px;
 }
+a{
+    text-decoration: none;
 
+}
 .wrap{
     flex-wrap: nowrap !important;
     display: flex;
     justify-content: center !important;
     align-items: center;
 }
+
