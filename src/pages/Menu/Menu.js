@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 export default function Menu(){
 
     const api ="https://627a232473bad506858340e5.mockapi.io/api/pizza/pizza"; 
-    const headerBtn = ["My y", "Mon phu","Trang mineg","Nuoc uong"]; // List Button of TypeMenu
+    const headerBtn = ["My y", "Mon phu","Trang mieng","Nuoc uong"]; // List Button of TypeMenu
     const subHeaderBtn = ["Hai san", "Bo","Ga", "Heo","An chay"]; //List Button of subType
     let menuBtn = document.querySelectorAll(`.${styles.menu_btn}`)
     let subBtn = document.querySelectorAll(`.${styles.subMenu_btn}`)
@@ -119,18 +119,21 @@ export default function Menu(){
 
                 {/* If Default === false => Render UI of other Menu */}
                 {defaultMenu===false&&(
-                    <div className={`${styles.otherMenu}`}>
-                    {dataMenu.map(e=>{
-                            return(
-                            <ul className={`${styles.content_otherMenu}`}>
-                                <div>
-                                    <img src={e.img}/>
-                                </div>
-                                <li key={e.id} style={{color:"blue"}}>{e.name}</li>
-                                <li> Gia: {e.cost}</li>
-                            </ul>
-                            )
-                   })}
+                    <div className={`${styles.rate_title}`}>
+                        <h1 className={`${styles.rate}`}>{typeMenu}</h1>
+                        <div className={`${styles.otherMenu}`}>
+                        {dataMenu.map(e=>{
+                                return(
+                                <ul className={`${styles.content_otherMenu}`}>
+                                    <div>
+                                        <img src={e.img}/>
+                                    </div>
+                                    <li key={e.id} style={{color:"blue"}}>{e.name}</li>
+                                    <li> Gia: {e.cost}</li>
+                                </ul>
+                                )
+                            })}
+                        </div>
                     </div>
                 )}
                 
