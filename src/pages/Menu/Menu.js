@@ -115,6 +115,8 @@ export default function Menu(){
                     ))}
                 </div>
 
+
+
                 {/* If Default === false => Render UI of other Menu */}
                 {defaultMenu===false&&(
                     <div className={`${styles.otherMenu}`}>
@@ -133,7 +135,7 @@ export default function Menu(){
                 )}
                 
                 {/* If Default === true => Render UI of Pizza Menu */}
-               {defaultMenu&& (
+               {(defaultMenu&&firstTime===false)&& (
                 <div className={`${styles.main_menu}`}>
                     <div className={`${styles.sub_header}`}>
                         <li className={`${styles.subMenu_btn_all} ${styles.active_sub}`}
@@ -168,6 +170,9 @@ export default function Menu(){
                         ))}
                     </div>
 
+
+                    {/* Menu following of Rate */}
+                    {/* Premium */}
                     <div className={`${styles.rate_title}`}>
                         <div className={`${styles.rate}`} style={{color:'black'}}>
                         <i className={`bi bi-star`}></i>
@@ -176,47 +181,154 @@ export default function Menu(){
                         <div className={`${styles.otherMenu}`}>   
                     {/* Render Menu */}
                     {dataMenu.map(e=>{
+                        if(e.rate==="premium"){
                             return( 
                                 <ul className={`${styles.content_otherMenu}`}>
                                     <div>
                                         <img src={e.img}/>
                                     </div>
-                                    <li key={e.id}>{e.name}</li>
+                                    <li key={e.id} style={{color:"blue"}}>{e.name}</li>
                                     <li> Gia: {e.cost}</li>
                                 </ul>
                             )
+                        }   
                    })}
                     </div>
                    </div>
+
+
+                   {/* Signature */}
+                   <div className={`${styles.rate_title}`}>
+                        <div className={`${styles.rate}`} style={{color:'black'}}>
+                        <i className={`bi bi-star`}></i>
+                        SIGNATURE
+                        <i className={`bi bi-star`}></i></div>
+                        <div className={`${styles.otherMenu}`}>   
+                    {/* Render Menu */}
+                    {dataMenu.map(e=>{
+                        if(e.rate==="signature"){
+                            return( 
+                                <ul className={`${styles.content_otherMenu}`}>
+                                    <div>
+                                        <img src={e.img}/>
+                                    </div>
+                                    <li key={e.id} style={{color:"blue"}}>{e.name}</li>
+                                    <li> Gia: {e.cost}</li>
+                                </ul>
+                            )
+                        }   
+                   })}
+                    </div>
+                   </div>
+
+
+                   {/* Favorite */}
+                   <div className={`${styles.rate_title}`}>
+                        <div className={`${styles.rate}`} style={{color:'black'}}>
+                        <i className={`bi bi-star`}></i>
+                        FAVORITE
+                        <i className={`bi bi-star`}></i></div>
+                        <div className={`${styles.otherMenu}`}>   
+                    {/* Render Menu */}
+                    {dataMenu.map(e=>{
+                        if(e.rate==="favorite"){
+                            return( 
+                                <ul className={`${styles.content_otherMenu}`}>
+                                    <div>
+                                        <img src={e.img}/>
+                                    </div>
+                                    <li key={e.id} style={{color:"blue"}}>{e.name}</li>
+                                    <li> Gia: {e.cost}</li>
+                                </ul>
+                            )
+                        }   
+                   })}
+                    </div>
+                   </div>
+
+
                 </div>
                )}
 
 
             {/* If First time === true =>Render Ui Pizza Menu */}
-              {firstTime &&(
-                    <div>
-                  {menu.map(e=>{
-                   if(e.title==="Tat ca"){
-                    return (
-                       <ul className={`${styles.content_otherMenu}`}>
-                            <div>
-                                <img src={e.img}/>
-                            </div>
-                           <li key={e.id}>{e.name}</li> 
-                           <li> Gia: {e.cost}</li>
-                       </ul>
-                   )
-                   }
-                   else if(e.title===undefined){
-                       return(
-                           <div></div>
-                       )
-                   }
-               })}
-                  </div>
-                  
-              )
-              }
+            {firstTime &&(
+                <div>
+
+
+                    <div className={`${styles.rate_title}`}>
+                        <div className={`${styles.rate}`} style={{color:'black'}}>
+                            <i className={`bi bi-star`}></i>
+                            PREMIUM
+                            <i className={`bi bi-star`}></i>
+                        </div>
+                        <div className={`${styles.otherMenu}`}>
+                            {menu.map(e=>{
+                                if(e.title==="Tat ca"&&e.rate==="premium"){
+                                    return (
+                                    <ul className={`${styles.content_otherMenu}`}>
+                                            <div>
+                                                <img src={e.img}/>
+                                            </div>
+                                        <li key={e.id} style={{color:"blue"}}>{e.name}</li> 
+                                        <li> Gia: {e.cost}</li>
+                                    </ul>
+                                    )
+                                }
+                            })}
+                        </div>
+                    </div>
+
+                    <div className={`${styles.rate_title}`}>
+                        <div className={`${styles.rate}`} style={{color:'black'}}>
+                            <i className={`bi bi-star`}></i>
+                            SIGNATURE
+                            <i className={`bi bi-star`}></i>
+                        </div>
+                        <div className={`${styles.otherMenu}`}>
+                            {menu.map(e=>{
+                                if(e.title==="Tat ca"&&e.rate==="signature"){
+                                    return (
+                                    <ul className={`${styles.content_otherMenu}`}>
+                                            <div>
+                                                <img src={e.img}/>
+                                            </div>
+                                        <li key={e.id} style={{color:"blue"}}>{e.name}</li> 
+                                        <li> Gia: {e.cost}</li>
+                                    </ul>
+                                    )
+                                }
+                            })}
+                        </div>
+                    </div>
+
+                    <div className={`${styles.rate_title}`}>
+                        <div className={`${styles.rate}`} style={{color:'black'}}>
+                            <i className={`bi bi-star`}></i>
+                            FAVORITE
+                            <i className={`bi bi-star`}></i>
+                        </div>
+                        <div className={`${styles.otherMenu}`}>
+                            {menu.map(e=>{
+                                if(e.title==="Tat ca"&&e.rate==="favorite"){
+                                    return (
+                                    <ul className={`${styles.content_otherMenu}`}>
+                                            <div>
+                                                <img src={e.img}/>
+                                            </div>
+                                        <li key={e.id} style={{color:"blue"}}>{e.name}</li> 
+                                        <li> Gia: {e.cost}</li>
+                                    </ul>
+                                    )
+                                }
+                            })}
+                        </div>
+                    </div>
+
+
+                </div>  
+              )}
+
 
             </div>
         </div>
