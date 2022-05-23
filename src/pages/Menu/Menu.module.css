@@ -141,7 +141,7 @@ li{
 
 .otherMenu img{
     object-fit: cover;
-    width: 200px;
+    width: 220px;
     border-radius: 10px;
     overflow: hidden;
     cursor: pointer;
@@ -160,10 +160,11 @@ li{
     background-color: #dfe4ea;
     border-radius: 10px;
     text-align: center;
-    padding: 0;
+    padding:0 0 5rem 0;
     margin-left: 5px;
     margin-top: 30px;
-    width: 200px;
+    width: 220px;
+    position: relative;
 }
 
 .content_otherMenu div{
@@ -178,4 +179,15 @@ li{
     color: black;
     font-weight: 600;
     margin-bottom: 1rem;
+}
+
+.content_otherMenu li:last-child{
+    position: absolute;
+    display: block;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.65rem;
+    color: black;
+    font-weight: 600;
 }

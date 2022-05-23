@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from './Header.module.css'
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import 'bootstrap/dist/js/bootstrap.min.js'
 function Header() {
     return (
         <div>
