@@ -118,9 +118,11 @@ li{
 }
 
 .rate_title i{
-    color: yellow;
-    background-color: yellow;
-    font-size: 2rem;
+   font-weight: bold;
+    font-size: 3rem;
+    padding-bottom: 5px;
+    color: #ffc83d;
+    /* text-shadow:  1px black; */
 }
 
 .rate{

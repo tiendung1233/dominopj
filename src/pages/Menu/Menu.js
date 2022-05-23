@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import * as Icon from 'react-bootstrap-icons';
+import "bootstrap-icons/font/bootstrap-icons.css";
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import styles from "./Menu.module.css";
 import { Link } from 'react-router-dom';
@@ -138,7 +138,7 @@ export default function Menu(){
                 )}
                 
                 {/* If Default === true => Render UI of Pizza Menu */}
-               {(defaultMenu&&firstTime===false)&& (
+               {(defaultMenu)&& (
                 <div className={`${styles.main_menu}`}>
                     <div className={`${styles.sub_header}`}>
                         <li className={`${styles.subMenu_btn_all} ${styles.active_sub}`}
@@ -173,82 +173,85 @@ export default function Menu(){
                         ))}
                     </div>
 
-
-                    {/* Menu following of Rate */}
-                    {/* Premium */}
+                
+                {(firstTime===false)&&(
+                    <div>
                     <div className={`${styles.rate_title}`}>
-                        <div className={`${styles.rate}`} style={{color:'black'}}>
-                        <i className={`bi bi-star`}></i>
-                        PREMIUM
-                        <i className={`bi bi-star`}></i></div>
-                        <div className={`${styles.otherMenu}`}>   
-                    {/* Render Menu */}
-                    {dataMenu.map(e=>{
-                        if(e.rate==="premium"){
-                            return( 
-                                <ul className={`${styles.content_otherMenu}`}>
-                                    <div>
-                                        <img src={e.img}/>
-                                    </div>
-                                    <li key={e.id} style={{color:"blue"}}>{e.name}</li>
-                                    <li> Gia: {e.cost}</li>
-                                </ul>
-                            )
-                        }   
-                   })}
+                            <div className={`${styles.rate}`} style={{color:'black'}}>
+                            <i className={`bi bi-star-fill`}></i>
+                            PREMIUM
+                            <i className={`bi bi-star-fill`}></i></div>
+                            <div className={`${styles.otherMenu}`}>   
+                        {/* Render Menu */}
+                        {dataMenu.map(e=>{
+                            if(e.rate==="premium"){
+                                return( 
+                                    <ul className={`${styles.content_otherMenu}`}>
+                                        <div>
+                                            <img src={e.img}/>
+                                        </div>
+                                        <li key={e.id} style={{color:"blue"}}>{e.name}</li>
+                                        <li> Gia: {e.cost}</li>
+                                    </ul>
+                                )
+                            }   
+                    })}
+                        </div>
                     </div>
-                   </div>
 
 
-                   {/* Signature */}
-                   <div className={`${styles.rate_title}`}>
-                        <div className={`${styles.rate}`} style={{color:'black'}}>
-                        <i className={`bi bi-star`}></i>
-                        SIGNATURE
-                        <i className={`bi bi-star`}></i></div>
-                        <div className={`${styles.otherMenu}`}>   
-                    {/* Render Menu */}
-                    {dataMenu.map(e=>{
-                        if(e.rate==="signature"){
-                            return( 
-                                <ul className={`${styles.content_otherMenu}`}>
-                                    <div>
-                                        <img src={e.img}/>
-                                    </div>
-                                    <li key={e.id} style={{color:"blue"}}>{e.name}</li>
-                                    <li> Gia: {e.cost}</li>
-                                </ul>
-                            )
-                        }   
-                   })}
+                    {/* Signature */}
+                    <div className={`${styles.rate_title}`}>
+                            <div className={`${styles.rate}`} style={{color:'black'}}>
+                            <i className={`bi bi-star-fill`}></i>
+                            SIGNATURE
+                            <i className={`bi bi-star-fill`}></i></div>
+                            <div className={`${styles.otherMenu}`}>   
+                        {/* Render Menu */}
+                        {dataMenu.map(e=>{
+                            if(e.rate==="signature"){
+                                return( 
+                                    <ul className={`${styles.content_otherMenu}`}>
+                                        <div>
+                                            <img src={e.img}/>
+                                        </div>
+                                        <li key={e.id} style={{color:"blue"}}>{e.name}</li>
+                                        <li> Gia: {e.cost}</li>
+                                    </ul>
+                                )
+                            }   
+                    })}
+                        </div>
                     </div>
-                   </div>
 
 
-                   {/* Favorite */}
-                   <div className={`${styles.rate_title}`}>
-                        <div className={`${styles.rate}`} style={{color:'black'}}>
-                        <i className={`bi bi-star`}></i>
-                        FAVORITE
-                        <i className={`bi bi-star`}></i></div>
-                        <div className={`${styles.otherMenu}`}>   
-                    {/* Render Menu */}
-                    {dataMenu.map(e=>{
-                        if(e.rate==="favorite"){
-                            return( 
-                                <ul className={`${styles.content_otherMenu}`}>
-                                    <div>
-                                        <img src={e.img}/>
-                                    </div>
-                                    <li key={e.id} style={{color:"blue"}}>{e.name}</li>
-                                    <li> Gia: {e.cost}</li>
-                                </ul>
-                            )
-                        }   
-                   })}
+                    {/* Favorite */}
+                    <div className={`${styles.rate_title}`}>
+                            <div className={`${styles.rate}`} style={{color:'black'}}>
+                            <i className={`bi bi-star-fill`}></i>
+                            FAVORITE
+                            <i className={`bi bi-star-fill`}></i></div>
+                            <div className={`${styles.otherMenu}`}>   
+                        {/* Render Menu */}
+                        {dataMenu.map(e=>{
+                            if(e.rate==="favorite"){
+                                return( 
+                                    <ul className={`${styles.content_otherMenu}`}>
+                                        <div>
+                                            <img src={e.img}/>
+                                        </div>
+                                        <li key={e.id} style={{color:"blue"}}>{e.name}</li>
+                                        <li> Gia: {e.cost}</li>
+                                    </ul>
+                                )
+                            }   
+                    })}
+                        </div>
                     </div>
-                   </div>
-
+                    </div>
+                )}
+               
+                
 
                 </div>
                )}
@@ -258,12 +261,45 @@ export default function Menu(){
             {firstTime &&(
                 <div>
 
+                    {/* Button */}
+                    {/* <div className={`${styles.sub_header}`}>
+                        <li className={`${styles.subMenu_btn_all} ${styles.active_sub}`}
+                         onClick={(el)=>{
+                                setFirst(false)
+                                setSubType("Tat ca")
+                                subBtn.forEach(e=>{
+                                    e.classList.remove(styles.active_sub);
+                                })
+                                el.currentTarget.classList.add(styles.active_sub);
+                                // console.log(el.target)
+                                }}
+                        >
+                            Tat ca
+                        </li>
+                        {subHeaderBtn.map(e=>(
+                            <li 
+                            className={`${styles.subMenu_btn}`} 
+                            key={e}
+                            onClick={(el)=>{
+                                setFirst(false)
+                                setSubType(e)
+                                subBtn.forEach(e=>{
+                                    e.classList.remove(styles.active_sub);
+                                })
+                                el.currentTarget.classList.add(styles.active_sub);
+                                document.querySelector(`.${styles.subMenu_btn_all}`).classList.remove(styles.active_sub)
+                                // console.log(el.target)
+                                }}>
+                            {e}
+                            </li>
+                        ))}
+                    </div> */}
 
                     <div className={`${styles.rate_title}`}>
                         <div className={`${styles.rate}`} style={{color:'black'}}>
-                            <i className={`bi bi-star`}></i>
+                            <i className={`bi bi-star-fill`}></i>
                             PREMIUM
-                            <i className={`bi bi-star`}></i>
+                            <i className={`bi bi-star-fill`}></i>
                         </div>
                         <div className={`${styles.otherMenu}`}>
                             {menu.map(e=>{
@@ -284,9 +320,9 @@ export default function Menu(){
 
                     <div className={`${styles.rate_title}`}>
                         <div className={`${styles.rate}`} style={{color:'black'}}>
-                            <i className={`bi bi-star`}></i>
+                            <i className={`bi bi-star-fill`}></i>
                             SIGNATURE
-                            <i className={`bi bi-star`}></i>
+                            <i className={`bi bi-star-fill`}></i>
                         </div>
                         <div className={`${styles.otherMenu}`}>
                             {menu.map(e=>{
@@ -307,9 +343,9 @@ export default function Menu(){
 
                     <div className={`${styles.rate_title}`}>
                         <div className={`${styles.rate}`} style={{color:'black'}}>
-                            <i className={`bi bi-star`}></i>
+                            <i className={`bi bi-star-fill`}></i>
                             FAVORITE
-                            <i className={`bi bi-star`}></i>
+                            <i className={`bi bi-star-fill`}></i>
                         </div>
                         <div className={`${styles.otherMenu}`}>
                             {menu.map(e=>{
