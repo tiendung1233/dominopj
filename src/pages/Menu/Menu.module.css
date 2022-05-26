@@ -13,10 +13,13 @@ li{
     color: black;
 }
 
-
 .container_menu{
     display: block;
     margin-left: 0;
+}
+
+.disable{
+    background-color: rgba(155, 148, 148, 0.192);
 }
 
 .content_menu{
@@ -107,7 +110,7 @@ li{
 }
 
 .active_sub{
-    background-color: red !important;
+    background-color: #e31837 !important;
     color: white !important;
     display: block;
 }
