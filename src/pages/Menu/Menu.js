@@ -1,9 +1,10 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import styles from "./Menu.module.css";
 import { Link } from 'react-router-dom';
 import Menu_pizza_details from '../../components/Layout/DefaultLayout/Menu_Details/Menu_details';
+import Sub_cart from './Sub_cart';
 
 // import { type } from '@testing-library/user-event/dist/type';
 
@@ -42,7 +43,7 @@ export default function Menu(){
 
     //Set DefaultMenu --- Check Pizza Menu
     //If users choose btn Pizza: defaultMenu = true
-    useLayoutEffect(()=>{
+    useEffect(()=>{
         if(typeMenu==="Pizza"&&subType===""){
             // console.log(defaultMenu);
             // setSubType("Tat ca")
@@ -64,7 +65,7 @@ export default function Menu(){
     },[typeMenu])//Re-render when typeMenu change
     
 
-    useLayoutEffect(()=>{
+    useEffect(()=>{
         if(defaultMenu){
             if(subType==="Tat ca"||subType===""){
                 let item = menu.filter(e=>e.title==="Tat ca");
@@ -194,7 +195,7 @@ const showDetailMenu = (el)=>{
 
                 
                 {(firstTime===false)&&(
-                    <div>
+                    <div className={styles.overflow}>
                     <div className={`${styles.rate_title}`}>
                             <div className={`${styles.rate}`} style={{color:'black'}}>
                             <i className={`bi bi-star-fill`}></i>
@@ -278,7 +279,7 @@ const showDetailMenu = (el)=>{
 
             {/* If First time === true =>Render Ui Pizza Menu */}
             {firstTime &&(
-                <div>
+                <div className={styles.overflow}>
 
                     <div className={`${styles.rate_title}`}>
                         <div className={`${styles.rate}`} style={{color:'black'}}>
@@ -361,6 +362,9 @@ const showDetailMenu = (el)=>{
 
                 </Menu_pizza_details>
              )}
+
+
+             <Sub_cart></Sub_cart>
         </div>
     )
 

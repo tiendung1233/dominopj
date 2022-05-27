@@ -14,20 +14,20 @@ li{
 }
 
 .container_menu{
-    display: block;
+    display: flex;
     margin-left: 0;
+    /* height: 100vh; */
+    /* justify-content: space-between; */
 }
 
-.disable{
-    background-color: rgba(155, 148, 148, 0.192);
-}
 
 .content_menu{
     display: block;
-    max-width: 1100px;
-    min-width: 900px;
+    width: 69vw;
+    /* min-width: 30vw; */
     font-size: 18px;
     color: black;
+    margin-bottom: 3rem;
 }
 
 .content_menu .header_menu{
@@ -36,6 +36,7 @@ li{
     justify-content: center;
     background-color: #dfe4ea;
     box-shadow: 1px 1px 1px rgb(175, 169, 169);
+    margin-left: -5rem;
 }
 
 .header_menu li{
@@ -54,7 +55,7 @@ li{
     display: flex;
     margin-top: 10px;
     justify-content: center;
-    margin-left: -23rem;
+    margin-left: -30rem;
 }
 
 .link{
@@ -141,7 +142,7 @@ li{
     grid-template-columns: 1fr 1fr 1fr 1fr;
     justify-content: left;
     margin-left: 30px;
-    padding-left: 10rem;
+    /* padding-left: 5rem; */
 }
 
 .otherMenu img{
@@ -195,4 +196,67 @@ li{
     font-size: 1.65rem;
     color: black;
     font-weight: 600;
+}
+
+.overflow{
+    overflow:overlay;
+    height: 100vh;
+    overflow-x: hidden;
+    padding-bottom: 0rem;
+}
+
+.sub_cart{
+    display: block;
+    width: 20%;
+    text-align: center;
+}
+
+
+/* Scroll */
+html *::-webkit-scrollbar {
+    border-radius: 0;
+    width: 8px;
+}
+html *::-webkit-scrollbar {
+    border-radius: 0;
+    width: 8px;
+}
+html *::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .15);
+}
+html *::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .15);
+}
+html *::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+html *::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+/* _______ */
+
+@media screen and (max-width: 1200px){
+    .container_menu{
+        display: block;
+        width: 100%;
+    }
+
+    .content_menu{
+        width: 100vw;
+        margin-right: 20rem;
+    }
+ 
+    .sub_header{
+        margin-left: 0;
+    }
+
+    .otherMenu{
+        margin-left: 0px;
+        /* padding-left: 5rem; */
+    }
+
 }

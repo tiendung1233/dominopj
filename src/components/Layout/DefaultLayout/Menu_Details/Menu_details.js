@@ -7,7 +7,14 @@ import { Link } from 'react-router-dom';
 export default function Menu_pizza_details({ img, name, showDetail }) {
 
     const [count, setCount] = useState(1);
-    // const [close, setClose] = useState(!show);
+
+    // Get value options:
+    const [valueDeBanh, setValueDeBanh] = useState(0);
+    const [valueCoBanh, setValueCoBanh] = useState(0);
+    const [valueThem, setValueThem] = useState(0);
+    const [valuePhoMai, setValuePhoMai] = useState(0);
+
+    const [price, setPrice] = useState(0);
 
     const handleUp = () => {
         setCount(count + 1)
@@ -23,11 +30,16 @@ export default function Menu_pizza_details({ img, name, showDetail }) {
         showDetail(false)
     }
 
+    useEffect(()=>{
+        setPrice((valueCoBanh+valuePhoMai+valueThem)*count);
+    })
+    
+
 
 
 
     return (
-        <div>
+        <div className={styles.modal}>
             {/* {close === false && ( */}
                 <div className={`${styles.container}`}>
                     <div className={styles.img}>
@@ -46,7 +58,7 @@ export default function Menu_pizza_details({ img, name, showDetail }) {
 
                             <div className={`${styles.section}`}>
                                 <h3>Chọn đế bánh</h3>
-                                <div className={`${styles.section_content}`}>
+                                <div className={`${styles.section_content}`} onChange={(e)=>setValueDeBanh(Number(e.target.value))}>
                                     <div>
                                         <div>
                                             <input type='radio' name='de_banh' />
@@ -73,7 +85,9 @@ export default function Menu_pizza_details({ img, name, showDetail }) {
 
                             <div className={`${styles.section}`}>
                                 <h3>Chọn cỡ bánh</h3>
-                                <div className={`${styles.section_content}`}>
+                                <div className={`${styles.section_content}`} onChange={(e)=>{
+                                    console.log(Number(e.target.value));
+                                    setValueCoBanh(Number(e.target.value))}}>
                                     <div>
                                         <div>
                                             <input type='radio' name='co_banh' value="99000" />
@@ -100,7 +114,7 @@ export default function Menu_pizza_details({ img, name, showDetail }) {
 
                             <div className={`${styles.section}`}>
                                 <h3>Tùy chọn thêm</h3>
-                                <div className={`${styles.section_content}`}>
+                                <div className={`${styles.section_content}`} onChange={(e)=>setValueThem(Number(e.target.value))}>
                                     <div>
                                         <div>
                                             <input type='radio' className={`${styles.options}`} name='pho_mai' value="15000" />
@@ -128,7 +142,7 @@ export default function Menu_pizza_details({ img, name, showDetail }) {
 
                             <div className={`${styles.section}`}>
                                 <h3>Tùy chọn viền</h3>
-                                <div className={`${styles.section_content}`}>
+                                <div className={`${styles.section_content}`} onChange={(e)=>setValuePhoMai(Number(e.target.value))}>
                                     <div>
                                         <div>
                                             <input type='radio' className={`${styles.options}`} name='vien' value="59000" />
@@ -143,7 +157,9 @@ export default function Menu_pizza_details({ img, name, showDetail }) {
                                         </div>
                                         <img src='https://img.dominos.vn/xucxic.png' />
                                     </div>
-                                    <div>
+                                    <div style={{"paddingBottom":"3rem",
+                                        "marginBottom":"3rem"
+                                    }}>
                                         <div>
                                             <input type='radio' className={`${styles.options}`} name='vien' value="79000" />
                                             <label>Viền xúc xích phô mai 9" = 79,000₫</label>
@@ -160,7 +176,7 @@ export default function Menu_pizza_details({ img, name, showDetail }) {
                                     <button onClick={handleUp}>+</button>
                                 </div>
 
-                                <button className={styles.add_cart}>Thêm vào giỏ hàng <span className={styles.price}>189000</span>đ</button>
+                                <button className={styles.add_cart}>Thêm vào giỏ hàng <span className={styles.price}>{price}</span>đ</button>
                             </div>
                         </div>
                     </div>

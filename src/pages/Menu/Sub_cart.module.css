@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.sub_cart{
+    display: block;
+    /* width: 100px; */
+    position: absolute;
+    right: 0;
+    border: 1px solid grey;
+    height: 120vh;
+    border-bottom: none;
+}
+
+.img{
+
+}
+
+.img img{
+    width: 60%;
+    margin-left: 25%;
+}
+
+.infomation{
+    /* margin: auto; */
+    text-align: center;
+    margin-left: 5rem;
+}
+
+.p{
+    font-size: 18px ;
+    font-weight: bold ;
+}
+
+
+@media screen and (max-width: 1024px){
+    .sub_cart{
+        display: none;
+    }
+}

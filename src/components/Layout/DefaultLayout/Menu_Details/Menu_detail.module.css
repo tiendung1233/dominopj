@@ -8,12 +8,22 @@
     display: none !important;
 }
 
+.modal{
+    position:fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(121, 122, 124, 0.692);
+    z-index: 10;
+}
+
 .container{
     opacity: 1 !important;
     position: absolute;
-    z-index: 1000;
     top: 10%;
     left: 50%;
+    z-index: 1000;
     transform: translate(-50%);
     color: black;
     /* overflow-y: scroll; */
@@ -22,6 +32,7 @@
     background-color: white;
     height: 570px;
     overflow: hidden;
+    border-radius: 10px;
 }
 
 .img
@@ -148,7 +159,7 @@
 
 
 .up_down span{
-    padding: 3rem;
+    padding: 2.65rem;
     /* margin-left: 10px; */
 }
 
