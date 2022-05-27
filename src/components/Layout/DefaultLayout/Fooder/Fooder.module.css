@@ -1,0 +1,77 @@
+.Fooder_container{
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 960px;
+}
+.Fooder{
+    background-color: #00628f !important;
+
+}
+.Fooder_start{
+    display: flex;
+    justify-content: end;
+
+}
+
+.Fooder_start_text{
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 3.5rem;
+}
+
+.boder{
+    border-bottom: 1px solid #333;
+}
+
+.Fooder_conten_contac{
+    font-size: 1.4rem;
+}
+
+.hotline{
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.number{
+    font-size: 2.5rem;
+    color: #ffc107;
+    font-weight: 600;
+    text-align: center;
+}
+.boder_y{
+    border-right: 1px solid #333;
+    height: 100%;
+}
+
+.list{
+    list-style: none;
+}
+.list_item{
+    font-size: 1.3rem;
+    color: #ccc;
+    font-weight: 600;
+    cursor: pointer;
+}
+.car_img{
+    width: 100%;
+}
+
+.end{
+    display: flex;
+    justify-content: space-between;
+}
+.domino_vn{
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #0ca3e1;
+}
+.btn_lg{
+    font-size: 1.4rem;
+    font-weight: 600;
+    background-color: #0078ae;
+    padding: 8px 24px;
+    border-radius: 3px;
+    cursor: pointer;
+}
