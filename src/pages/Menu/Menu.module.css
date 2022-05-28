@@ -16,6 +16,7 @@ li{
 .container_menu{
     display: flex;
     margin-left: 0;
+    width: 100%;
     /* height: 100vh; */
     /* justify-content: space-between; */
 }
@@ -23,11 +24,13 @@ li{
 
 .content_menu{
     display: block;
-    width: 69vw;
-    /* min-width: 30vw; */
+    width: 80%;
+    /* min-width: 30%100%; */
     font-size: 18px;
     color: black;
     margin-bottom: 3rem;
+    border-right: 2px solid grey;
+    overflow: hidden;
 }
 
 .content_menu .header_menu{
@@ -141,7 +144,7 @@ li{
     width: 100%;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     justify-content: left;
-    margin-left: 30px;
+    margin-left: 10px;
     /* padding-left: 5rem; */
 }
 
@@ -211,6 +214,11 @@ li{
     text-align: center;
 }
 
+.cost{
+    font-size: 1.65rem;
+    display: inline;
+}
+
 
 /* Scroll */
 html *::-webkit-scrollbar {
@@ -239,6 +247,18 @@ html *::-webkit-scrollbar-track {
 }
 /* _______ */
 
+
+@media screen and (min-width: 1200px) and (max-width:1300px){
+    .otherMenu{
+        grid-template-columns: 1fr 1fr 1fr ;
+        /* padding-left: 5rem; */
+    }
+    .content_menu{
+        width: 75%;
+        padding-left: 3rem;
+    }
+}
+
 @media screen and (max-width: 1200px){
     .container_menu{
         display: block;
@@ -246,8 +266,8 @@ html *::-webkit-scrollbar-track {
     }
 
     .content_menu{
-        width: 100vw;
-        margin-right: 20rem;
+        width: 98vw;
+        margin: auto;
     }
  
     .sub_header{
@@ -259,4 +279,55 @@ html *::-webkit-scrollbar-track {
         /* padding-left: 5rem; */
     }
 
+}
+
+@media screen and (max-width: 960px){
+    .otherMenu{
+        grid-template-columns: 1fr 1fr 1fr ;
+        padding-left: .5rem;
+    }
+    .content_menu{
+        /* width: 100%; */
+        padding-left: 3rem;
+        border: none;
+    }
+
+    .content_otherMenu {
+        width: 230px;
+    }
+
+    .content_otherMenu img {
+        width: 230px;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .otherMenu{
+        grid-template-columns: 1fr 1fr ;
+        padding-left: 5rem;
+    }
+
+    .header_menu li{
+        font-size: 16px;
+    }
+
+    .link{
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 655px){
+    .link{
+        display: none;
+    }
+    .otherMenu{
+        grid-template-columns: 1fr;
+        padding-left: 10rem;
+    }
+    .content_otherMenu{
+        width: 300px;
+    }
+    .content_otherMenu img {
+        width: 300px;
+    }
 }

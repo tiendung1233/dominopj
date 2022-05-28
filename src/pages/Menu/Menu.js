@@ -5,6 +5,7 @@ import styles from "./Menu.module.css";
 import { Link } from 'react-router-dom';
 import Menu_pizza_details from '../../components/Layout/DefaultLayout/Menu_Details/Menu_details';
 import Sub_cart from './Sub_cart';
+import Menu_detail_food from "../../components/Layout/DefaultLayout/Menu_Details/Menu_detail_food";
 
 // import { type } from '@testing-library/user-event/dist/type';
 
@@ -27,6 +28,9 @@ export default function Menu(){
     const [detail, showDetail] = useState(false);
     const [propsPizzaImg, setPropsPizzaImg] = useState('')
     const [propsPizzaName, setPropsPizzaName] = useState('')
+
+    const [otherDetail, setOtherDetail] = useState(false);
+    const [costItem, setCostItem] = useState(0);
 
     //Call api
     useEffect(()=>{
@@ -81,7 +85,7 @@ export default function Menu(){
 
     },[subType])//Re-render when subType change
 
-
+// Show Pizza menu detail
 const showDetailMenu = (el)=>{
     showDetail(true)
     let img = el.currentTarget.querySelector("div img").getAttribute("src")
@@ -90,6 +94,18 @@ const showDetailMenu = (el)=>{
     setPropsPizzaName(name)
    document.querySelector("body").classList.add(styles.disable)
     // console.log(detail);
+}
+
+// Show Other menu detail
+const setOtherDetailMenu = (el)=>{
+    let cost =el.currentTarget.querySelector("span").innerHTML;
+    console.log(el.currentTarget.querySelector("span"));
+    setCostItem(Number(cost))
+    setOtherDetail(true)
+    let img = el.currentTarget.querySelector("div img").getAttribute("src")
+    let name = el.currentTarget.querySelector("li").innerHTML;
+    setPropsPizzaImg(img);
+    setPropsPizzaName(name)
 }
 
 // const detailMenu = document.querySelectorAll(`.${styles.content_otherMenu}`);
@@ -143,12 +159,12 @@ const showDetailMenu = (el)=>{
                         <div className={`${styles.otherMenu}`}>
                         {dataMenu.map(e=>{
                                 return(
-                                <ul  onClick={showDetailMenu} className={`${styles.content_otherMenu}` }>
+                                <ul  onClick={setOtherDetailMenu} className={`${styles.content_otherMenu}` }>
                                     <div>
                                         <img src={e.img}/>
                                     </div>
                                     <li key={e.id} style={{color:"blue"}}>{e.name}</li>
-                                    <li> Gia: {e.cost}</li>
+                                    <li> Gia: <span className={styles.cost} >{e.cost}</span></li>
                                 </ul>
                                 )
                             })}
@@ -363,6 +379,10 @@ const showDetailMenu = (el)=>{
                 </Menu_pizza_details>
              )}
 
+
+            {otherDetail&&(
+                <Menu_detail_food name={propsPizzaName} img={propsPizzaImg} setOtherDetail={setOtherDetail} cost={costItem} />
+            )}
 
              <Sub_cart></Sub_cart>
         </div>

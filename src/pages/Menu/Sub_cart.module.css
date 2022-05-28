@@ -8,8 +8,8 @@
     display: block;
     /* width: 100px; */
     position: absolute;
-    right: 0;
-    border: 1px solid grey;
+    right: 15px;
+    /* border: 1px solid grey; */
     height: 120vh;
     border-bottom: none;
 }
@@ -34,8 +34,13 @@
     font-weight: bold ;
 }
 
+@media screen and (min-width: 1198px) and (max-width:1300px){
+    .sub_cart{
+        right: -20px;
+    }
+}
 
-@media screen and (max-width: 1024px){
+@media screen and (max-width: 1200px){
     .sub_cart{
         display: none;
     }
