@@ -330,4 +330,8 @@ html *::-webkit-scrollbar-track {
     .content_otherMenu img {
         width: 300px;
     }
+
+    .sub_header li{
+        padding: 0.2rem 1rem;
+    }
 }

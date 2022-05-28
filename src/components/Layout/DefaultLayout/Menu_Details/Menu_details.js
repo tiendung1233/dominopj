@@ -9,12 +9,13 @@ export default function Menu_pizza_details({ img, name, showDetail }) {
     const [count, setCount] = useState(1);
 
     // Get value options:
-    const [valueDeBanh, setValueDeBanh] = useState(0);
+    const [valueDeBanh, setValueDeBanh] = useState('');
     const [valueCoBanh, setValueCoBanh] = useState(0);
     const [valueThem, setValueThem] = useState(0);
     const [valuePhoMai, setValuePhoMai] = useState(0);
 
     const [price, setPrice] = useState(0);
+    const [cart, setCart] = useState([])
 
     const handleUp = () => {
         setCount(count + 1)
@@ -28,6 +29,17 @@ export default function Menu_pizza_details({ img, name, showDetail }) {
 
     const handleX = ()=>{
         showDetail(false)
+    }
+
+    const addToCart = (el)=>{
+       let data = {
+           "name":name,
+           "count":count,
+           "price":price,
+           "de_banh":valueDeBanh
+       }
+       setCart(data)
+       console.log(cart);
     }
 
     useEffect(()=>{
@@ -58,24 +70,24 @@ export default function Menu_pizza_details({ img, name, showDetail }) {
 
                             <div className={`${styles.section}`}>
                                 <h3>Chọn đế bánh</h3>
-                                <div className={`${styles.section_content}`} onChange={(e)=>setValueDeBanh(Number(e.target.value))}>
+                                <div className={`${styles.section_content}`} onChange={(e)=>setValueDeBanh(e.target.value)}>
                                     <div>
                                         <div>
-                                            <input type='radio' name='de_banh' />
+                                            <input type='radio' name='de_banh' value="Đế mỏng giòn" />
                                             <label>Đế mỏng giòn</label>
                                         </div>
                                         <img src='https://dominos.vn/img/icon/pizza-base-1.png' />
                                     </div>
                                     <div>
                                         <div>
-                                            <input type='radio' name='de_banh'  />
+                                            <input type='radio' name='de_banh' value="Đế dày xốp"  />
                                             <label>Đế dày xốp</label>
                                         </div>
                                         <img src='https://dominos.vn/img/icon/pizza-base-2.png' />
                                     </div>
                                     <div>
                                         <div>
-                                            <input type='radio' name='de_banh' />
+                                            <input type='radio' name='de_banh' value="Đế vừa" />
                                             <label>Đế vừa</label>
                                         </div>
                                         <img src='https://dominos.vn/img/icon/pizza-base-3.png' />
@@ -176,7 +188,7 @@ export default function Menu_pizza_details({ img, name, showDetail }) {
                                     <button onClick={handleUp}>+</button>
                                 </div>
 
-                                <button className={styles.add_cart}>Thêm vào giỏ hàng <span className={styles.price}>{price}</span>đ</button>
+                                <button className={styles.add_cart} onClick={addToCart}>Thêm vào giỏ hàng <span className={styles.price}>{price}</span>đ</button>
                             </div>
                         </div>
                     </div>

@@ -28,7 +28,7 @@
     color: black;
     /* overflow-y: scroll; */
     display: flex;
-    width: 55%;
+    width: 832px;
     background-color: white;
     height: 570px;
     overflow: hidden;
@@ -166,7 +166,7 @@
 .up_down button{
     width: 35px;
     /* margin-left: 10px; */
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     font-weight: bold;
 }
 
@@ -196,4 +196,53 @@
 
 .add_cart span{
     font-size: 2rem;
+}
+
+
+/* Responesive */
+
+@media screen and (max-width: 960px){
+    .container{
+        width: 500px;
+        flex-direction: column;
+        /* display: block; */
+    }
+
+    .main_content{
+        margin-bottom: 60px;
+        overflow-y: scroll;
+    }
+
+    .list_btn{
+        flex-direction: column;
+        /* margin-bottom: 5%; */
+        /* padding: 5px; */
+        width: 100%;
+        height: auto;
+        padding-bottom: 20px;
+    }
+    .up_down{
+        margin-top: 5px;
+    }
+
+    .up_down span{
+        padding: 0 3.5rem;
+    }
+    .up_down button{
+        font-size: 2.5rem;
+    }
+    .add_cart{
+        margin-top: 10px;
+    }
+
+
+    .img{
+        display: block;
+        width: 100%;
+    }
+
+    .img img{
+        width: 100%;
+        height:220px;
+    }
 }
