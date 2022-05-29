@@ -31,6 +31,7 @@ li{
     margin-bottom: 3rem;
     border-right: 2px solid grey;
     overflow: hidden;
+    background-color: hsl(210, 36%, 96%);
 }
 
 .content_menu .header_menu{

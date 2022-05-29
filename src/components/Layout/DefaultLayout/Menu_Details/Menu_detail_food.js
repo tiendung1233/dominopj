@@ -5,6 +5,9 @@ export default function Menu_detail_food({ img, name, cost, setOtherDetail }) {
 
     const [count, setCount] = useState(1);
     const [price, setPrice] = useState(0);
+    const [cart, setCart] = useState({})
+
+
     const handleUp = () => {
         setCount(count + 1)
     }
@@ -24,6 +27,35 @@ export default function Menu_detail_food({ img, name, cost, setOtherDetail }) {
         setPrice(count * cost)
         console.log(img);
     })
+
+    // Add to Cart
+    const addToCart = (el) => {
+        let data = {
+            "name": name,
+            "count": count,
+            "price": price,
+            "de_banh": ""
+        }
+
+        setCart(data)
+        console.log([data]);
+        postItemCart(data);
+    }
+
+    // Post Api:
+    function postItemCart(data) {
+        fetch("http://localhost:3000/Cart", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(item => console.log(item))
+            .catch(err => console.log(err))
+    }
 
 
     return (
@@ -48,7 +80,7 @@ export default function Menu_detail_food({ img, name, cost, setOtherDetail }) {
                             <button onClick={handleUp}>+</button>
                         </div>
 
-                        <button className={styles.add_cart}>Thêm vào giỏ hàng <span className={styles.price}>{price}</span>đ</button>
+                        <button className={styles.add_cart} onClick={addToCart}>Thêm vào giỏ hàng <span className={styles.price}>{price}</span>đ</button>
                     </div>
                 </div>
             </div>
