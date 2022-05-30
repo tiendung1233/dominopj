@@ -34,7 +34,8 @@ export default function Menu_detail_food({ img, name, cost, setOtherDetail }) {
             "name": name,
             "count": count,
             "price": price,
-            "de_banh": ""
+            "de_banh": "",
+            "img":img
         }
 
         setCart(data)

@@ -37,7 +37,8 @@ export default function Menu_pizza_details({ img, name, showDetail }) {
                 "name": name,
                 "count": count,
                 "price": price,
-                "de_banh": valueDeBanh
+                "de_banh": valueDeBanh,
+                "img":img
             }
     
             setCart(data)
