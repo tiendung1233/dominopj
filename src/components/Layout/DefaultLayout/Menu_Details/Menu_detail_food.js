@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./Menu_detail_food.module.css";
+import CartContext from "../../../../Context/CartContext";
 
 export default function Menu_detail_food({ img, name, cost, setOtherDetail }) {
+    const {setChange} = useContext(CartContext);
 
     const [count, setCount] = useState(1);
     const [price, setPrice] = useState(0);
@@ -21,6 +23,7 @@ export default function Menu_detail_food({ img, name, cost, setOtherDetail }) {
 
     const handleX = () => {
         setOtherDetail(false);
+        // setChange("close");
     }
 
     useEffect(() => {
@@ -37,10 +40,12 @@ export default function Menu_detail_food({ img, name, cost, setOtherDetail }) {
             "de_banh": "",
             "img":img
         }
-
+        // setOtherDetail(false)
         setCart(data)
         console.log([data]);
         postItemCart(data);
+        setChange(true)
+        setOtherDetail(false);
     }
 
     // Post Api:

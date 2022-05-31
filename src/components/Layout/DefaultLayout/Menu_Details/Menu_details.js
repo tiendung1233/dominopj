@@ -1,12 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import styles from "./Menu_detail.module.css";
 import { Link } from 'react-router-dom';
+import CartContext from '../../../../Context/CartContext';
 
 export default function Menu_pizza_details({ img, name, showDetail }) {
-
     const [count, setCount] = useState(1);
+
+    const {setChange} = useContext(CartContext);
 
     // Get value options:
     const [valueDeBanh, setValueDeBanh] = useState('');
@@ -41,9 +43,11 @@ export default function Menu_pizza_details({ img, name, showDetail }) {
                 "img":img
             }
     
+            showDetail(false)
             setCart(data)
             console.log([data]);
             postItemCart(data);
+            setChange(true)
         }
         else if((valueDeBanh===""||valueDeBanh===null)&&(valueCoBanh===0)){
             alert("Vui lòng chọn đế bánh và cỡ bánh")

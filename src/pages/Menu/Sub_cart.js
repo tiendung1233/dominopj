@@ -1,17 +1,20 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import styles from "./Sub_cart.module.css";
 import { Link } from 'react-router-dom';
+import CartContext from '../../Context/CartContext';
 
 
 export default function Sub_cart() {
+    const {changeCart} = useContext(CartContext)
+    console.log(changeCart);
 
     const [data, setData] = useState([]);
-    const [check, setCheck] = useState(0)
+    const [check, setCheck] = useState(1)
     const [totalPrice, setTotal] = useState(0);
     // console.log(check);
-    let cartItem = [];
+    
 
     function total(data) {
         let priceList = data.map(e => e.price);
@@ -19,35 +22,41 @@ export default function Sub_cart() {
     }
 
 
-    function loop(data){
-        for (let i = 1; i < data.length; i++) {
-            cartItem.push(data[i]);
-        }
-    }
+    
 
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         fetch("http://localhost:3000/Cart")
             .then(res => res.json())
             .then(item => {
-                setCheck(item.length)
+                let cartItem = [];
+                function loop(data) {
+                    for (let i = 1; i < data.length; i++) {
+                        cartItem.push(data[i]);
+                    }
+                }
                 loop(item);
                 setData(cartItem)
-               console.log(data);
-                let totalCart = total(data);
-                console.log(totalCart);
-                setTotal(totalCart)
-
-
+                // console.log(data);
+                setCheck(cartItem.length)
+                let totalCart = total(cartItem);
+                // console.log(totalCart);
+                setTotal(totalCart);
                 // console.log(item.length);
             })
-    }, [check])
+    }, [changeCart])
+
+    // useEffect(() => {
+
+    // }, [data])
+
+
 
 
 
     return (
         <div className={styles.sub_cart}>
-            {(check === 1) && (
+            {(check < 1) && (
                 <>
                     <div className={styles.img}>
                         <img src='https://dominos.vn/img/illustration/empty-cart.svg' />
@@ -59,7 +68,7 @@ export default function Sub_cart() {
                 </>
             )}
 
-            {(check > 1) && (
+            {(check >= 1) && (
                 <div className={`${styles.cart}`}>
                     <div className={`${styles.list} ${styles.bonus}`} style={{
                         "borderBottom": "solid black 1.5px"
