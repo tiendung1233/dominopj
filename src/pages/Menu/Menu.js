@@ -5,6 +5,8 @@ import styles from "./Menu.module.css";
 import { Link } from 'react-router-dom';
 import Menu_pizza_details from '../../components/Layout/DefaultLayout/Menu_Details/Menu_details';
 import Sub_cart from './Sub_cart';
+import Menu_detail_food from "../../components/Layout/DefaultLayout/Menu_Details/Menu_detail_food";
+import CartContext from "../../Context/CartContext";
 
 // import { type } from '@testing-library/user-event/dist/type';
 
@@ -27,6 +29,11 @@ export default function Menu(){
     const [detail, showDetail] = useState(false);
     const [propsPizzaImg, setPropsPizzaImg] = useState('')
     const [propsPizzaName, setPropsPizzaName] = useState('')
+
+    const [otherDetail, setOtherDetail] = useState(false);
+    const [costItem, setCostItem] = useState(0);
+
+    const [changeCart, setChange] = useState(false);
 
     //Call api
     useEffect(()=>{
@@ -81,15 +88,29 @@ export default function Menu(){
 
     },[subType])//Re-render when subType change
 
-
+// Show Pizza menu detail
 const showDetailMenu = (el)=>{
     showDetail(true)
     let img = el.currentTarget.querySelector("div img").getAttribute("src")
     let name = el.currentTarget.querySelector("li").innerHTML;
     setPropsPizzaImg(img);
     setPropsPizzaName(name)
-   document.querySelector("body").classList.add(styles.disable)
+    document.querySelector("body").classList.add(styles.disable)
+    setChange(false)
     // console.log(detail);
+}
+
+// Show Other menu detail
+const setOtherDetailMenu = (el)=>{
+    let cost =el.currentTarget.querySelector("span").innerHTML;
+    console.log(el.currentTarget.querySelector("span"));
+    setCostItem(Number(cost))
+    setOtherDetail(true)
+    let img = el.currentTarget.querySelector("div img").getAttribute("src")
+    let name = el.currentTarget.querySelector("li").innerHTML;
+    setPropsPizzaImg(img);
+    setPropsPizzaName(name)
+    setChange(false)
 }
 
 // const detailMenu = document.querySelectorAll(`.${styles.content_otherMenu}`);
@@ -99,273 +120,279 @@ const showDetailMenu = (el)=>{
 
 
     return (
-        <div className={`${styles.container_menu}`}>
-            <div className={`${styles.content_menu}`}>
-                <div className={`${styles.header_menu}`}>
-                    <Link to ='/voucher'className={`${styles.link}`}>Khuyen mai moi ngay</Link>
-                    <li className={`${styles.pizza_btn} ${styles.active}`} onClick={(el)=>{
-                        setFirst(false)//set the First time = false
-                        setType("Pizza")
-                        setSubType("Tat ca");
-                        el.currentTarget.classList.add(styles.active);//Set Css
-                        menuBtn.forEach(e=>{
-                                e.classList.remove(styles.active);
-                            })
-                        
-                    }}>Pizza</li>
-                    {headerBtn.map(e=>(
-                        <li key={e} value={e} className={`${styles.menu_btn}`} onClick={(el)=>{
-                            setType(e)
-                            setFirst(false)
-                            // console.log(btnCheckMenu)
-
-                            //Set Css
-                            document.querySelector(`.${styles.pizza_btn}`).classList.remove(styles.active)
+        <CartContext.Provider value={{changeCart,setChange}}>
+            <div className={`${styles.container_menu}`}>
+                <div className={`${styles.content_menu}`}>
+                    <div className={`${styles.header_menu}`}>
+                        <Link to ='/voucher'className={`${styles.link}`}>Khuyen mai moi ngay</Link>
+                        <li className={`${styles.pizza_btn} ${styles.active}`} onClick={(el)=>{
+                            setFirst(false)//set the First time = false
+                            setType("Pizza")
+                            setSubType("Tat ca");
+                            el.currentTarget.classList.add(styles.active);//Set Css
                             menuBtn.forEach(e=>{
-                            e.classList.remove(styles.active);
-                            })
-                            el.currentTarget.classList.add(styles.active)
-                            
-                            
-                            // console.log(defaultMenu);
-                        }}>
-                            {e}
-                        </li>
-                    ))}
-                </div>
-
-
-
-                {/* If Default === false => Render UI of other Menu */}
-                {defaultMenu===false&&(
-                    <div className={`${styles.rate_title}`}>
-                        <h1 className={`${styles.rate}`}>{typeMenu}</h1>
-                        <div className={`${styles.otherMenu}`}>
-                        {dataMenu.map(e=>{
-                                return(
-                                <ul  onClick={showDetailMenu} className={`${styles.content_otherMenu}` }>
-                                    <div>
-                                        <img src={e.img}/>
-                                    </div>
-                                    <li key={e.id} style={{color:"blue"}}>{e.name}</li>
-                                    <li> Gia: {e.cost}</li>
-                                </ul>
-                                )
-                            })}
-                        </div>
-                    </div>
-                )}
-                
-                {/* If Default === true => Render UI of Pizza Menu */}
-               {(defaultMenu)&& (
-                <div className={`${styles.main_menu}`}>
-                {/* List Button of Sub Menu */}
-                    <div className={`${styles.sub_header}`}>
-                        <li className={`${styles.subMenu_btn_all} ${styles.active_sub}`}
-                         onClick={(el)=>{
-                                setFirst(false)
-                                setSubType("Tat ca")
-                                subBtn.forEach(e=>{
-                                    e.classList.remove(styles.active_sub);
+                                    e.classList.remove(styles.active);
                                 })
-                                el.currentTarget.classList.add(styles.active_sub);
-                                // console.log(el.target)
-                                }}
-                        >
-                            Tat ca
-                        </li>
-                        {subHeaderBtn.map(e=>(
-                            <li 
-                            className={`${styles.subMenu_btn}`} 
-                            key={e}
-                            onClick={(el)=>{
+                            
+                        }}>Pizza</li>
+                        {headerBtn.map(e=>(
+                            <li key={e} value={e} className={`${styles.menu_btn}`} onClick={(el)=>{
+                                setType(e)
                                 setFirst(false)
-                                setSubType(e)
-                                subBtn.forEach(e=>{
-                                    e.classList.remove(styles.active_sub);
+                                // console.log(btnCheckMenu)
+
+                                //Set Css
+                                document.querySelector(`.${styles.pizza_btn}`).classList.remove(styles.active)
+                                menuBtn.forEach(e=>{
+                                e.classList.remove(styles.active);
                                 })
-                                el.currentTarget.classList.add(styles.active_sub);
-                                document.querySelector(`.${styles.subMenu_btn_all}`).classList.remove(styles.active_sub)
-                                // console.log(el.target)
-                                }}>
-                            {e}
+                                el.currentTarget.classList.add(styles.active)
+                                
+                                
+                                // console.log(defaultMenu);
+                            }}>
+                                {e}
                             </li>
                         ))}
                     </div>
 
+
+
+                    {/* If Default === false => Render UI of other Menu */}
+                    {defaultMenu===false&&(
+                        <div className={`${styles.rate_title}`}>
+                            <h1 className={`${styles.rate}`}>{typeMenu}</h1>
+                            <div className={`${styles.otherMenu}`}>
+                            {dataMenu.map(e=>{
+                                    return(
+                                    <ul  onClick={setOtherDetailMenu} className={`${styles.content_otherMenu}` }>
+                                        <div>
+                                            <img src={e.img}/>
+                                        </div>
+                                        <li key={e.id} style={{color:"blue"}}>{e.name}</li>
+                                        <li> Gia: <span className={styles.cost} >{e.cost}</span></li>
+                                    </ul>
+                                    )
+                                })}
+                            </div>
+                        </div>
+                    )}
+                    
+                    {/* If Default === true => Render UI of Pizza Menu */}
+                {(defaultMenu)&& (
+                    <div className={`${styles.main_menu}`}>
+                    {/* List Button of Sub Menu */}
+                        <div className={`${styles.sub_header}`}>
+                            <li className={`${styles.subMenu_btn_all} ${styles.active_sub}`}
+                            onClick={(el)=>{
+                                    setFirst(false)
+                                    setSubType("Tat ca")
+                                    subBtn.forEach(e=>{
+                                        e.classList.remove(styles.active_sub);
+                                    })
+                                    el.currentTarget.classList.add(styles.active_sub);
+                                    // console.log(el.target)
+                                    }}
+                            >
+                                Tat ca
+                            </li>
+                            {subHeaderBtn.map(e=>(
+                                <li 
+                                className={`${styles.subMenu_btn}`} 
+                                key={e}
+                                onClick={(el)=>{
+                                    setFirst(false)
+                                    setSubType(e)
+                                    subBtn.forEach(e=>{
+                                        e.classList.remove(styles.active_sub);
+                                    })
+                                    el.currentTarget.classList.add(styles.active_sub);
+                                    document.querySelector(`.${styles.subMenu_btn_all}`).classList.remove(styles.active_sub)
+                                    // console.log(el.target)
+                                    }}>
+                                {e}
+                                </li>
+                            ))}
+                        </div>
+
+                    
+                    {(firstTime===false)&&(
+                        <div className={styles.overflow}>
+                        <div className={`${styles.rate_title}`}>
+                                <div className={`${styles.rate}`} style={{color:'black'}}>
+                                <i className={`bi bi-star-fill`}></i>
+                                PREMIUM
+                                <i className={`bi bi-star-fill`}></i></div>
+                                <div className={`${styles.otherMenu}`}>   
+                            {/* Render Menu */}
+                            {dataMenu.map(e=>{
+                                if(e.rate==="premium"){
+                                    return( 
+                                        <ul  onClick={showDetailMenu} className={`${styles.content_otherMenu}`} >
+                                            <div>
+                                                <img src={e.img}/>
+                                            </div>
+                                            <li key={e.id} style={{color:"blue"}}>{e.name}</li>
+                                            <li> Gia: {e.cost}</li>
+                                        </ul>
+                                    )
+                                }   
+                        })}
+                            </div>
+                        </div>
+
+
+                        {/* Signature */}
+                        <div className={`${styles.rate_title}`}>
+                                <div className={`${styles.rate}`} style={{color:'black'}}>
+                                <i className={`bi bi-star-fill`}></i>
+                                SIGNATURE
+                                <i className={`bi bi-star-fill`}></i></div>
+                                <div className={`${styles.otherMenu}`}>   
+                            {/* Render Menu */}
+                            {dataMenu.map(e=>{
+                                if(e.rate==="signature"){
+                                    return( 
+                                        <ul  onClick={showDetailMenu} className={`${styles.content_otherMenu}` }>
+                                            <div>
+                                                <img src={e.img}/>
+                                            </div>
+                                            <li key={e.id} style={{color:"blue"}}>{e.name}</li>
+                                            <li> Gia: {e.cost}</li>
+                                        </ul>
+                                    )
+                                }   
+                        })}
+                            </div>
+                        </div>
+
+
+                        {/* Favorite */}
+                        <div className={`${styles.rate_title}`}>
+                                <div className={`${styles.rate}`} style={{color:'black'}}>
+                                <i className={`bi bi-star-fill`}></i>
+                                FAVORITE
+                                <i className={`bi bi-star-fill`}></i></div>
+                                <div className={`${styles.otherMenu}`}>   
+                            {/* Render Menu */}
+                            {dataMenu.map(e=>{
+                                if(e.rate==="favorite"){
+                                    return( 
+                                        <ul  onClick={showDetailMenu} className={`${styles.content_otherMenu}` }>
+                                            <div>
+                                                <img src={e.img}/>
+                                            </div>
+                                            <li key={e.id} style={{color:"blue"}}>{e.name}</li>
+                                            <li> Gia: {e.cost}</li>
+                                        </ul>
+                                    )
+                                }   
+                        })}
+                            </div>
+                        </div>
+                        </div>
+                    )}
                 
-                {(firstTime===false)&&(
-                    <div className={styles.overflow}>
-                    <div className={`${styles.rate_title}`}>
-                            <div className={`${styles.rate}`} style={{color:'black'}}>
-                            <i className={`bi bi-star-fill`}></i>
-                            PREMIUM
-                            <i className={`bi bi-star-fill`}></i></div>
-                            <div className={`${styles.otherMenu}`}>   
-                        {/* Render Menu */}
-                        {dataMenu.map(e=>{
-                            if(e.rate==="premium"){
-                                return( 
-                                    <ul  onClick={showDetailMenu} className={`${styles.content_otherMenu}`} >
-                                        <div>
-                                            <img src={e.img}/>
-                                        </div>
-                                        <li key={e.id} style={{color:"blue"}}>{e.name}</li>
-                                        <li> Gia: {e.cost}</li>
-                                    </ul>
-                                )
-                            }   
-                    })}
-                        </div>
-                    </div>
+                    
 
-
-                    {/* Signature */}
-                    <div className={`${styles.rate_title}`}>
-                            <div className={`${styles.rate}`} style={{color:'black'}}>
-                            <i className={`bi bi-star-fill`}></i>
-                            SIGNATURE
-                            <i className={`bi bi-star-fill`}></i></div>
-                            <div className={`${styles.otherMenu}`}>   
-                        {/* Render Menu */}
-                        {dataMenu.map(e=>{
-                            if(e.rate==="signature"){
-                                return( 
-                                    <ul  onClick={showDetailMenu} className={`${styles.content_otherMenu}` }>
-                                        <div>
-                                            <img src={e.img}/>
-                                        </div>
-                                        <li key={e.id} style={{color:"blue"}}>{e.name}</li>
-                                        <li> Gia: {e.cost}</li>
-                                    </ul>
-                                )
-                            }   
-                    })}
-                        </div>
-                    </div>
-
-
-                    {/* Favorite */}
-                    <div className={`${styles.rate_title}`}>
-                            <div className={`${styles.rate}`} style={{color:'black'}}>
-                            <i className={`bi bi-star-fill`}></i>
-                            FAVORITE
-                            <i className={`bi bi-star-fill`}></i></div>
-                            <div className={`${styles.otherMenu}`}>   
-                        {/* Render Menu */}
-                        {dataMenu.map(e=>{
-                            if(e.rate==="favorite"){
-                                return( 
-                                    <ul  onClick={showDetailMenu} className={`${styles.content_otherMenu}` }>
-                                        <div>
-                                            <img src={e.img}/>
-                                        </div>
-                                        <li key={e.id} style={{color:"blue"}}>{e.name}</li>
-                                        <li> Gia: {e.cost}</li>
-                                    </ul>
-                                )
-                            }   
-                    })}
-                        </div>
-                    </div>
                     </div>
                 )}
-               
-                
 
+
+                {/* If First time === true =>Render Ui Pizza Menu */}
+                {firstTime &&(
+                    <div className={styles.overflow}>
+
+                        <div className={`${styles.rate_title}`}>
+                            <div className={`${styles.rate}`} style={{color:'black'}}>
+                                <i className={`bi bi-star-fill`}></i>
+                                PREMIUM
+                                <i className={`bi bi-star-fill`}></i>
+                            </div>
+                            <div className={`${styles.otherMenu}`}>
+                                {menu.map(e=>{
+                                    if(e.title==="Tat ca"&&e.rate==="premium"){
+                                        return (
+                                        <ul  onClick={showDetailMenu} className={`${styles.content_otherMenu}` }>
+                                                <div>
+                                                    <img src={e.img}/>
+                                                </div>
+                                            <li key={e.id} style={{color:"blue"}}>{e.name}</li> 
+                                            <li> Gia: {e.cost}</li>
+                                        </ul>
+                                        )
+                                    }
+                                })}
+                            </div>
+                        </div>
+
+                        <div className={`${styles.rate_title}`}>
+                            <div className={`${styles.rate}`} style={{color:'black'}}>
+                                <i className={`bi bi-star-fill`}></i>
+                                SIGNATURE
+                                <i className={`bi bi-star-fill`}></i>
+                            </div>
+                            <div className={`${styles.otherMenu}`}>
+                                {menu.map(e=>{
+                                    if(e.title==="Tat ca"&&e.rate==="signature"){
+                                        return (
+                                        <ul  onClick={showDetailMenu} className={`${styles.content_otherMenu}` }>
+                                                <div>
+                                                    <img src={e.img}/>
+                                                </div>
+                                            <li key={e.id} style={{color:"blue"}}>{e.name}</li> 
+                                            <li> Gia: {e.cost}</li>
+                                        </ul>
+                                        )
+                                    }
+                                })}
+                            </div>
+                        </div>
+
+                        <div className={`${styles.rate_title}`}>
+                            <div className={`${styles.rate}`} style={{color:'black'}}>
+                                <i className={`bi bi-star-fill`}></i>
+                                FAVORITE
+                                <i className={`bi bi-star-fill`}></i>
+                            </div>
+                            <div className={`${styles.otherMenu}`}>
+                                {menu.map(e=>{
+                                    if(e.title==="Tat ca"&&e.rate==="favorite"){
+                                        return (
+                                        <ul  onClick={showDetailMenu} className={`${styles.content_otherMenu}` }>
+                                                <div>
+                                                    <img src={e.img}/>
+                                                </div>
+                                            <li key={e.id} style={{color:"blue"}}>{e.name}</li> 
+                                            <li> Gia: {e.cost}</li>
+                                        </ul>
+                                        )
+                                    }
+                                })}
+                            </div>
+                        </div>
+
+
+                    </div>  
+                )}
                 </div>
-               )}
 
 
-            {/* If First time === true =>Render Ui Pizza Menu */}
-            {firstTime &&(
-                <div className={styles.overflow}>
+                {/* Show detail Pizza Menu when user click products */}
+                {detail&&(
+                    <Menu_pizza_details name={propsPizzaName} img={propsPizzaImg} showDetail={showDetail} >
 
-                    <div className={`${styles.rate_title}`}>
-                        <div className={`${styles.rate}`} style={{color:'black'}}>
-                            <i className={`bi bi-star-fill`}></i>
-                            PREMIUM
-                            <i className={`bi bi-star-fill`}></i>
-                        </div>
-                        <div className={`${styles.otherMenu}`}>
-                            {menu.map(e=>{
-                                if(e.title==="Tat ca"&&e.rate==="premium"){
-                                    return (
-                                    <ul  onClick={showDetailMenu} className={`${styles.content_otherMenu}` }>
-                                            <div>
-                                                <img src={e.img}/>
-                                            </div>
-                                        <li key={e.id} style={{color:"blue"}}>{e.name}</li> 
-                                        <li> Gia: {e.cost}</li>
-                                    </ul>
-                                    )
-                                }
-                            })}
-                        </div>
-                    </div>
-
-                    <div className={`${styles.rate_title}`}>
-                        <div className={`${styles.rate}`} style={{color:'black'}}>
-                            <i className={`bi bi-star-fill`}></i>
-                            SIGNATURE
-                            <i className={`bi bi-star-fill`}></i>
-                        </div>
-                        <div className={`${styles.otherMenu}`}>
-                            {menu.map(e=>{
-                                if(e.title==="Tat ca"&&e.rate==="signature"){
-                                    return (
-                                    <ul  onClick={showDetailMenu} className={`${styles.content_otherMenu}` }>
-                                            <div>
-                                                <img src={e.img}/>
-                                            </div>
-                                        <li key={e.id} style={{color:"blue"}}>{e.name}</li> 
-                                        <li> Gia: {e.cost}</li>
-                                    </ul>
-                                    )
-                                }
-                            })}
-                        </div>
-                    </div>
-
-                    <div className={`${styles.rate_title}`}>
-                        <div className={`${styles.rate}`} style={{color:'black'}}>
-                            <i className={`bi bi-star-fill`}></i>
-                            FAVORITE
-                            <i className={`bi bi-star-fill`}></i>
-                        </div>
-                        <div className={`${styles.otherMenu}`}>
-                            {menu.map(e=>{
-                                if(e.title==="Tat ca"&&e.rate==="favorite"){
-                                    return (
-                                    <ul  onClick={showDetailMenu} className={`${styles.content_otherMenu}` }>
-                                            <div>
-                                                <img src={e.img}/>
-                                            </div>
-                                        <li key={e.id} style={{color:"blue"}}>{e.name}</li> 
-                                        <li> Gia: {e.cost}</li>
-                                    </ul>
-                                    )
-                                }
-                            })}
-                        </div>
-                    </div>
+                    </Menu_pizza_details>
+                )}
 
 
-                </div>  
-              )}
+                {otherDetail&&(
+                    <Menu_detail_food name={propsPizzaName} img={propsPizzaImg} setOtherDetail={setOtherDetail} cost={costItem} />
+                )}
+
+                <Sub_cart></Sub_cart>
             </div>
-
-
-            {/* Show detail Pizza Menu when user click products */}
-            {detail&&(
-                <Menu_pizza_details name={propsPizzaName} img={propsPizzaImg} showDetail={showDetail} >
-
-                </Menu_pizza_details>
-             )}
-
-
-             <Sub_cart></Sub_cart>
-        </div>
+        </CartContext.Provider>
     )
 
 }

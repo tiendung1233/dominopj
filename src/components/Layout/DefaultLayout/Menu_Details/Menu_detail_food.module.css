@@ -4,9 +4,6 @@
     box-sizing: border-box;
 }
 
-.hide{
-    display: none !important;
-}
 
 .modal{
     position:fixed;
@@ -21,16 +18,16 @@
 .container{
     opacity: 1 !important;
     position: absolute;
-    top: 10%;
+    top: 50%;
     left: 50%;
     z-index: 1000;
-    transform: translate(-50%);
+    transform: translate(-50%,-50%);
     color: black;
     /* overflow-y: scroll; */
     display: flex;
-    width: 832px;
+    width: 55%;
     background-color: white;
-    height: 570px;
+    height: 300px;
     overflow: hidden;
     border-radius: 10px;
 }
@@ -205,12 +202,13 @@
     .container{
         width: 500px;
         flex-direction: column;
+        height: 570px;
         /* display: block; */
     }
 
     .main_content{
-        margin-bottom: 60px;
-        overflow-y: scroll;
+        /* margin-bottom: 60px; */
+        /* overflow-y: scroll; */
     }
 
     .list_btn{
@@ -224,9 +222,8 @@
     .up_down{
         margin-top: 5px;
     }
-
     .up_down span{
-        padding: 0 3.5rem;
+        padding: 3.5rem;
     }
     .up_down button{
         font-size: 2.5rem;
