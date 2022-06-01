@@ -23,6 +23,7 @@ li{
 
 
 .content_menu{
+    flex: 2;
     display: block;
     width: 80%;
     /* min-width: 30%100%; */
@@ -209,7 +210,7 @@ li{
 
 .overflow{
     overflow:overlay;
-    height: 100vh;
+    height: 60vh;
     overflow-x: hidden;
     padding-bottom: 0rem;
 }

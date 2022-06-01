@@ -33,7 +33,7 @@ export default function Menu(){
     const [otherDetail, setOtherDetail] = useState(false);
     const [costItem, setCostItem] = useState(0);
 
-    const [changeCart, setChange] = useState(false);
+    const [changeCart, setChange] = useState("default");
 
     //Call api
     useEffect(()=>{
@@ -122,7 +122,7 @@ const setOtherDetailMenu = (el)=>{
     return (
         <CartContext.Provider value={{changeCart,setChange}}>
             <div className={`${styles.container_menu}`}>
-                <div className={`${styles.content_menu}`}>
+                <div className={`${styles.content_menu}`} id="flex-2">
                     <div className={`${styles.header_menu}`}>
                         <Link to ='/voucher'className={`${styles.link}`}>Khuyen mai moi ngay</Link>
                         <li className={`${styles.pizza_btn} ${styles.active}`} onClick={(el)=>{
@@ -160,6 +160,7 @@ const setOtherDetailMenu = (el)=>{
 
                     {/* If Default === false => Render UI of other Menu */}
                     {defaultMenu===false&&(
+                        <div className={styles.overflow}>
                         <div className={`${styles.rate_title}`}>
                             <h1 className={`${styles.rate}`}>{typeMenu}</h1>
                             <div className={`${styles.otherMenu}`}>
@@ -175,6 +176,7 @@ const setOtherDetailMenu = (el)=>{
                                     )
                                 })}
                             </div>
+                        </div>
                         </div>
                     )}
                     

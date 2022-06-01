@@ -5,14 +5,14 @@
 }
 
 .sub_cart{
+    flex: 1;
     display: block;
     /* width: 100px; */
-    position: absolute;
-    right: 15px;
+    /* right: 15px; */
     /* border: 1px solid grey; */
-    height: 120vh;
+    /* height: 120vh; */
     border-bottom: none;
-    background-color: hsl(210, 36%, 96%);
+    background-color: white;
 }
 
 .img{
@@ -38,10 +38,11 @@
 
 /* List cart */
 .cart{
-    position: absolute;
+    /* position: absolute;
     right: 40px;
-    width: 380px;
-    top: 5%;
+    top: 5%; */
+    margin: auto;
+    max-width: 80%;
     overflow-y: overlay;
     overflow-x: hidden;
 }

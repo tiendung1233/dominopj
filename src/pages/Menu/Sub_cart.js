@@ -1,5 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import "bootstrap-icons/font/bootstrap-icons.css";
 import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import styles from "./Sub_cart.module.css";
 import { Link } from 'react-router-dom';
@@ -46,16 +44,13 @@ export default function Sub_cart() {
             })
     }, [changeCart])
 
-    // useEffect(() => {
-
-    // }, [data])
 
 
 
 
 
     return (
-        <div className={styles.sub_cart}>
+        <div className={styles.sub_cart} id="flex-1">
             {(check < 1) && (
                 <>
                     <div className={styles.img}>
@@ -80,7 +75,7 @@ export default function Sub_cart() {
                             <li>
                                 <img className={styles.img_cart} src={e.img} />
                             </li>
-                            <li style={{ "width": "60%" }}>{e.name}</li>
+                            <li style={{ "width": "60%", "textOverflow": "clip","whiteSpace":"nowrap","overflow":"hidden" }}>{e.name}</li>
                             <li>{e.count}</li>
                             <li>{e.price}</li>
                             <div>x</div>
@@ -90,8 +85,10 @@ export default function Sub_cart() {
                     <div style={{
                         "textAlign":"center",
                         "fontWeight":"bolder",
-                        "marginTop":"90%"
-                    }}>{totalPrice}</div>
+                        "marginTop":"80%"
+                    }}><span style={{
+                        "color":"red"
+                    }}>Tong tien: </span>{totalPrice}</div>
                 </div>
             )}
         </div>

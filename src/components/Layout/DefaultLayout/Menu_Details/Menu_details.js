@@ -31,6 +31,7 @@ export default function Menu_pizza_details({ img, name, showDetail }) {
 
     const handleX = () => {
         showDetail(false)
+        setChange("close")
     }
 
     const addToCart = (el) => {

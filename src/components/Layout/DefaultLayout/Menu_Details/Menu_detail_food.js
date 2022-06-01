@@ -23,7 +23,7 @@ export default function Menu_detail_food({ img, name, cost, setOtherDetail }) {
 
     const handleX = () => {
         setOtherDetail(false);
-        // setChange("close");
+        setChange("close");
     }
 
     useEffect(() => {
@@ -40,12 +40,12 @@ export default function Menu_detail_food({ img, name, cost, setOtherDetail }) {
             "de_banh": "",
             "img":img
         }
-        // setOtherDetail(false)
+        setOtherDetail(false)
         setCart(data)
         console.log([data]);
         postItemCart(data);
         setChange(true)
-        setOtherDetail(false);
+        // setOtherDetail(false);
     }
 
     // Post Api:

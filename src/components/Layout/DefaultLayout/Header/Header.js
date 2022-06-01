@@ -43,7 +43,7 @@ function Header() {
                                 <i class={`bi bi-person-fill ${styles.block_icon}`}></i>
                             </div>
                             <div className={`col-md-6 ${styles.block}`}>
-                                 <i class={`bi bi-basket-fill ${styles.block_icon}`}></i>
+                            <Link  to ='/cart'><i class={`bi bi-basket-fill ${styles.block_icon}`}></i></Link>
                             </div>
                             
                         </div>
