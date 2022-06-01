@@ -44,7 +44,7 @@ export default function Menu_pizza_details({ img, name, showDetail }) {
                 "img":img
             }
     
-            showDetail(false)
+            // showDetail(false)
             setCart(data)
             console.log([data]);
             postItemCart(data);
@@ -69,7 +69,7 @@ export default function Menu_pizza_details({ img, name, showDetail }) {
 
     // Post Api:
     function postItemCart(data) {
-        fetch("http://localhost:3000/Cart", {
+        fetch("https://627a232473bad506858340e5.mockapi.io/api/pizza/Cart", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'

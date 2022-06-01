@@ -13,6 +13,7 @@
     /* height: 120vh; */
     border-bottom: none;
     background-color: white;
+    margin-top: 30px;
 }
 
 .img{
@@ -42,7 +43,7 @@
     right: 40px;
     top: 5%; */
     margin: auto;
-    max-width: 80%;
+    max-width: 90%;
     overflow-y: overlay;
     overflow-x: hidden;
 }

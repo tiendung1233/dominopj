@@ -5,14 +5,14 @@ import CartContext from '../../Context/CartContext';
 
 
 export default function Sub_cart() {
-    const {changeCart} = useContext(CartContext)
+    const { changeCart } = useContext(CartContext)
     console.log(changeCart);
 
     const [data, setData] = useState([]);
     const [check, setCheck] = useState(1)
     const [totalPrice, setTotal] = useState(0);
     // console.log(check);
-    
+
 
     function total(data) {
         let priceList = data.map(e => e.price);
@@ -20,11 +20,11 @@ export default function Sub_cart() {
     }
 
 
-    
+
 
 
     useEffect(() => {
-        fetch("http://localhost:3000/Cart")
+        fetch("https://627a232473bad506858340e5.mockapi.io/api/pizza/Cart")
             .then(res => res.json())
             .then(item => {
                 let cartItem = [];
@@ -71,24 +71,26 @@ export default function Sub_cart() {
                         <li style={{ "width": "60%" }}>Don hang cua ban</li>
                     </div>
                     {data.map(e => (
-                        <div className={styles.list}>
-                            <li>
-                                <img className={styles.img_cart} src={e.img} />
-                            </li>
-                            <li style={{ "width": "60%", "textOverflow": "clip","whiteSpace":"nowrap","overflow":"hidden" }}>{e.name}</li>
-                            <li>{e.count}</li>
-                            <li>{e.price}</li>
-                            <div>x</div>
-                        </div>
+                        <>
+                            <div className={styles.list}>
+                                <li>
+                                    <img className={styles.img_cart} src={e.img} />
+                                </li>
+                                <li style={{ "width": "60%", "textOverflow": "clip", "whiteSpace": "nowrap", "overflow": "hidden" }}>{e.name}</li>
+                                <li>{e.count}</li>
+                                <li>{e.price}</li>
+                                <div>x</div>
+                            </div>
+                        </>
                     ))}
-
                     <div style={{
-                        "textAlign":"center",
-                        "fontWeight":"bolder",
-                        "marginTop":"80%"
-                    }}><span style={{
-                        "color":"red"
-                    }}>Tong tien: </span>{totalPrice}</div>
+                                "textAlign": "center",
+                                "fontWeight": "bolder",
+                                "marginTop": "80%"
+                            }}><span style={{
+                                "color": "red"
+                            }}>Tong tien: </span>{totalPrice}</div>
+
                 </div>
             )}
         </div>

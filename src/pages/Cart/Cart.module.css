@@ -1,0 +1,124 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.sub_cart{
+    /* flex: 1; */
+    display: block;
+    /* width: 100px; */
+    /* right: 15px; */
+    /* border: 1px solid grey; */
+    /* height: 120vh; */
+    border-bottom: none;
+    background-color: white;
+}
+
+.img{
+
+}
+
+.img img{
+    width: 350px;
+    margin-left: 25%;
+}
+
+.infomation{
+    /* margin: auto; */
+    text-align: center;
+    margin-left: 5rem;
+}
+
+.p{
+    font-size: 18px ;
+    font-weight: bold ;
+}
+
+
+/* List cart */
+.cart{
+    /* position: absolute;
+    right: 40px;
+    top: 5%; */
+    margin: auto;
+    max-width: 80%;
+    overflow-y: overlay;
+    overflow-x: hidden;
+}
+
+.list{
+    display: flex;
+    flex-wrap:nowrap;
+    justify-content: space-around;
+    padding: 1rem;
+    border-bottom: solid grey 1.5px;
+    align-items: center;
+    position: relative;
+}
+
+.list li{
+    list-style: none;
+    font-size: 14.5px;
+    font-family: serif;
+    font-weight: bold;
+    text-align: center;
+    width: 35%;
+}
+
+.list div{
+    position: absolute;
+    right: 0;
+    /* top: 50%; */
+    /* transform: translateY(-50%); */
+    font-size: 25px;
+    cursor: pointer;
+    color: red;
+    transition: all .2s linear;
+    font-weight: bold;
+    /* padding-bottom: 5px; */
+}
+
+.bonus{
+
+}
+
+.bonus li{
+    font-size: 18px;
+}
+
+.list div:hover{
+    /* font-size: 30px; */
+    transform: rotate(180deg);
+}
+
+.img_cart{
+    height: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (min-width: 1198px) and (max-width:1300px){
+    .sub_cart{
+        /* right: -20px; */
+    }
+}
+
+@media screen and (max-width: 1200px){
+    .sub_cart{
+        /* display: none; */
+    }
+}

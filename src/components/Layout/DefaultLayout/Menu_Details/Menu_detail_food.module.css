@@ -196,6 +196,30 @@
 }
 
 
+.alert{
+    position: absolute;
+    left: 50%;
+    top: 48%;
+    width: 300px;
+    height: 120px;
+    background-color: wheat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+    z-index: 1000;
+    border-radius: 10px;
+    transform: translate(-50%,-50%);
+    box-shadow: 5px 3px 0 0 rgba(58, 55, 55, 0.493);
+    transition: all .2s linear;
+}
+
+
+
+
 /* Responesive */
 
 @media screen and (max-width: 960px){

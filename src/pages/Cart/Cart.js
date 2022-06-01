@@ -23,7 +23,7 @@ export default function Sub_cart() {
 
 
     useEffect(() => {
-        fetch("http://localhost:3000/Cart")
+        fetch("https://627a232473bad506858340e5.mockapi.io/api/pizza/Cart")
             .then(res => res.json())
             .then(item => {
                 let cartItem = [];

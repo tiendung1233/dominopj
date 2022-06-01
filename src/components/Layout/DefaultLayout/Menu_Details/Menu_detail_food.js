@@ -3,7 +3,7 @@ import styles from "./Menu_detail_food.module.css";
 import CartContext from "../../../../Context/CartContext";
 
 export default function Menu_detail_food({ img, name, cost, setOtherDetail }) {
-    const {setChange} = useContext(CartContext);
+    const {changeCart,setChange} = useContext(CartContext);
 
     const [count, setCount] = useState(1);
     const [price, setPrice] = useState(0);
@@ -40,7 +40,7 @@ export default function Menu_detail_food({ img, name, cost, setOtherDetail }) {
             "de_banh": "",
             "img":img
         }
-        setOtherDetail(false)
+        // setOtherDetail(false)
         setCart(data)
         console.log([data]);
         postItemCart(data);
@@ -50,7 +50,7 @@ export default function Menu_detail_food({ img, name, cost, setOtherDetail }) {
 
     // Post Api:
     function postItemCart(data) {
-        fetch("http://localhost:3000/Cart", {
+        fetch("https://627a232473bad506858340e5.mockapi.io/api/pizza/Cart", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -90,6 +90,10 @@ export default function Menu_detail_food({ img, name, cost, setOtherDetail }) {
                     </div>
                 </div>
             </div>
+
+            {changeCart===true&&(
+                <div className={styles.alert}>Click <span style={{"color":"red","margin":"10px"}}> X </span> to close</div>
+            )}
         </div>
     )
 }
