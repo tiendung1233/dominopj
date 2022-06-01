@@ -87,7 +87,11 @@ export default function Sub_cart() {
                         </div>
                     ))}
 
-                    <div>{totalPrice}</div>
+                    <div style={{
+                        "textAlign":"center",
+                        "fontWeight":"bolder",
+                        "marginTop":"90%"
+                    }}>{totalPrice}</div>
                 </div>
             )}
         </div>
