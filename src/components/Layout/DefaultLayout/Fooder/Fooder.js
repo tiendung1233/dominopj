@@ -18,12 +18,12 @@ function Fooder() {
             <div className={styles.boder}></div>
             
             <div className={`${styles.Fooder_conten} row py-5`}>
-                <div className={`col-md-4 ${styles.Fooder_conten_contac} row`}>
-                    <div className={`${styles.boder_y} col-md-4`}> 
+                <div className={`col-lg-4 col-md-6 ${styles.Fooder_conten_contac} row`}>
+                    <div className={`${styles.boder_y} col-lg-4 col-md-4`}> 
                         <img className={styles.contac_img} src='https://dominos.vn/img/logo/domino.svg'/>
                     </div>
 
-                    <div className={`col-md-7 `}>
+                    <div className={`col-lg-7 col-md-8  ` }>
     
                         <div className={styles.hotline}>
                              Hotline Đặt Hàng
@@ -34,32 +34,32 @@ function Fooder() {
                     </div>
                 </div>
     
-                <div className={`col-md-6 row`}>
-                    <ul className={`${styles.list} col-md-4`}>
+                <div className={`col-lg-6 row col-md-4`}>
+                    <ul className={`${styles.list} col-lg-4`}>
                         <li className={styles.list_item}>Cam kết</li>
                         <li className={styles.list_item}>Lịch sử</li>
                         <li className={styles.list_item}>Tuyển dụng</li>
                     </ul>
     
-                    <ul className={`${styles.list} col-md-4`}>
+                    <ul className={`${styles.list} col-lg-4`}>
                         <li className={styles.list_item}>Thực đơn</li>
                         <li className={styles.list_item}>Mã e-voucher</li>
                         <li className={styles.list_item}>Khuyến mãi</li>
                     </ul>
     
-                    <ul className={`${styles.list} col-md-4`}>
+                    <ul className={`${styles.list} col-lg-4`}>
                         <li className={styles.list_item}>Theo dõi đơn hàng</li>
                         <li className={styles.list_item}>Danh sách cửa hàng</li>
                     </ul>
                 </div>
     
-                <div className={`col-md-2`}>
+                <div className={`col-lg-2 col-md-2`}>
                     <img className={styles.car_img} src='https://dominos.vn/img/credentials.png'/>
                 </div>
             </div>
 
             <div className={styles.end}>
-                <div className={styles.domino_vn}>© 2020 Domino’s Pizza Vietnam | Privacy Policy</div>
+                <div className={styles.domino_vn} >© 2020 Domino’s Pizza Vietnam | Privacy Policy</div>
                 <div className={styles.btn_lg}>Switch to English version</div>
             </div>
         </div>
