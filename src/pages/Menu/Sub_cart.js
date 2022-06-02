@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 import CartContext from '../../Context/CartContext';
 
 
+
+
 export default function Sub_cart() {
-    const { changeCart } = useContext(CartContext)
+    const { changeCart,setChange } = useContext(CartContext)
     console.log(changeCart);
 
     const [data, setData] = useState([]);
@@ -47,6 +49,24 @@ export default function Sub_cart() {
 
 
 
+    function deleteCart(el){
+        let idItem = el.target.parentElement.id;
+        fetch(`https://627a232473bad506858340e5.mockapi.io/api/pizza/Cart/${idItem}`,{
+            method:"DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+              },
+        })
+        .then(res=>res.json())
+        .then(()=>{
+            const item = document.querySelector(`.${idItem}`)
+            item.remove();
+        })
+        setChange("delete")
+    }
+
+
 
 
     return (
@@ -72,14 +92,14 @@ export default function Sub_cart() {
                     </div>
                     {data.map(e => (
                         <>
-                            <div className={styles.list}>
+                            <div className={styles.list} id={e.id}>
                                 <li>
                                     <img className={styles.img_cart} src={e.img} />
                                 </li>
                                 <li style={{ "width": "60%", "textOverflow": "clip", "whiteSpace": "nowrap", "overflow": "hidden" }}>{e.name}</li>
                                 <li>{e.count}</li>
                                 <li>{e.price}</li>
-                                <div>x</div>
+                                <div onClick={deleteCart}>x</div>
                             </div>
                         </>
                     ))}
@@ -93,6 +113,25 @@ export default function Sub_cart() {
 
                 </div>
             )}
+
+
+            {changeCart==="delete"&&(
+                <div className={styles.alert}>
+                    <div className={styles.alert_cotent}>
+                    
+                        <span style={{"color":"red","margin":"10px"}}>Xoa thanh cong</span>
+                        <button style={{
+                            "fontSize":"20px",
+                            "color":"green",
+                            "fontWeight":"bold",
+                            "padding":".5rem 2.5rem",
+                            "borderRadius":"5px"
+                        }} onClick={()=>setChange("default")}>OK</button>
+                    </div>
+                </div>
+            )}
+
+            
         </div>
     )
 }
