@@ -8,7 +8,7 @@ import CartContext from '../../../../Context/CartContext';
 export default function Menu_pizza_details({ img, name, showDetail }) {
     const [count, setCount] = useState(1);
 
-    const {setChange} = useContext(CartContext);
+    const {changeCart,setChange} = useContext(CartContext);
 
     // Get value options:
     const [valueDeBanh, setValueDeBanh] = useState('');
@@ -31,6 +31,7 @@ export default function Menu_pizza_details({ img, name, showDetail }) {
 
     const handleX = () => {
         showDetail(false)
+        setChange("close")
     }
 
     const addToCart = (el) => {
@@ -43,7 +44,7 @@ export default function Menu_pizza_details({ img, name, showDetail }) {
                 "img":img
             }
     
-            showDetail(false)
+            // showDetail(false)
             setCart(data)
             console.log([data]);
             postItemCart(data);
@@ -68,7 +69,7 @@ export default function Menu_pizza_details({ img, name, showDetail }) {
 
     // Post Api:
     function postItemCart(data) {
-        fetch("http://localhost:3000/Cart", {
+        fetch("https://627a232473bad506858340e5.mockapi.io/api/pizza/Cart", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -231,6 +232,10 @@ export default function Menu_pizza_details({ img, name, showDetail }) {
                 </div>
             </div>
             {/* )} */}
+
+            {changeCart===true&&(
+                <div className={styles.alert}>Click <span style={{"color":"red","margin":"10px"}}> X </span> to close</div>
+            )}
         </div>
     )
 }

@@ -44,9 +44,14 @@ function Header() {
                             <div className={`col-md-4 ${styles.block}`}>
                                 <ModalLg/> 
                             </div>
+<<<<<<< HEAD
                             <div className={`col-md-4 ${styles.block}`}>
                                  <i class={`bi bi-basket-fill ${styles.block_icon}`}></i>
                                  
+=======
+                            <div className={`col-md-6 ${styles.block}`}>
+                            <Link  to ='/cart'><i class={`bi bi-basket-fill ${styles.block_icon}`}></i></Link>
+>>>>>>> aefa0eebff26c52b71e7022c2fd602b5465e7290
                             </div>
                            
                             

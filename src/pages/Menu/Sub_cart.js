@@ -1,20 +1,20 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import "bootstrap-icons/font/bootstrap-icons.css";
 import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import styles from "./Sub_cart.module.css";
 import { Link } from 'react-router-dom';
 import CartContext from '../../Context/CartContext';
 
 
+
+
 export default function Sub_cart() {
-    const {changeCart} = useContext(CartContext)
+    const { changeCart,setChange } = useContext(CartContext)
     console.log(changeCart);
 
     const [data, setData] = useState([]);
     const [check, setCheck] = useState(1)
     const [totalPrice, setTotal] = useState(0);
     // console.log(check);
-    
+
 
     function total(data) {
         let priceList = data.map(e => e.price);
@@ -22,11 +22,11 @@ export default function Sub_cart() {
     }
 
 
-    
+
 
 
     useEffect(() => {
-        fetch("http://localhost:3000/Cart")
+        fetch("https://627a232473bad506858340e5.mockapi.io/api/pizza/Cart")
             .then(res => res.json())
             .then(item => {
                 let cartItem = [];
@@ -46,16 +46,31 @@ export default function Sub_cart() {
             })
     }, [changeCart])
 
-    // useEffect(() => {
 
-    // }, [data])
 
+
+    function deleteCart(el){
+        let idItem = el.target.parentElement.id;
+        fetch(`https://627a232473bad506858340e5.mockapi.io/api/pizza/Cart/${idItem}`,{
+            method:"DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+              },
+        })
+        .then(res=>res.json())
+        .then(()=>{
+            const item = document.querySelector(`.${idItem}`)
+            item.remove();
+        })
+        setChange("delete")
+    }
 
 
 
 
     return (
-        <div className={styles.sub_cart}>
+        <div className={styles.sub_cart} id="flex-1">
             {(check < 1) && (
                 <>
                     <div className={styles.img}>
@@ -76,24 +91,47 @@ export default function Sub_cart() {
                         <li style={{ "width": "60%" }}>Don hang cua ban</li>
                     </div>
                     {data.map(e => (
-                        <div className={styles.list}>
-                            <li>
-                                <img className={styles.img_cart} src={e.img} />
-                            </li>
-                            <li style={{ "width": "60%" }}>{e.name}</li>
-                            <li>{e.count}</li>
-                            <li>{e.price}</li>
-                            <div>x</div>
-                        </div>
+                        <>
+                            <div className={styles.list} id={e.id}>
+                                <li>
+                                    <img className={styles.img_cart} src={e.img} />
+                                </li>
+                                <li style={{ "width": "60%", "textOverflow": "clip", "whiteSpace": "nowrap", "overflow": "hidden" }}>{e.name}</li>
+                                <li>{e.count}</li>
+                                <li>{e.price}</li>
+                                <div onClick={deleteCart}>x</div>
+                            </div>
+                        </>
                     ))}
-
                     <div style={{
-                        "textAlign":"center",
-                        "fontWeight":"bolder",
-                        "marginTop":"90%"
-                    }}>{totalPrice}</div>
+                                "textAlign": "center",
+                                "fontWeight": "bolder",
+                                "marginTop": "80%"
+                            }}><span style={{
+                                "color": "red"
+                            }}>Tong tien: </span>{totalPrice}</div>
+
                 </div>
             )}
+
+
+            {changeCart==="delete"&&(
+                <div className={styles.alert}>
+                    <div className={styles.alert_cotent}>
+                    
+                        <span style={{"color":"red","margin":"10px"}}>Xoa thanh cong</span>
+                        <button style={{
+                            "fontSize":"20px",
+                            "color":"green",
+                            "fontWeight":"bold",
+                            "padding":".5rem 2.5rem",
+                            "borderRadius":"5px"
+                        }} onClick={()=>setChange("default")}>OK</button>
+                    </div>
+                </div>
+            )}
+
+            
         </div>
     )
 }
