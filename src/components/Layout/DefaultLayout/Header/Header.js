@@ -1,5 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
+import Modal from '../../../../pages/ModalMenu/Modal';
+import ModalLg from '../../../../pages/ModalLg/Modal';
 import styles from './Header.module.css'
 import {Link} from 'react-router-dom';
 import 'bootstrap/dist/js/bootstrap.min.js'
@@ -39,12 +41,14 @@ function Header() {
                     </div>
                     <div className={`col-md-2`}>
                         <div className={`row ${styles.wrap} `} >
-                            <div className={`col-md-6 ${styles.block}`}>
-                                <i class={`bi bi-person-fill ${styles.block_icon}`}></i>
+                            <div className={`col-md-4 ${styles.block}`}>
+                                <ModalLg/> 
                             </div>
-                            <div className={`col-md-6 ${styles.block}`}>
+                            <div className={`col-md-4 ${styles.block}`}>
                                  <i class={`bi bi-basket-fill ${styles.block_icon}`}></i>
+                                 
                             </div>
+                           
                             
                         </div>
                     </div>
@@ -59,20 +63,22 @@ function Header() {
                 <div className={styles.header_mb}>
                     <ul className={styles.nav_item}>
                         <li className={styles.nav_icon}>
-                            <img className={styles.nav_icon_img} src='https://dominos.vn/img/logo/domino.svg'/>
+                            <Link to ='/'><img className={styles.nav_icon_img} src='https://dominos.vn/img/logo/domino.svg'/></Link>
                         </li>
                         <li className={styles.nav_icon}>
-                        <i class="color bi bi-cart-fill"></i>
+                            <Link to = '/follow'><i class="color bi bi-cart-fill"></i></Link>
                         </li>
                         <li className={styles.nav_icon}>
-                            <img src='	https://dominos.vn/img/logo/promotion-1.svg'/>
+                            <Link to ='/voucher'><img src='	https://dominos.vn/img/logo/promotion-1.svg'/></Link>
                         </li>
                         <li className={styles.nav_icon}>
-                            <img src='	https://dominos.vn/img/logo/menu.svg'/>
+                            <Link to ='/menu'><img src='	https://dominos.vn/img/logo/menu.svg'/></Link>
                         </li>
                         <li className={styles.nav_icon}><i class="color bi bi-person-fill"></i></li>
                         <li className={styles.nav_icon}><i class="color bi bi-basket-fill"></i></li>
-                        <li className={styles.nav_icon}><i class="color bi bi-list"></i></li>
+                        <li className={styles.nav_icon}>              
+                          <Modal/>
+                        </li>
                     </ul>
                 </div>
             </div>
