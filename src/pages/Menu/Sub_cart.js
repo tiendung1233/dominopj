@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import styles from "./Sub_cart.module.css";
 import { Link } from 'react-router-dom';
 import CartContext from '../../Context/CartContext';
+import UpdateCart from '../../components/Layout/DefaultLayout/UdateCart/UpdateCart';
 
 
 
@@ -13,7 +14,13 @@ export default function Sub_cart() {
     const [data, setData] = useState([]);
     const [check, setCheck] = useState(1)
     const [totalPrice, setTotal] = useState(0);
+    const [show,setShow] = useState(false)
     // console.log(check);
+
+    const [imgItem,setImg] =useState();
+    const [cost,setCost] = useState();
+    const [name,setName] = useState();
+    const [countItem, setCount] = useState(0);
 
 
     function total(data) {
@@ -66,10 +73,23 @@ export default function Sub_cart() {
         setChange("delete")
     }
 
+    const heandleEdit = (el)=>{
+        const parrent = el.target.parentElement
+        const parrentList = parrent.parentElement
+        const liList = parrentList.querySelectorAll('li')
+        console.log(liList[3]);
+        setCost(liList[3].innerHTML)
+        setName(liList[1].innerHTML)
+        setCount(liList[2].innerHTML)
+        setImg(parrent.querySelector(`img`).getAttribute("src"));
+        // console.log((<UpdateCart/>));
+        setShow(true);
+    }
 
 
 
     return (
+        <>
         <div className={styles.sub_cart} id="flex-1">
             {(check < 1) && (
                 <>
@@ -85,7 +105,7 @@ export default function Sub_cart() {
 
             {(check >= 1) && (
                 <div className={`${styles.cart}`}>
-                    <div className={`${styles.list} ${styles.bonus}`} style={{
+                    <div className={`${styles.bonus}`} style={{
                         "borderBottom": "solid black 1.5px"
                     }}>
                         <li style={{ "width": "60%" }}>Don hang cua ban</li>
@@ -95,10 +115,11 @@ export default function Sub_cart() {
                             <div className={styles.list} id={e.id}>
                                 <li>
                                     <img className={styles.img_cart} src={e.img} />
+                                    <button className={styles.editBtn} onClick={heandleEdit}>Edit</button>
                                 </li>
-                                <li style={{ "width": "60%", "textOverflow": "clip", "whiteSpace": "nowrap", "overflow": "hidden" }}>{e.name}</li>
-                                <li>{e.count}</li>
-                                <li>{e.price}</li>
+                                <li className={styles.name} style={{ "width": "60%", "textOverflow": "clip", "whiteSpace": "nowrap", "overflow": "hidden" }}>{e.name}</li>
+                                <li className={styles.count}>{e.count}</li>
+                                <li className={styles.cost}>{e.price}</li>
                                 <div onClick={deleteCart}>x</div>
                             </div>
                         </>
@@ -131,8 +152,14 @@ export default function Sub_cart() {
                 </div>
             )}
 
-            
         </div>
+
+          {/* UI Update Cart */}
+          {show&&(
+                <UpdateCart setShow={setShow} img={imgItem} name = {name} cost = {cost}/>
+            )}
+
+        </>
     )
 }
 

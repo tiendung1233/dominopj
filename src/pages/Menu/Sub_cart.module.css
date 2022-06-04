@@ -59,16 +59,18 @@
 }
 
 .list li{
+    position: relative;
     list-style: none;
     font-size: 14.5px;
     font-family: serif;
     font-weight: bold;
     text-align: center;
     width: 35%;
+    margin-left: 3px;
 }
 
 .list div{
-    position: absolute;
+    position: relative;
     right: 0;
     /* top: 50%; */
     /* transform: translateY(-50%); */
@@ -81,8 +83,20 @@
 }
 
 .bonus{
-
+    font-size: 18px;
+    font-weight: bolder;
+    list-style: none;
+    display: flex;
+    flex-wrap:nowrap;
+    justify-content: center;
+    padding: 1rem;
+    border-bottom: solid grey 1.5px;
+    align-items: center;
+    position: relative;
+    text-align: center;
 }
+
+
 
 .bonus li{
     font-size: 18px;
@@ -95,6 +109,26 @@
 
 .img_cart{
     height: 50px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.editBtn{
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    font-size: 14.5px;
+    padding: .15rem 0;
+    height: 50px;
+    font-weight: bolder;
+    background-color: rgba(241, 231, 211, 0.658);
+    opacity: 0;
+}
+
+.list li:hover .editBtn{
+    opacity: 1;
 }
 
 .alert{
@@ -110,6 +144,8 @@
     background-color: rgba(158, 156, 147, 0.432);
     z-index: 100;
 }
+
+
 
 .alert_cotent{
     position: absolute;
