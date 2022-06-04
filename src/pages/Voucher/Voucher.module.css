@@ -1,0 +1,60 @@
+.Voucher_conten{
+    max-width: 1200px;
+    margin: auto;
+    padding: 80px 0;
+}
+
+.Voucher_page{
+    background-image: url('https://dominos.vn/img/bg/black-zone.png');
+    background-position: center;
+    
+}
+
+.img_style{
+    border: 1px solid #fff;
+    border-radius: 10px;
+    margin: 16px 0;
+
+}
+.tab_voucher{
+    background-color: #fff;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    border-right: 9px solid rgb(173, 16, 16);
+    padding: 24px 176px 24px 32px;
+    margin: 16px 0;
+}
+
+.title{
+    font-size: 28px;
+    font-weight: 600;
+    color: #0078ae ;
+
+}
+
+.conten1w p{
+    font-size: 14px;
+    font-weight: 600;
+}
+.btn_voucher{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.btn_voucher_item{
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #fdedef;
+    border: 1px solid #f7b5bf;
+    color: #e31837;
+    padding: 6px 16px;
+    border-radius: 3px;
+    margin: 0 8px 8px 0;
+}
+
+.btn_voucher_item:hover{
+    color: #fff;
+    background-color: #c0142f;
+    border-color: #b5132c;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}

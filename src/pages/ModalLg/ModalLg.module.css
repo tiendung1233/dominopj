@@ -12,3 +12,89 @@
     animation: modalen linear 0.4s ;
 
 }
+
+
+.img_Lg_sm{
+    width: 100%;
+    height: auto;
+}
+.btn_regin,
+.btn_login{
+    display: flex;
+}
+.modal_content{
+    display: flex;
+}
+.btn_regin2,
+.btn_login2,
+.btn_regin1,
+.btn_login1{
+    font-size: 16px;
+    padding: 0 8px;
+    font-weight: 600;
+    color: #ccc;
+    cursor: pointer;
+}
+.number_ip,
+.name_ip,
+.pass_ip,
+.email_ip{
+    font-size: 14px;
+    padding: 12px 8px;
+    height: 100%;
+    width: 80%;
+}
+.img_Lg_sm{
+    width: 100%;
+}
+.number,
+.name,
+.pass,
+.email{
+    text-align: initial;
+    height: 30px;
+}
+.number_text,
+.name_text,
+.pass_text,
+.Email_text{
+    text-align: initial;
+    height: 35px;
+    font-size: 14px;
+    color: #0078ae !important;
+    font-weight: 600;
+}
+
+.box_lg{
+    width: 500px;
+}
+.box_regin{
+    width: 500px;
+    display: none;
+
+}
+.btn_regin_ss,
+.ss{
+    display: flex;
+    width: 80%;
+    margin-top: 48px;
+    height: 39px;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    border: -14px solid;
+    background-color: #e31837;
+    border-radius: 3px;
+}
+
+.btn_regin_ss{
+    margin-bottom: 24px;
+}
+.display_block{
+    display: block;
+}
+.display_none{
+    display: none;
+}
