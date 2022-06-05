@@ -1,0 +1,54 @@
+.conten{
+    max-width: 1000px;
+    margin: auto;
+}
+.Follow{
+    background-color: #f2f4f8;
+}
+.img_width{
+    width: 100%;
+    
+}
+
+.conten_text{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+.input{
+    width: 80%;
+    font-size: 12px;
+    padding: 12px 8px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-top-left-radius: 0.5rem;
+    border: 0;
+    color: #333;
+    font-weight: 600;
+}
+.box_ipbtn{
+    font-size: 16px;
+    align-items: center;
+    line-height: 47px;
+    padding-left: 12px;
+    padding-right: 12px;
+    background-color: #0078ae;
+    border-top-right-radius: 0.5rem !important;
+    border-bottom-right-radius: 0 !important;
+    border: none;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    width: 54px;
+    text-align: center;
+
+}
+.box_ip{
+    display: flex;
+}
+
+.icon_s{
+    font-size: 14px;
+}
