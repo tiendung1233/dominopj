@@ -2,17 +2,26 @@ import CartContext from '../../Context/CartContext';
 import React, { useContext,useEffect,useState } from 'react';
 import styles from "./Cart.module.css";
 import { Link } from 'react-router-dom';
+import UpdateCart from '../../components/Layout/DefaultLayout/UdateCart/UpdateCart';
+import UpdatePizzaCart from '../../components/Layout/DefaultLayout/UdateCart/UpdatePizzaCart';
 
 
-export default function Sub_cart() {
-    const [change, setChange] = useState(false)
+export default function Cart() {
+    const {changeCart, setChange} = useContext(CartContext)
     // console.log(changeCart);
 
     const [data, setData] = useState([]);
     const [check, setCheck] = useState(1)
     const [totalPrice, setTotal] = useState(0);
     // console.log(check);
-    
+    const [show,setShow] = useState(false)
+    const [id, setId] =useState()
+    const [imgItem,setImg] =useState();
+    const [cost,setCost] = useState();
+    const [name,setName] = useState();
+    const [typeItem,setType] =useState('');
+    const [countItem, setCount] = useState(0);
+
 
     function total(data) {
         let priceList = data.map(e => e.price);
@@ -42,7 +51,7 @@ export default function Sub_cart() {
                 setTotal(totalCart);
                 // console.log(item.length);
             })
-    }, [change])
+    }, [changeCart])
 
 
 
@@ -62,6 +71,25 @@ export default function Sub_cart() {
             item.remove();
         })
         setChange("delete")
+    }
+
+    // Handle edit
+    const handleEdit = (el)=>{
+        const parrent = el.target.parentElement
+        const parrentList = parrent.parentElement
+        const liList = parrentList.querySelectorAll('li')
+        const idItem = parrentList.id;
+        console.log(parrentList);
+        setId(idItem);
+        setCount(parrentList.querySelector("h1").innerHTML)
+        setType(parrentList.querySelector("p").innerHTML)
+        console.log(parrentList.querySelector("p").innerHTML);
+        setCost(liList[3].innerHTML)
+        setName(liList[1].innerHTML)
+        // setCount(liList[2].innerHTML)
+        setImg(parrent.querySelector(`img`).getAttribute("src"));
+        // console.log((<UpdateCart/>));
+        setShow(true);
     }
 
 
@@ -90,8 +118,11 @@ export default function Sub_cart() {
                     </div>
                     {data.map(e => (
                         <div className={styles.list} id={e.id}>
+                        <h1 style={{ "display": "none" }}>{e.count}</h1>
+                            <p style={{ "display": "none" }}>{e.type}</p>
                             <li>
                                 <img className={styles.img_cart} src={e.img} />
+                                <button className={styles.editBtn} onClick={handleEdit}>Edit</button>
                             </li>
                             <li style={{ "width": "60%", "textOverflow": "clip","whiteSpace":"nowrap","overflow":"hidden" }}>{e.name}</li>
                             <li>{e.count}</li>
@@ -111,9 +142,11 @@ export default function Sub_cart() {
             )}
 
 
+
+
             {/* Modal Alert */}
 
-            {change==="delete"&&(
+            {changeCart==="delete"&&(
                 <div className={styles.alert}>
                     <div className={styles.alert_cotent}>
                     
@@ -127,6 +160,16 @@ export default function Sub_cart() {
                         }} onClick={()=>setChange("default")}>OK</button>
                     </div>
                 </div>
+            )}
+
+
+             {/* UI Update Cart */}
+          {(show&&typeItem==="none")&&(
+                <UpdateCart setShow={setShow} img={imgItem} name = {name} cost = {cost} idItem = {id} countItem = {countItem}/>
+            )}
+
+            {(show&&(typeItem==="premium"||typeItem==="signature"||typeItem==="favorite"))&&(
+                <UpdatePizzaCart setShow={setShow} img={imgItem} name = {name} cost = {cost} idItem = {id}/>
             )}
 
 

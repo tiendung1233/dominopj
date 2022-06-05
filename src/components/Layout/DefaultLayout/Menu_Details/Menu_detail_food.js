@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import styles from "./Menu_detail_food.module.css";
 import CartContext from "../../../../Context/CartContext";
+import { type } from "@testing-library/user-event/dist/type";
 
-export default function Menu_detail_food({ img, name, cost, setOtherDetail }) {
+export default function Menu_detail_food({ img, name, cost, setOtherDetail,type }) {
     const {changeCart,setChange} = useContext(CartContext);
 
     const [count, setCount] = useState(1);
@@ -38,7 +39,8 @@ export default function Menu_detail_food({ img, name, cost, setOtherDetail }) {
             "count": count,
             "price": price,
             "de_banh": "",
-            "img":img
+            "img":img,
+            "type":"none"
         }
         // setOtherDetail(false)
         setCart(data)

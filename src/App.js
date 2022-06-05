@@ -8,28 +8,30 @@ import Voucher from './pages/Voucher/Voucher';
 import Code from './pages/Code/Code';
 import { DefaultLayout } from './components/Layout';
 import CartContext from './Context/CartContext';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
+import React from 'react';
 function App() {
 
-
   // Convert Port to 5000: $env:PORT=500
-
+  const [changeCart, setChange] = useState("default");//Change Cart Data
   return (
     // <CartContext>
       <div className="App">
-        <Routes>
+       <CartContext.Provider value={{ changeCart, setChange }}>
+          <Routes>
 
-          <Route path='/' element={<DefaultLayout><Home /></DefaultLayout>} />
-          <Route path='/menu' element={<DefaultLayout><Menu /></DefaultLayout>} />
-          <Route path='/cart' element={<DefaultLayout><Cart /></DefaultLayout>} />
-          <Route path='/follow' element={<DefaultLayout><Follow /></DefaultLayout>} />
-          <Route path='/promotion' element={<DefaultLayout><Promotion /></DefaultLayout>} />
-          <Route path='/voucher' element={<DefaultLayout><Voucher /></DefaultLayout>} />
-          <Route path='/code' element={<DefaultLayout><Code /></DefaultLayout>} />
+            <Route path='/' element={<DefaultLayout><Home /></DefaultLayout>} />
+            <Route path='/menu' element={<DefaultLayout><Menu /></DefaultLayout>} />
+            <Route path='/cart' element={<DefaultLayout><Cart /></DefaultLayout>} />
+            <Route path='/follow' element={<DefaultLayout><Follow /></DefaultLayout>} />
+            <Route path='/promotion' element={<DefaultLayout><Promotion /></DefaultLayout>} />
+            <Route path='/voucher' element={<DefaultLayout><Voucher /></DefaultLayout>} />
+            <Route path='/code' element={<DefaultLayout><Code /></DefaultLayout>} />
 
 
 
-        </Routes>
+          </Routes>
+        </CartContext.Provider>
       </div>
     // </CartContext>
   );

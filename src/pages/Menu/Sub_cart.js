@@ -3,23 +3,28 @@ import styles from "./Sub_cart.module.css";
 import { Link } from 'react-router-dom';
 import CartContext from '../../Context/CartContext';
 import UpdateCart from '../../components/Layout/DefaultLayout/UdateCart/UpdateCart';
+import UpdatePizzaCart from '../../components/Layout/DefaultLayout/UdateCart/UpdatePizzaCart';
 
 
 
 
 export default function Sub_cart() {
     const { changeCart,setChange } = useContext(CartContext)
-    console.log(changeCart);
+    // console.log(changeCart);
 
     const [data, setData] = useState([]);
     const [check, setCheck] = useState(1)
     const [totalPrice, setTotal] = useState(0);
+
     const [show,setShow] = useState(false)
+    const [id, setId] =useState()
     // console.log(check);
+
 
     const [imgItem,setImg] =useState();
     const [cost,setCost] = useState();
     const [name,setName] = useState();
+    const [typeItem,setType] =useState('');
     const [countItem, setCount] = useState(0);
 
 
@@ -73,14 +78,18 @@ export default function Sub_cart() {
         setChange("delete")
     }
 
-    const heandleEdit = (el)=>{
+    const handleEdit = (el)=>{
         const parrent = el.target.parentElement
         const parrentList = parrent.parentElement
         const liList = parrentList.querySelectorAll('li')
-        console.log(liList[3]);
+        const idItem = parrentList.id;
+        setId(idItem);
+        setCount(parrentList.querySelector("h1").innerHTML)
+        setType(parrentList.querySelector("p").innerHTML)
+        console.log(parrentList.querySelector("p").innerHTML);
         setCost(liList[3].innerHTML)
         setName(liList[1].innerHTML)
-        setCount(liList[2].innerHTML)
+        // setCount(liList[2].innerHTML)
         setImg(parrent.querySelector(`img`).getAttribute("src"));
         // console.log((<UpdateCart/>));
         setShow(true);
@@ -113,9 +122,11 @@ export default function Sub_cart() {
                     {data.map(e => (
                         <>
                             <div className={styles.list} id={e.id}>
+                                <h1 style={{ "display": "none" }}>{e.count}</h1>
+                                <p style={{ "display": "none" }}>{e.type}</p>
                                 <li>
                                     <img className={styles.img_cart} src={e.img} />
-                                    <button className={styles.editBtn} onClick={heandleEdit}>Edit</button>
+                                    <button className={styles.editBtn} onClick={handleEdit}>Edit</button>
                                 </li>
                                 <li className={styles.name} style={{ "width": "60%", "textOverflow": "clip", "whiteSpace": "nowrap", "overflow": "hidden" }}>{e.name}</li>
                                 <li className={styles.count}>{e.count}</li>
@@ -155,8 +166,12 @@ export default function Sub_cart() {
         </div>
 
           {/* UI Update Cart */}
-          {show&&(
-                <UpdateCart setShow={setShow} img={imgItem} name = {name} cost = {cost}/>
+          {(show&&typeItem==="none")&&(
+                <UpdateCart setShow={setShow} img={imgItem} name = {name} cost = {cost} idItem = {id} countItem = {countItem}/>
+            )}
+
+            {(show&&(typeItem==="premium"||typeItem==="signature"||typeItem==="favorite"))&&(
+                <UpdatePizzaCart setShow={setShow} img={imgItem} name = {name} cost = {cost} idItem = {id} countItem = {countItem}/>
             )}
 
         </>

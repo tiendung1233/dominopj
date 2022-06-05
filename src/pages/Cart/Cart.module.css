@@ -110,7 +110,28 @@
 
 .img_cart {
     height: 50px;
+    /* width: 100%; */
+    object-fit: cover;
 }
+
+.editBtn{
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    font-size: 18px;
+    padding: .15rem 0;
+    height: 100%;
+    font-weight: bolder;
+    background-color: rgba(230, 199, 139, 0.877);
+    opacity: 0;
+}
+
+.list li:hover .editBtn{
+    opacity: 1;
+}
+
 
 .alert{
     position:fixed;

@@ -2,12 +2,12 @@ import React, { useContext,useEffect, useState } from "react";
 import CartContext from "../../../../Context/CartContext";
 import styles from "./UpdateCart.module.css"
 
-export default function UpdateCart({img, name, cost, setShow}){
+export default function UpdateCart({img, name, cost, setShow, idItem, countItem}){
 
     const {changeCart, setChange} = useContext(CartContext);
 
 
-    const [count, setCount] = useState(1);
+    const [count, setCount] = useState(Number(countItem));
     const [price, setPrice] = useState(0);
     // const [cart, setCart] = useState({})
 
@@ -33,26 +33,35 @@ export default function UpdateCart({img, name, cost, setShow}){
     })
 
     const updateItem = () =>{
-        postItemCart()
+        let data = {
+            "name": name,
+            "count": count,
+            "price": price,
+            "de_banh": "none",
+            "img":img,
+            "type":"none"
+        }
+        updateItemCart(data);
+        setChange(true);
     }
 
 
 
 
     // PUT Api:
-    function postItemCart() {
-        console.log("......")
-        // fetch("https://627a232473bad506858340e5.mockapi.io/api/pizza/Cart", {
-        //     method: "PUT",
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //         // 'Content-Type': 'application/x-www-form-urlencoded',
-        //     },
-        //     body: JSON.stringify(data)
-        // })
-        //     .then(res => res.json())
-        //     .then(item => console.log(item))
-        //     .catch(err => console.log(err))
+    function updateItemCart(data) {
+        // console.log("......")
+        fetch(`https://627a232473bad506858340e5.mockapi.io/api/pizza/Cart/${idItem}`, {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(item => console.log(item))
+            .catch(err => console.log(err))
     }
 
 
