@@ -1,16 +1,16 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
-import styles from "./Menu_detail.module.css";
+import styles from "./UpdatePizzaCart.module.css";
 import { Link } from 'react-router-dom';
 import CartContext from '../../../../Context/CartContext';
 import { type } from '@testing-library/user-event/dist/type';
 
-export default function Menu_pizza_details({ img, name, showDetail,type }) {
+export default function UpdatePizzaCart({ img, name, setShow,type,idItem }) {
     const [count, setCount] = useState(1);
 
     const {changeCart,setChange} = useContext(CartContext);
-
+                                                                    
     // Get value options:
     const [valueDeBanh, setValueDeBanh] = useState('');
     const [valueCoBanh, setValueCoBanh] = useState(0);
@@ -31,11 +31,11 @@ export default function Menu_pizza_details({ img, name, showDetail,type }) {
     }
 
     const handleX = () => {
-        showDetail(false)
+        setShow(false)
         setChange("close")
     }
 
-    const addToCart = (el) => {
+    const updateCart = (el) => {
         if(valueDeBanh!==""&&valueCoBanh!==0){
             let data = {
                 "name": name,
@@ -46,21 +46,21 @@ export default function Menu_pizza_details({ img, name, showDetail,type }) {
                 "type":type
             }
     
-            // showDetail(false)
+            // setShow(false)
             setCart(data)
             console.log([data]);
-            postItemCart(data);
+            updateItemCart(data);
             setChange(true)
         }
         else if((valueDeBanh===""||valueDeBanh===null)&&(valueCoBanh===0)){
-            alert("Vui lòng chọn đế bánh và cỡ bánh")
+            alert("Vui lòng chọn lại đế bánh và cỡ bánh")
         }
         else if(valueDeBanh===""||valueDeBanh===null){
-            alert("Vui lòng chọn đế bánh ")
+            alert("Vui lòng chọn lại đế bánh ")
         }
 
         else if(valueCoBanh===0){
-            alert("Vui lòng chọn cỡ bánh ")
+            alert("Vui lòng chọn lại cỡ bánh ")
         }
     }
 
@@ -70,9 +70,9 @@ export default function Menu_pizza_details({ img, name, showDetail,type }) {
     })
 
     // Post Api:
-    function postItemCart(data) {
-        fetch("https://627a232473bad506858340e5.mockapi.io/api/pizza/Cart", {
-            method: "POST",
+    function updateItemCart(data) {
+        fetch(`https://627a232473bad506858340e5.mockapi.io/api/pizza/Cart/${idItem}`, {
+            method: "PUT",
             headers: {
                 'Content-Type': 'application/json'
                 // 'Content-Type': 'application/x-www-form-urlencoded',
@@ -228,7 +228,7 @@ export default function Menu_pizza_details({ img, name, showDetail,type }) {
                                 <button onClick={handleUp}>+</button>
                             </div>
 
-                            <button className={styles.add_cart} onClick={addToCart}>Thêm vào giỏ hàng <span className={styles.price}>{price}</span>đ</button>
+                            <button className={styles.add_cart} onClick={updateCart}>Cập nhật giỏ hàng <span className={styles.price}>{price}</span>đ</button>
                         </div>
                     </div>
                 </div>

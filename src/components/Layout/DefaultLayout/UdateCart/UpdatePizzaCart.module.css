@@ -1,0 +1,275 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.hide{
+    display: none !important;
+}
+
+.modal{
+    position:fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(121, 122, 124, 0.692);
+    z-index: 10;
+}
+
+.container{
+    opacity: 1 !important;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    z-index: 1000;
+    transform: translate(-50%);
+    color: black;
+    /* overflow-y: scroll; */
+    display: flex;
+    width: 832px;
+    background-color: white;
+    height: 570px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.img
+{
+    display: block;
+    width: 290px;
+}
+
+.img img{
+    object-fit: cover;
+    width: 290px;
+    height: 100%;
+}
+
+.container_section{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    display: block;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.header h1{
+    font-size: 30px;
+    font-weight: 900;
+    padding: 20px;
+    color: #0078ae;
+}
+
+.btn{
+
+}
+
+.header button{
+    display: block;
+    color: white;
+    background-color: #e31837;
+    width: 50px;
+    height: 45px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.title{
+    color: grey;
+    font-size: 18px;
+    padding:5px 20px;
+}
+
+.main_content{
+    margin-top: 35px;
+}
+
+.section{
+
+}
+
+.section h3{
+    padding-left: 35px;
+    margin-top: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+.section_content{
+    padding: 5px 20px ;
+}
+
+.section_content label{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.section_content div{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid gray;
+}
+
+.section_content div div{
+    padding: 1rem;
+    border: none;
+}
+.section_content div img{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+.section_content div div input{
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin: 5px 8px 0px 5px;
+    padding: 5px;
+}
+
+.list_btn{
+    width: 64.5%;
+    z-index: 1000;
+    right: 0;
+    position: absolute;
+    bottom: 0;
+    /* left: 35%; */
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 8px 0px 5px 0px gray;
+    background-color: white;
+    height: 72px;
+    align-items: center;
+    padding: 3px;
+}
+
+.up_down{
+    margin-left: 1rem;
+    background-color: rgb(197, 195, 195);
+}
+
+
+.up_down span{
+    padding: 2.65rem;
+    /* margin-left: 10px; */
+}
+
+.up_down button{
+    width: 35px;
+    /* margin-left: 10px; */
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+
+.up_down button:hover{
+    background-color: rgb(165, 160, 160);
+}
+
+.count{
+
+}
+
+
+.add_cart{
+    background-color: #e31837;
+    font-size: 2rem;
+    color: white;
+    font-weight: bold;
+    padding:.75rem 1.5rem;
+    border-radius: 3px;
+    border: none;
+}
+
+.add_cart:hover{
+    background-color: #a01a2e;
+}
+
+.add_cart span{
+    font-size: 2rem;
+}
+
+.alert{
+    position: absolute;
+    left: 50%;
+    top: 48%;
+    width: 300px;
+    height: 120px;
+    background-color: rgb(243, 200, 7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+    z-index: 1000;
+    border-radius: 10px;
+    transform: translate(-50%,-50%);
+    box-shadow: 5px 3px 0 0 rgba(58, 55, 55, 0.493);
+    transition: all .2s linear;
+}
+
+
+/* Responesive */
+
+@media screen and (max-width: 960px){
+    .container{
+        width: 500px;
+        flex-direction: column;
+        /* display: block; */
+    }
+
+    .main_content{
+        margin-bottom: 60px;
+        overflow-y: scroll;
+    }
+
+    .list_btn{
+        flex-direction: column;
+        /* margin-bottom: 5%; */
+        /* padding: 5px; */
+        width: 100%;
+        height: auto;
+        padding-bottom: 20px;
+    }
+    .up_down{
+        margin-top: 5px;
+    }
+
+    .up_down span{
+        padding: 0 3.5rem;
+    }
+    .up_down button{
+        font-size: 2.5rem;
+    }
+    .add_cart{
+        margin-top: 10px;
+    }
+
+
+    .img{
+        display: block;
+        width: 100%;
+    }
+
+    .img img{
+        width: 100%;
+        height:220px;
+    }
+}
+
+@media screen and (max-width: 550px){
+    .container{
+        width: 300px !important;
+    }
+}
