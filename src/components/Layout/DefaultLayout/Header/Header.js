@@ -12,16 +12,19 @@ function Header() {
                 {/* pc */}
                 <div className={`row ${styles.header_pc}`}>
                     <div className="col-md-2">
+                    <Link to='/'>
                         <div className="row">
                             <div className="col-md-6">
                                 <img className={styles.logo_img} src='https://dominos.vn/img/logo/domino-horizontal-dark.svg'/>
-                                <img className={styles.logo_img_mb} src ='https://dominos.vn/img/logo/domino.svg'/>
+                                <Link to='/home'>  <img className={styles.logo_img_mb} src ='https://dominos.vn/img/logo/domino.svg'/>
+                            </Link>
                             </div>
                             <div className="col-md-6 color-white">
                                 <h3 className={styles.text_cl}>
                                 </h3>
                             </div>
                         </div>
+                        </Link>   
                     </div>
                     <div className={`col-md-8 ${styles.wrap} ${styles.menu}`}>
                         <div className={`row `}>
