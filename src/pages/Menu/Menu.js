@@ -36,7 +36,6 @@ export default function Menu() {
     const [costItem, setCostItem] = useState(0);
 
     // Global State
-    const [changeCart, setChange] = useState("default");//Change Cart Data
     const [updateItems, setUpdate] = useState('') // Update items
 
 
@@ -128,7 +127,6 @@ export default function Menu() {
 
 
     return (
-        <CartContext.Provider value={{ changeCart, setChange }}>
             <UpdateCartContext.Provider value={{ updateItems, setUpdate }}>
                 <div className={`${styles.container_menu}`}>
                     <div className={`${styles.content_menu}`} id="flex-2">
@@ -412,7 +410,6 @@ export default function Menu() {
                     <Sub_cart></Sub_cart>
                 </div>
             </UpdateCartContext.Provider>
-        </CartContext.Provider>
     )
 
 }

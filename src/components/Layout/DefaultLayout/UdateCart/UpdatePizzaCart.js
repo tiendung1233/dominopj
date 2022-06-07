@@ -48,7 +48,7 @@ export default function UpdatePizzaCart({ img, name, setShow,type,idItem }) {
     
             // setShow(false)
             setCart(data)
-            console.log([data]);
+            // console.log([data]);
             updateItemCart(data);
             setChange(true)
         }

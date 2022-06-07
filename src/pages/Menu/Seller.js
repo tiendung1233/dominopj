@@ -10,6 +10,20 @@ export default function Seller() {
     const [type,setType] = useState();
     const [detail,setDetail] = useState();
 
+
+
+    const { 
+        a = 'default', 
+        b, 
+        ...rest 
+    } = {
+        b: 'val1',
+        c: 'val2',
+        d: 'val3'
+    };
+    
+    console.log(a, b, rest); // Output: ?
+
    const handleClick = (el)=>{
     const parentEl = el.target.parentElement.parentElement;
     setImg(el.target.src)
