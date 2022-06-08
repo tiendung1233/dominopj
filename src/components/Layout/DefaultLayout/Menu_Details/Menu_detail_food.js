@@ -3,8 +3,8 @@ import styles from "./Menu_detail_food.module.css";
 import CartContext from "../../../../Context/CartContext";
 import { type } from "@testing-library/user-event/dist/type";
 
-export default function Menu_detail_food({ img, name, cost, setOtherDetail,type }) {
-    const {changeCart,setChange} = useContext(CartContext);
+export default function Menu_detail_food({ img, name, cost, setOtherDetail, type }) {
+    const { changeCart, setChange } = useContext(CartContext);
 
     const [count, setCount] = useState(1);
     const [price, setPrice] = useState(0);
@@ -39,14 +39,15 @@ export default function Menu_detail_food({ img, name, cost, setOtherDetail,type 
             "count": count,
             "price": price,
             "de_banh": "",
-            "img":img,
-            "type":"none"
+            "img": img,
+            "type": "none"
         }
         // setOtherDetail(false)
         setCart(data)
         console.log([data]);
         postItemCart(data);
-        setChange(true)
+        setChange(true);
+        (<iframe src="https://embed.lottiefiles.com/animation/63075"></iframe>)
         // setOtherDetail(false);
     }
 
@@ -93,8 +94,17 @@ export default function Menu_detail_food({ img, name, cost, setOtherDetail,type 
                 </div>
             </div>
 
-            {changeCart===true&&(
-                <div className={styles.alert}>Click <span style={{"color":"red","margin":"10px"}}> X </span> to close</div>
+            {changeCart === true && (
+                <>
+                <iframe src="https://embed.lottiefiles.com/animation/90283" autoplay speed="1"  style=
+                {{"position":"fixed",
+                "top":"50%",
+                left:"50%",
+                "transform":"translate(-50%,-50%)",
+                zIndex:"10000",
+                "backgroundColor":"transparent"}}></iframe>
+                <div className={styles.alert}>Click <span style={{ "color": "red", "margin": "10px" }}> X </span> to close</div>
+                </>
             )}
         </div>
     )

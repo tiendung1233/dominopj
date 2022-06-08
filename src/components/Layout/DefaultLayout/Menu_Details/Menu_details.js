@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom';
 import CartContext from '../../../../Context/CartContext';
 import { type } from '@testing-library/user-event/dist/type';
 
-export default function Menu_pizza_details({ img, name, showDetail,type }) {
+export default function Menu_pizza_details({ img, name, showDetail, type }) {
     const [count, setCount] = useState(1);
 
-    const {changeCart,setChange} = useContext(CartContext);
+    const { changeCart, setChange } = useContext(CartContext);
 
     // Get value options:
     const [valueDeBanh, setValueDeBanh] = useState('');
@@ -36,30 +36,30 @@ export default function Menu_pizza_details({ img, name, showDetail,type }) {
     }
 
     const addToCart = (el) => {
-        if(valueDeBanh!==""&&valueCoBanh!==0){
+        if (valueDeBanh !== "" && valueCoBanh !== 0) {
             let data = {
                 "name": name,
                 "count": count,
                 "price": price,
                 "de_banh": valueDeBanh,
-                "img":img,
-                "type":type
+                "img": img,
+                "type": type
             }
-    
+
             // showDetail(false)
             setCart(data)
             console.log([data]);
             postItemCart(data);
-            setChange(true)
+            setChange(true);
         }
-        else if((valueDeBanh===""||valueDeBanh===null)&&(valueCoBanh===0)){
+        else if ((valueDeBanh === "" || valueDeBanh === null) && (valueCoBanh === 0)) {
             alert("Vui lòng chọn đế bánh và cỡ bánh")
         }
-        else if(valueDeBanh===""||valueDeBanh===null){
+        else if (valueDeBanh === "" || valueDeBanh === null) {
             alert("Vui lòng chọn đế bánh ")
         }
 
-        else if(valueCoBanh===0){
+        else if (valueCoBanh === 0) {
             alert("Vui lòng chọn cỡ bánh ")
         }
     }
@@ -79,9 +79,9 @@ export default function Menu_pizza_details({ img, name, showDetail,type }) {
             },
             body: JSON.stringify(data)
         })
-            .then(res=>res.json())
-            .then(item=>console.log(item))
-            .catch(err=>console.log(err))
+            .then(res => res.json())
+            .then(item => console.log(item))
+            .catch(err => console.log(err))
     }
 
 
@@ -235,8 +235,19 @@ export default function Menu_pizza_details({ img, name, showDetail,type }) {
             </div>
             {/* )} */}
 
-            {changeCart===true&&(
-                <div className={styles.alert}>Click <span style={{"color":"red","margin":"10px"}}> X </span> to close</div>
+            {changeCart === true && (
+                <>
+                    <iframe src="https://embed.lottiefiles.com/animation/90283" autoplay speed="1" style=
+                        {{
+                            "position": "fixed",
+                            "top": "50%",
+                            left: "50%",
+                            "transform": "translate(-50%,-50%)",
+                            zIndex: "10000",
+                            "backgroundColor": "transparent"
+                        }}></iframe>
+                    <div className={styles.alert}>Click <span style={{ "color": "red", "margin": "10px" }}> X </span> to close</div>
+                </>
             )}
         </div>
     )

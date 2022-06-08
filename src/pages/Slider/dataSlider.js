@@ -18,7 +18,7 @@ const dataSlider = [
     id: uuidv4(),
     title: "Lorem ipsum",
     subTitle: "Lorem",
-    img: "https://img.dominos.vn/Website%2BBanner%2BPC_LTO%2BLAP%2BXUONG-01.jpg"
+    img: "https://img.dominos.vn/BANNER+PC_M1T1_T3+H%C3%80NG+TU%E1%BA%A6N-01_v2.png"
 
   },
   {
