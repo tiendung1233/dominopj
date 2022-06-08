@@ -40,12 +40,20 @@
     display: flex;
     flex-wrap: wrap;
 }
-
 .btn_voucher_item{
     font-size: 16px;
     font-weight: 600;
     background-color: #fdedef;
     border: 1px solid #f7b5bf;
+    color: #e31837;
+    padding: 6px 16px;
+    border-radius: 3px;
+    margin: 0 8px 8px 0;
+}
+.btn_voucher_item a{
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #fdedef;
     color: #e31837;
     padding: 6px 16px;
     border-radius: 3px;

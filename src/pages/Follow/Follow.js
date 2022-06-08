@@ -1,5 +1,13 @@
 import Styles from './Follow.module.css'
 function Follow() {
+    const erorr = () =>{
+       if( document.querySelector('.djehr').value == ''){
+           document.querySelector('.eroor').classList.remove('display_none')
+       }else{
+        document.querySelector('.eroor').classList.add('display_none')
+
+       }
+    }
     return (
         <div className={Styles.Follow}>
             <div className={Styles.conten}>
@@ -15,9 +23,11 @@ function Follow() {
                                         Kiểm tra đơn hàng của bạn
                                     </h3>
                                     <div className={Styles.box_ip}>
-                                        <input className={Styles.input} placeholder='Nhập só điện thoại của bạn'/>
-                                         <butto className={Styles.box_ipbtn}><i className={`bi bi-search ${Styles.icon_s}`}></i></butto>
+                                        <input className={`${Styles.input} djehr`} onBlur={erorr} placeholder='Nhập só điện thoại của bạn'/>
+                                        
+                                         <button className={Styles.box_ipbtn}><i className={`bi bi-search ${Styles.icon_s}`}></i></button>
                                     </div>
+                                    <div className={`${Styles.erorr} eroor display_none`}>Vui lòng nhập số điện thoại của bạn!</div>
 
                                 </div>
                             </div>

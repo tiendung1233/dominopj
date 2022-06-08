@@ -1,4 +1,5 @@
 import Styles from './Voucher.module.css'
+import {Link} from 'react-router-dom'
 function Voucher() {
     return (
         <div className={Styles.Voucher_page}>
@@ -25,8 +26,8 @@ function Voucher() {
 
                                     </p>
                                     <div className={Styles.btn_voucher}>
-                                        <button className={Styles.btn_voucher_item}> Ngon Xỉu Chồng 299K </button>
-                                        <button className={Styles.btn_voucher_item}> Vui Xỉu Đổ 449k </button>
+                                        <button className={Styles.btn_voucher_item}> <Link to = '/menu'>Ngon Xỉu Chồng 299K</Link> </button>
+                                        <button className={Styles.btn_voucher_item}> <Link to = '/menu'>Vui Xỉu Đổ 449k</Link> </button>
 
                                     </div>
                                 </div>
@@ -51,8 +52,8 @@ function Voucher() {
                                         </p>
                                     </p>
                                     <div className={Styles.btn_voucher}>
-                                        <button className={Styles.btn_voucher_item}> Đặt Size M </button>
-                                        <button className={Styles.btn_voucher_item}> Đặt Size L </button>
+                                        <button className={Styles.btn_voucher_item}><Link to = '/menu'> Đặt Size M</Link> </button>
+                                        <button className={Styles.btn_voucher_item}> <Link to = '/menu'>Đặt Size L</Link> </button>
 
                                     </div>
                                 </div>
@@ -79,18 +80,18 @@ function Voucher() {
 
                                     </p> 
                                     <div className={Styles.btn_voucher}>
-                                        <button className={Styles.btn_voucher_item}> 02 Favorite (M) </button>
-                                        <button className={Styles.btn_voucher_item}> 02 Premium (M)  </button>
-                                        <button className={Styles.btn_voucher_item}> 02 Signature (M) </button>
-                                        <button className={Styles.btn_voucher_item}>01 Favorite (M) + 01 Premium (M)</button>
-                                        <button className={Styles.btn_voucher_item}> 01 Signature (M) + 01 Premium (M) </button>
-                                        <button className={Styles.btn_voucher_item}> 02 Favorite (L) </button>
-                                        <button className={Styles.btn_voucher_item}> 01 Signature (L) + 01 Premium (L) </button>
-                                        <button className={Styles.btn_voucher_item}>  02 Signature (L)</button>
-                                        <button className={Styles.btn_voucher_item}> 01 Premium (L) + 01 Favorite (L) </button>
-                                        <button className={Styles.btn_voucher_item}> 01 Signature (L) + 01 Favorite (L) </button>
-                                        <button className={Styles.btn_voucher_item}> 01 Signature (M) + 01 Favorite (M) </button>
-                                        <button className={Styles.btn_voucher_item}> 02 Premium (L) </button>
+                                        <button className={Styles.btn_voucher_item}> <Link to = '/menu'>02 Favorite (M)</Link> </button>
+                                        <button className={Styles.btn_voucher_item}> <Link to = '/menu'>02 Premium (M)</Link>  </button>
+                                        <button className={Styles.btn_voucher_item}> <Link to = '/menu'>02 Signature (M)</Link> </button>
+                                        <button className={Styles.btn_voucher_item}> <Link to = '/menu' >01 Favorite (M) + 01 Premium (M)</Link></button>
+                                        <button className={Styles.btn_voucher_item}> <Link to = '/menu'>01 Signature (M) + 01 Premium (M)</Link></button>
+                                        <button className={Styles.btn_voucher_item}><Link to = '/menu'> 02 Favorite (L)</Link> </button>
+                                        <button className={Styles.btn_voucher_item}><Link to = '/menu'> 01 Signature (L) + 01 Premium (L)</Link> </button>
+                                        <button className={Styles.btn_voucher_item}> <Link to = '/menu'> 02 Signature (L)</Link></button>
+                                        <button className={Styles.btn_voucher_item}> <Link to = '/menu'>01 Premium (L) + 01 Favorite (L)</Link> </button>
+                                        <button className={Styles.btn_voucher_item}> <Link to = '/menu'>01 Signature (L) + 01 Favorite (L)</Link> </button>
+                                        <button className={Styles.btn_voucher_item}> <Link to = '/menu'>01 Signature (M) + 01 Favorite (M)</Link> </button>
+                                        <button className={Styles.btn_voucher_item}> <Link to = '/menu'>02 Premium (L)</Link> </button>
 
                                     </div>
                                 </div>
@@ -116,9 +117,9 @@ function Voucher() {
 
                                     </p>
                                     <div className={Styles.btn_voucher}>
-                                        <button className={Styles.btn_voucher_item}> Combo 229K</button>
-                                        <button className={Styles.btn_voucher_item}> Combo 309K </button>
-                                        <button className={Styles.btn_voucher_item}> Combo 339K </button>
+                                        <button className={Styles.btn_voucher_item}> <Link to = '/menu'>Combo 229K</Link></button>
+                                        <button className={Styles.btn_voucher_item}> <Link to = '/menu'>Combo 309K</Link> </button>
+                                        <button className={Styles.btn_voucher_item}><Link to = '/menu'> Combo 339K </Link></button>
 
                                     </div>
                                 </div>

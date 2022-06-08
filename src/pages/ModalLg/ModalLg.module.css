@@ -38,11 +38,12 @@
 .btn_login2,
 .btn_regin1,
 .btn_login1{
-    font-size: 16px;
+    font-size: 14px;
     padding: 0 8px;
     font-weight: 600;
     color: #ccc;
     cursor: pointer;
+    line-height: 48px;
 }
 .number_ip,
 .name_ip,
@@ -52,6 +53,14 @@
     padding: 12px 8px;
     height: 100%;
     width: 80%;
+    
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
 }
 .img_Lg_sm{
     width: 100%;
@@ -99,4 +108,13 @@
 
 .btn_regin_ss{
     margin-bottom: 24px;
+}
+
+
+.erorr{
+    font-size: 14px;
+    color: red;
+    font-weight: 600;
+    text-align: initial;
+    height: 30px;
 }

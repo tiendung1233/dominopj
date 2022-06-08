@@ -52,3 +52,8 @@
 .icon_s{
     font-size: 14px;
 }
+.erorr{
+    font-size: 14px;
+    color: red;
+    font-weight: 600;
+}

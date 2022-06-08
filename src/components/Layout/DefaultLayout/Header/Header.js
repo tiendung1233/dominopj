@@ -35,7 +35,7 @@ function Header() {
                                 <Link to ='/menu' className={`badge badge-default `}>THỰC ĐƠN</Link>
                             </div>
                             <div className={`col-md-3 ${styles.block}`}>
-                                <Link to ='/follow' className={`badge badge-default `}>DÕI ĐƠN HÀNG</Link>
+                                <Link to ='/follow' className={`badge badge-default `}>THEO DÕI ĐƠN HÀNG</Link>
                             </div>
                         </div>
                     </div>
