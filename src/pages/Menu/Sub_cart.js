@@ -163,6 +163,14 @@ export default function Sub_cart() {
                 </div>
             )}
 
+            <button style={{"margin":"auto",
+            "padding":"6.5px",
+            "backgroundColor":"red",
+            "color":"white",
+            "display":"block",
+            "borderRadius":"3px",
+            "fontSize":"20px"}}>Thanh toán</button>
+
         </div>
 
           {/* UI Update Cart */}

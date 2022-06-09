@@ -10,13 +10,17 @@ import { DefaultLayout } from './components/Layout';
 import CartContext from './Context/CartContext';
 import { useContext, useState } from 'react';
 import React from 'react';
+import LoginContext from './Context/LoginContext';
 function App() {
+    // Login State
+    const [login, setLogin] = useState("default")
 
   // Convert Port to 5000: $env:PORT=500
   const [changeCart, setChange] = useState("default");//Change Cart Data
   return (
     // <CartContext>
       <div className="App">
+      <LoginContext.Provider value={{login,setLogin}}>
        <CartContext.Provider value={{ changeCart, setChange }}>
           <Routes>
 
@@ -32,6 +36,7 @@ function App() {
 
           </Routes>
         </CartContext.Provider>
+      </LoginContext.Provider>
       </div>
     // </CartContext>
   );
