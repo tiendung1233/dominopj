@@ -13,14 +13,14 @@ import React from 'react';
 import LoginContext from './Context/LoginContext';
 function App() {
     // Login State
-    const [login, setLogin] = useState("default")
+    const [loginName, setLogin] = useState("default")
 
   // Convert Port to 5000: $env:PORT=500
   const [changeCart, setChange] = useState("default");//Change Cart Data
   return (
     // <CartContext>
       <div className="App">
-      <LoginContext.Provider value={{login,setLogin}}>
+      <LoginContext.Provider value={{loginName,setLogin}}>
        <CartContext.Provider value={{ changeCart, setChange }}>
           <Routes>
 
