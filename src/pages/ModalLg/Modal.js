@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import Styles from './ModalLg.module.css'
 import imgLg1 from './imgLg/dmlimglgsm.png'
 import LoginContext from "../../Context/LoginContext";
+import ModalLgss from "../ModalLgss/ModalLgss";
 export default function ModalLg() {
 
     // Global State:
@@ -232,7 +233,9 @@ export default function ModalLg() {
                                     <input className={`${Styles.pass_ip} number_ip`} onBlur={erorr} typeof="password" placeholder="Nhập mật khẩu"  id="loginPass"/>
                                 </div>
                                 <div className={`${Styles.erorr} eroor display_none`}>Vui lòng nhập mật khẩu của bạn!</div>
-                                <button className={Styles.ss} onClick={loginBtn}>Đăng nhập</button>
+                                <button className={Styles.ss} onClick={loginBtn}>Đăng nhập
+                                    <ModalLg/>
+                                </button>
                             </div>
                         </div>
 
