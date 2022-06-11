@@ -1,0 +1,8 @@
+.qlDonHang:hover{
+    color: blue;
+    cursor: pointer;
+}
+
+.qlDonHang{
+    font-weight: 550;
+}

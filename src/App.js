@@ -11,6 +11,10 @@ import CartContext from './Context/CartContext';
 import { useContext, useState } from 'react';
 import React from 'react';
 import LoginContext from './Context/LoginContext';
+
+//ad
+import Admin from './pages/Admin/Admin';
+//
 function App() {
     // Login State
     const [loginName, setLogin] = useState("default")
@@ -31,6 +35,7 @@ function App() {
             <Route path='/promotion' element={<DefaultLayout><Promotion /></DefaultLayout>} />
             <Route path='/voucher' element={<DefaultLayout><Voucher /></DefaultLayout>} />
             <Route path='/code' element={<DefaultLayout><Code /></DefaultLayout>} />
+            <Route path='/admin' element={<DefaultLayout><Admin /></DefaultLayout>} />
 
 
 
