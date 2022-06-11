@@ -1,6 +1,6 @@
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import styles from "./Menu.module.css";
 import { Link } from 'react-router-dom';
 import Menu_pizza_details from '../../components/Layout/DefaultLayout/Menu_Details/Menu_details';
@@ -12,6 +12,9 @@ import UpdateCartContext from "../../Context/UpdateCartContext";
 // import { type } from '@testing-library/user-event/dist/type';
 
 export default function Menu() {
+
+    const {changeCart, setChange} = useContext(CartContext);
+
     const api = "https://627a232473bad506858340e5.mockapi.io/api/pizza/pizza";
     const headerBtn = ["My y", "Mon phu", "Trang mieng", "Nuoc uong"]; // List Button of TypeMenu
     const subHeaderBtn = ["Hai san", "Bo", "Ga", "Heo", "An chay"]; //List Button of subType

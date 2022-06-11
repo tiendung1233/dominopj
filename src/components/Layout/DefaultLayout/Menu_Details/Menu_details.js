@@ -4,12 +4,15 @@ import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import styles from "./Menu_detail.module.css";
 import { Link } from 'react-router-dom';
 import CartContext from '../../../../Context/CartContext';
+import LoginContext from '../../../../Context/LoginContext';
 import { type } from '@testing-library/user-event/dist/type';
+import { EyeSlash } from 'react-bootstrap-icons';
 
 export default function Menu_pizza_details({ img, name, showDetail, type }) {
     const [count, setCount] = useState(1);
 
     const { changeCart, setChange } = useContext(CartContext);
+    const { loginName, setLogin } = useContext(LoginContext);
 
     // Get value options:
     const [valueDeBanh, setValueDeBanh] = useState('');
@@ -36,32 +39,41 @@ export default function Menu_pizza_details({ img, name, showDetail, type }) {
     }
 
     const addToCart = (el) => {
-        if (valueDeBanh !== "" && valueCoBanh !== 0) {
-            let data = {
-                "name": name,
-                "count": count,
-                "price": price,
-                "de_banh": valueDeBanh,
-                "img": img,
-                "type": type
+        if (loginName !== "default") {
+            if (valueDeBanh !== "" && valueCoBanh !== 0) {
+                let data = {
+                    "name": name,
+                    "count": count,
+                    "price": price,
+                    "de_banh": valueDeBanh,
+                    "img": img,
+                    "type": type,
+                    "user":loginName
+                }
+
+                // showDetail(false)
+                setCart(data)
+                console.log([data]);
+                postItemCart(data);
+                setChange(true);
+            }
+            else if ((valueDeBanh === "" || valueDeBanh === null) && (valueCoBanh === 0)) {
+                alert("Vui lòng chọn đế bánh và cỡ bánh")
+            }
+            else if (valueDeBanh === "" || valueDeBanh === null) {
+                alert("Vui lòng chọn đế bánh ")
             }
 
-            // showDetail(false)
-            setCart(data)
-            console.log([data]);
-            postItemCart(data);
-            setChange(true);
-        }
-        else if ((valueDeBanh === "" || valueDeBanh === null) && (valueCoBanh === 0)) {
-            alert("Vui lòng chọn đế bánh và cỡ bánh")
-        }
-        else if (valueDeBanh === "" || valueDeBanh === null) {
-            alert("Vui lòng chọn đế bánh ")
+            else if (valueCoBanh === 0) {
+                alert("Vui lòng chọn cỡ bánh ")
+            }
         }
 
-        else if (valueCoBanh === 0) {
-            alert("Vui lòng chọn cỡ bánh ")
+        else {
+            alert('Vui long dang nhap');
         }
+
+
     }
 
 

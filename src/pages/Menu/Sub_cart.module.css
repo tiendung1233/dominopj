@@ -5,9 +5,9 @@
 }
 
 .sub_cart{
-    flex: 1;
+    /* flex: 1; */
     display: block;
-    /* width: 100px; */
+    width: 502.2px;
     /* right: 15px; */
     /* border: 1px solid grey; */
     /* height: 120vh; */

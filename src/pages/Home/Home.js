@@ -6,12 +6,12 @@ function Home() {
     return (
             <div>
                 <Slider/>
-                <div>
+                {/* <div>
                     <div className={styles.btn_oder}>
                         <button className={styles.btn_oder1}>Giao hàng tận nơi</button>
                         <button className={styles.btn_oder1}>Đặt đến lấy</button>
                     </div>
-                </div>
+                </div> */}
                 <Seller/>
             </div>
     )
