@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import styles from "./Menu_detail_food.module.css";
 import CartContext from "../../../../Context/CartContext";
+import LoginContext from "../../../../Context/LoginContext";
 import { type } from "@testing-library/user-event/dist/type";
 
 export default function Menu_detail_food({ img, name, cost, setOtherDetail, type }) {
     const { changeCart, setChange } = useContext(CartContext);
+    const {loginName,setLogin} = useContext(LoginContext);
 
     const [count, setCount] = useState(1);
     const [price, setPrice] = useState(0);
@@ -34,20 +36,27 @@ export default function Menu_detail_food({ img, name, cost, setOtherDetail, type
 
     // Add to Cart
     const addToCart = (el) => {
-        let data = {
-            "name": name,
-            "count": count,
-            "price": price,
-            "de_banh": "",
-            "img": img,
-            "type": "none"
+        if(loginName!=="default"){
+            let data = {
+                "name": name,
+                "count": count,
+                "price": price,
+                "de_banh": "",
+                "img": img,
+                "type": "none",
+                "user":loginName
+            }
+            // setOtherDetail(false)
+            setCart(data)
+            console.log([data]);
+            postItemCart(data);
+            setChange(true);
+            (<iframe src="https://embed.lottiefiles.com/animation/63075"></iframe>)
         }
-        // setOtherDetail(false)
-        setCart(data)
-        console.log([data]);
-        postItemCart(data);
-        setChange(true);
-        (<iframe src="https://embed.lottiefiles.com/animation/63075"></iframe>)
+        else{
+            alert("Vui long dang nhap");
+        }
+       
         // setOtherDetail(false);
     }
 

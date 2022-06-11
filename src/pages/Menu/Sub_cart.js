@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom';
 import CartContext from '../../Context/CartContext';
 import UpdateCart from '../../components/Layout/DefaultLayout/UdateCart/UpdateCart';
 import UpdatePizzaCart from '../../components/Layout/DefaultLayout/UdateCart/UpdatePizzaCart';
+import LoginContext from '../../Context/LoginContext';
 
 
 
 
 export default function Sub_cart() {
+    const { loginName, setLogin } = useContext(LoginContext)
     const { changeCart, setChange } = useContext(CartContext)
     // console.log(changeCart);
 
@@ -44,12 +46,14 @@ export default function Sub_cart() {
                 let cartItem = [];
                 function loop(data) {
                     for (let i = 1; i < data.length; i++) {
-                        cartItem.push(data[i]);
+                        if(data[i].user===loginName){
+                            cartItem.push(data[i]);
+                        }
                     }
                 }
                 loop(item);
-                setData(cartItem)
-                // console.log(data);
+                setData(cartItem);
+                console.log(cartItem);
                 setCheck(cartItem.length)
                 let totalCart = total(cartItem);
                 // console.log(totalCart);
@@ -99,82 +103,101 @@ export default function Sub_cart() {
 
     return (
         <>
-            <div className={styles.sub_cart} id="flex-1">
-                {(check < 1) && (
-                    <>
-                        <div className={styles.img}>
-                            <img src='https://dominos.vn/img/illustration/empty-cart.svg' />
-                        </div>
-                        <div className={styles.infomation}>
-                            <p className={styles.p}>Giỏ hàng chưa có sản phẩm.</p>
-                            <p className={styles.p}>Xin mời bạn mua hàng</p>
-                        </div>
-                    </>
-                )}
-
-                {(check >= 1) && (
-                    <div className={`${styles.cart}`}>
-                        <div className={`${styles.bonus}`} style={{
-                            "borderBottom": "solid black 1.5px"
-                        }}>
-                            <li style={{ "width": "60%" }}>Don hang cua ban</li>
-                        </div>
-                        {data.map(e => (
+            {(loginName !== "default") && (
+                <>
+                    <div className={styles.sub_cart} id="flex-1">
+                        {(check < 1) && (
                             <>
-                                <div className={styles.list} id={e.id}>
-                                    <h1 style={{ "display": "none" }}>{e.count}</h1>
-                                    <p style={{ "display": "none" }}>{e.type}</p>
-                                    <li>
-                                        <img className={styles.img_cart} src={e.img} />
-                                        <button className={styles.editBtn} onClick={handleEdit}>Edit</button>
-                                    </li>
-                                    <li className={styles.name} style={{ "width": "60%", "textOverflow": "clip", "whiteSpace": "nowrap", "overflow": "hidden" }}>{e.name}</li>
-                                    <li className={styles.count}>{e.count}</li>
-                                    <li className={styles.cost}>{e.price}</li>
-                                    <div onClick={deleteCart}>x</div>
+                                <div className={styles.img}>
+                                    <img src='https://dominos.vn/img/illustration/empty-cart.svg' />
+                                </div>
+                                <div className={styles.infomation}>
+                                    <p className={styles.p}>Giỏ hàng chưa có sản phẩm.</p>
+                                    <p className={styles.p}>Xin mời bạn mua hàng</p>
                                 </div>
                             </>
-                        ))}
-                        <div style={{
-                            "textAlign": "center",
-                            "fontWeight": "bolder",
-                            "marginTop": "80%"
-                        }}><span style={{
-                            "color": "red"
-                        }}>Tong tien: </span>{totalPrice}</div>
+                        )}
 
-                        <button style={{
-                            "margin": "auto",
-                            "padding": "6.5px",
-                            "backgroundColor": "red",
-                            "color": "white",
-                            "display": "block",
-                            "borderRadius": "3px",
-                            "fontSize": "20px"
-                        }}>Thanh toán</button>
+                        {(check >= 1) && (
+                            <div className={`${styles.cart}`}>
+                                <div className={`${styles.bonus}`} style={{
+                                    "borderBottom": "solid black 1.5px"
+                                }}>
+                                    <li style={{ "width": "60%" }}>Don hang cua ban</li>
+                                </div>
+                                {data.map(e => (
+                                    <>
+                                        <div className={styles.list} id={e.id}>
+                                            <h1 style={{ "display": "none" }}>{e.count}</h1>
+                                            <p style={{ "display": "none" }}>{e.type}</p>
+                                            <li>
+                                                <img className={styles.img_cart} src={e.img} />
+                                                <button className={styles.editBtn} onClick={handleEdit}>Edit</button>
+                                            </li>
+                                            <li className={styles.name} style={{ "width": "60%", "textOverflow": "clip", "whiteSpace": "nowrap", "overflow": "hidden" }}>{e.name}</li>
+                                            <li className={styles.count}>{e.count}</li>
+                                            <li className={styles.cost}>{e.price}</li>
+                                            <div onClick={deleteCart}>x</div>
+                                        </div>
+                                    </>
+                                ))}
+                                <div style={{
+                                    "textAlign": "center",
+                                    "fontWeight": "bolder",
+                                    "marginTop": "80%"
+                                }}><span style={{
+                                    "color": "red"
+                                }}>Tong tien: </span>{totalPrice}</div>
+
+                                <button style={{
+                                    "margin": "auto",
+                                    "padding": "6.5px",
+                                    "backgroundColor": "red",
+                                    "color": "white",
+                                    "display": "block",
+                                    "borderRadius": "3px",
+                                    "fontSize": "20px"
+                                }}>Thanh toán</button>
+                            </div>
+                        )}
+
+
+                        {changeCart === "delete" && (
+                            <div className={styles.alert}>
+                                <div className={styles.alert_cotent}>
+
+                                    <span style={{ "color": "red", "margin": "10px" }}>Xoa thanh cong</span>
+                                    <button style={{
+                                        "fontSize": "20px",
+                                        "color": "green",
+                                        "fontWeight": "bold",
+                                        "padding": ".5rem 2.5rem",
+                                        "borderRadius": "5px"
+                                    }} onClick={() => setChange("default")}>OK</button>
+                                </div>
+                            </div>
+                        )}
+
+
+
                     </div>
-                )}
+                </>
+            )}
 
-
-                {changeCart === "delete" && (
-                    <div className={styles.alert}>
-                        <div className={styles.alert_cotent}>
-
-                            <span style={{ "color": "red", "margin": "10px" }}>Xoa thanh cong</span>
-                            <button style={{
-                                "fontSize": "20px",
-                                "color": "green",
-                                "fontWeight": "bold",
-                                "padding": ".5rem 2.5rem",
-                                "borderRadius": "5px"
-                            }} onClick={() => setChange("default")}>OK</button>
-                        </div>
+            {(loginName === "default") && (
+                <>
+                <div className={styles.sub_cart} id="flex-1">
+                    <div className={styles.img}>
+                        <img src='https://dominos.vn/img/illustration/empty-cart.svg' />
                     </div>
-                )}
+                    <div className={styles.infomation}>
+                        <p className={styles.p}>Giỏ hàng chưa có sản phẩm.</p>
+                        <p className={styles.p}>Xin mời bạn mua hàng</p>
+                    </div>
+                    </div>
+                </>
+            )}
 
-
-
-            </div>
 
             {/* UI Update Cart */}
             {(show && typeItem === "none") && (

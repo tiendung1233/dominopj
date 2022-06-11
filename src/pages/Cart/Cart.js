@@ -4,10 +4,12 @@ import styles from "./Cart.module.css";
 import { Link } from 'react-router-dom';
 import UpdateCart from '../../components/Layout/DefaultLayout/UdateCart/UpdateCart';
 import UpdatePizzaCart from '../../components/Layout/DefaultLayout/UdateCart/UpdatePizzaCart';
+import LoginContext from '../../Context/LoginContext';
 
 
 export default function Cart() {
     const {changeCart, setChange} = useContext(CartContext)
+    const {loginName,setLogin} = useContext(LoginContext)
     // console.log(changeCart);
 
     const [data, setData] = useState([]);
@@ -39,7 +41,9 @@ export default function Cart() {
                 let cartItem = [];
                 function loop(data) {
                     for (let i = 1; i < data.length; i++) {
-                        cartItem.push(data[i]);
+                        if(data[i].user===loginName){
+                            cartItem.push(data[i]);
+                        }
                     }
                 }
                 loop(item);
@@ -96,6 +100,8 @@ export default function Cart() {
 
     return (
         <div className={styles.sub_cart} id="flex-1">
+        {(loginName!=="default")&&(
+            <>
             {(check < 1) && (
                 <>
                     <div className={styles.img}>
@@ -141,6 +147,22 @@ export default function Cart() {
                 </div>
             )}
 
+         </>
+        )}
+
+        {(loginName==="default")&&(
+            <>
+                    <div className={styles.img}>
+                        <img src='https://dominos.vn/img/illustration/empty-cart.svg' />
+                    </div>
+                    <div className={styles.infomation}>
+                        <p className={styles.p}>Giỏ hàng chưa có sản phẩm.</p>
+                        <p className={styles.p}>Xin mời bạn mua hàng</p>
+                        <button className={styles.btn}><Link style={{color:"white","fontSize":"18px"}} to='/menu'>Tiep tuc mua hang</Link></button>
+                    </div>
+                </>
+        )}
+       
 
 
 

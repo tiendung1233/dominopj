@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Modal.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { Link } from 'react-router-dom'
 import Styles from './ModalLg.module.css'
 import imgLg1 from './imgLg/dmlimglgsm.png'
+import LoginContext from "../../Context/LoginContext";
 export default function ModalLg() {
+
+    // Global State:
+    const {loginName, setLogin} = useContext(LoginContext)
+
     const [dataLogin,setDataLogin] = useState([]);
     const [modal, setModal] = useState(false);
 
@@ -120,10 +125,14 @@ export default function ModalLg() {
         })
         console.log(check);
         if(check){
-            alert("Dang nhap thanh cong");
+            
+            setLogin(emailLogin.value);
+            setModal(!modal);
+            // alert(loginName);
+            // console.log();
         }
         else{
-            alert("Dang nhap that bai")
+            alert("Tai khoan hoac mat khau cua ban bi sai");
         }
 
     }
@@ -155,7 +164,7 @@ export default function ModalLg() {
     }
     const number_ip = document.querySelectorAll('.number_ip')
     const eroorList = document.querySelectorAll('.eroor')
-    console.log(number_ip)
+    // console.log(number_ip)
     const erorr = (el) => {
 
         let pass = document.querySelector('#pass');
