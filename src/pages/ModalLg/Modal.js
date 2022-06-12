@@ -7,14 +7,18 @@ import Styles from './ModalLg.module.css'
 import imgLg1 from './imgLg/dmlimglgsm.png'
 import LoginContext from "../../Context/LoginContext";
 import ModalLgss from "../ModalLgss/ModalLgss";
+import CartContext from "../../Context/CartContext";
 export default function ModalLg() {
 
     // Global State:
-    const {loginName, setLogin} = useContext(LoginContext)
+    const {changeCart,setChange} = useContext(CartContext);
+    const { loginName, setLogin } = useContext(LoginContext)
 
-    const [dataLogin,setDataLogin] = useState([]);
+    const [dataLogin, setDataLogin] = useState([]);
     const [modal, setModal] = useState(false);
 
+
+    const [show, setShow] = useState(false);
     const [regis, setRegis] = useState(false);
     const [phone, setPhone] = useState()
     const [userName, setUserName] = useState()
@@ -22,23 +26,7 @@ export default function ModalLg() {
     const [pass, setPass] = useState()
     const [checkPass, setCheckPass] = useState()
 
-    // const [modalOpen, setModalOpen] = useState('')
-
-    // if(modalOpen =='register'){
-    //     console.log(1)
-    //     document.querySelector('.form_login').classList.add('')
-    //     document.querySelector('.form_regin').classList.remove('display_none')
-    // }
-    // if(modalOpen =='login'){
-    //     console.log(2)
-    //     document.querySelector('.form_regin').classList.add('display_none')
-    //     document.querySelector('.form_login').classList.remove('display_none')
-    // }
-
-
-    // const kyTuDacBiet = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
-    // const so = /\d/g;
-    // const chuoi = /[a-zA-Z]/;
+   
 
 
 
@@ -111,28 +99,31 @@ export default function ModalLg() {
         callApi();
     }, [regis])
 
+
+    // Btn Đăng nhập:
     const loginBtn = () => {
         callApi();
         let emailLogin = document.querySelector('#loginBtn');
-        let passLogin =document.querySelector('#loginPass');
+        let passLogin = document.querySelector('#loginPass');
         console.log(passLogin);
         // let emailValue = emailLogin.value;
         // let passValue = ;
-        let check = dataLogin.some(e=>{
-            if((emailLogin.value===e.email)&&passLogin.value===e.passWord){
+        let check = dataLogin.some(e => {
+            if ((emailLogin.value === e.email) && passLogin.value === e.passWord) {
                 return true
             }
             return false
         })
         console.log(check);
-        if(check){
-            
+        if (check) {
+            setChange("userData")
             setLogin(emailLogin.value);
+            setShow(true);
             setModal(!modal);
             // alert(loginName);
             // console.log();
         }
-        else{
+        else {
             alert("Tai khoan hoac mat khau cua ban bi sai");
         }
 
@@ -224,17 +215,16 @@ export default function ModalLg() {
                             <div className="">
                                 <div className={Styles.Email_text}> Email</div>
                                 <div className={Styles.email}>
-                                    <input className={`${Styles.email_ip} number_ip`} onBlur={erorr} typeof="email" placeholder="Nhập tên đăng nhập"  id='loginBtn'/>
+                                    <input className={`${Styles.email_ip} number_ip`} onBlur={erorr} typeof="email" placeholder="Nhập tên đăng nhập" id='loginBtn' />
                                 </div>
                                 <div className={`${Styles.erorr} eroor display_none`}>Vui lòng tài khoản của bạn!</div>
                                 <div className={Styles.pass_text}>Mật khẩu</div>
                                 <div className={Styles.pass}>
 
-                                    <input className={`${Styles.pass_ip} number_ip`} onBlur={erorr} typeof="password" placeholder="Nhập mật khẩu"  id="loginPass"/>
+                                    <input className={`${Styles.pass_ip} number_ip`} onBlur={erorr} typeof="password" placeholder="Nhập mật khẩu" id="loginPass" />
                                 </div>
                                 <div className={`${Styles.erorr} eroor display_none`}>Vui lòng nhập mật khẩu của bạn!</div>
                                 <button className={Styles.ss} onClick={loginBtn}>Đăng nhập
-                                    <ModalLg/>
                                 </button>
                             </div>
                         </div>
@@ -293,6 +283,22 @@ export default function ModalLg() {
 
                         </div>
                     </div>
+                </div>
+            )}
+
+            {show && (
+                <div className="modal">
+                    <div className="overlay"></div>
+                    <div className="modal-content">
+                        ĐĂNG NHẬP THÀNH CÔNG
+                    </div>
+                    <button 
+                    style={{position:"absolute","top":"50%","padding":"0 25px",transform:"translate(-50%)",'borderRadius':"8px",fontWeight:"bold"}}
+                    onClick={()=>{
+                        setChange("user")
+                        setShow(false);
+                    }}>
+                    OK</button>
                 </div>
             )}
         </>

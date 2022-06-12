@@ -48,6 +48,7 @@ body.active-modal {
     top:90px;
     left:0;
     border-radius: 3px;
+    color: white;
     height: 144%;
     max-width: 100%;
     background-color: #004666;

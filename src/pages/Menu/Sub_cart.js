@@ -100,6 +100,33 @@ export default function Sub_cart() {
     }
 
 
+    // Post Checkout:
+    function checkoutData(item){
+        fetch('https://627a232473bad506858340e5.mockapi.io/api/pizza/CheckoutData',{
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body:JSON.stringify(item)
+        })
+        .then(res=>res.json())
+        .then(e=>e)
+    }
+console.log(document.querySelector('.name'));
+    const checkout = ()=>{
+        // console.log(data);
+        let data = {
+            "user":loginName,
+            "name":document.querySelector('.names').innerHTML,
+            "count":document.querySelector('.count').innerHTML,
+            "type":document.querySelector('.type').innerHTML,
+            "price":document.querySelector('.price').innerHTML
+        }
+        checkoutData(data)
+    }
+
+
 
     return (
         <>
@@ -128,15 +155,15 @@ export default function Sub_cart() {
                                 {data.map(e => (
                                     <>
                                         <div className={styles.list} id={e.id}>
-                                            <h1 style={{ "display": "none" }}>{e.count}</h1>
-                                            <p style={{ "display": "none" }}>{e.type}</p>
+                                            <h1 style={{ "display": "none" }} className="count">{e.count}</h1>
+                                            <p style={{ "display": "none" }} className="type">{e.type}</p>
                                             <li>
                                                 <img className={styles.img_cart} src={e.img} />
                                                 <button className={styles.editBtn} onClick={handleEdit}>Edit</button>
                                             </li>
-                                            <li className={styles.name} style={{ "width": "60%", "textOverflow": "clip", "whiteSpace": "nowrap", "overflow": "hidden" }}>{e.name}</li>
+                                            <li className={`${styles.name} names`} style={{ "width": "60%", "textOverflow": "clip", "whiteSpace": "nowrap", "overflow": "hidden" }}>{e.name}</li>
                                             <li className={styles.count}>{e.count}</li>
-                                            <li className={styles.cost}>{e.price}</li>
+                                            <li className={`price ${styles.cost}`}>{e.price}</li>
                                             <div onClick={deleteCart}>x</div>
                                         </div>
                                     </>
@@ -157,7 +184,7 @@ export default function Sub_cart() {
                                     "display": "block",
                                     "borderRadius": "3px",
                                     "fontSize": "20px"
-                                }}>Thanh toán</button>
+                                }} onClick={checkout}>Thanh toán</button>
                             </div>
                         )}
 
