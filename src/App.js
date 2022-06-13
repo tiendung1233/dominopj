@@ -14,6 +14,8 @@ import LoginContext from './Context/LoginContext';
 
 //ad
 import Admin from './pages/Admin/Admin';
+import MenuBill from './pages/Admin/MenuBill/MenuBill';
+import MenuAccount from './pages/Admin/MenuAccount/MenuAccount';
 //
 function App() {
     // Login State
@@ -36,6 +38,12 @@ function App() {
             <Route path='/voucher' element={<DefaultLayout><Voucher /></DefaultLayout>} />
             <Route path='/code' element={<DefaultLayout><Code /></DefaultLayout>} />
             <Route path='/admin' element={<DefaultLayout><Admin /></DefaultLayout>} />
+            <Route path='/admin/MenuBill' element={<DefaultLayout><MenuBill /></DefaultLayout>} />
+            <Route path='/admin/MenuBill' element={<DefaultLayout><MenuBill /></DefaultLayout>} />
+            <Route path='/admin/MenuAccount' element={<DefaultLayout><MenuAccount /></DefaultLayout>} />
+
+
+
 
 
 
