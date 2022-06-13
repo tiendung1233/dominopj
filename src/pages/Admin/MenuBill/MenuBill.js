@@ -1,6 +1,9 @@
+import React, { useEffect, useState } from "react";
+import Styles from "./MenuBill.modules.css";
 function MenuBill() {
-    return (<>
-    </>);
+    return (
+      <></>  
+    );
 }
 
 export default MenuBill;

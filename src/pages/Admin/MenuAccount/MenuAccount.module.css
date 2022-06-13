@@ -1,19 +1,23 @@
-.MenuManager_list
+.MenuAccount_list
 {
     display: grid;
-    grid-template-columns: auto auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto auto;
     list-style: none;
     max-width: 1250px;
     margin: auto;
 }
-.MenuManager_item
+.MenuAccount_Them
+{
+    display: flex;
+    align-items: center;
+}
+.MenuAccount_item
 {
     border:2px solid #666 ;
     text-align: center;
 }
-
-.MenuManager_button,
-.MenuManager_item
+.MenuAccount_item,
+.MenuAccount_button
 {
     padding: 8px 10px;
     display: inline-grid;
@@ -23,12 +27,13 @@
     text-align: center;
 }
 
-.MenuManager
+.MenuAccount_Them
 {
-    margin: 50px 0;
-}
-
-.MenuManager_Them{
     display: flex;
     align-items: center;
+}
+
+.MenuAccount
+{
+    margin: 50px 0;
 }
