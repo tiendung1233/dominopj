@@ -5,7 +5,14 @@ import ModalLg from '../../../../pages/ModalLg/Modal';
 import styles from './Header.module.css'
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/js/bootstrap.min.js'
+import LoginContext from '../../../../Context/LoginContext';
+import { useContext } from 'react';
+import CartContext from '../../../../Context/CartContext';
 function Header() {
+
+    const {loginName,setLogin} = useContext(LoginContext)
+    const {changeCart,setChange} = useContext(CartContext)
+
     return (
         <div>
             <div className={` ${styles.bk} color-white`}>
@@ -45,9 +52,26 @@ function Header() {
                     </div>
                     <div className={`col-md-2`}>
                         <div className={`row ${styles.wrap} `} >
-                            <div className={`col-md-4 ${styles.block}`}>
-                                <ModalLg />
-                            </div>
+
+                        {/* Fix login*/}
+                            {loginName==="default"&&(
+                                <div className={`col-md-4 ${styles.block}`} style={{"cursor":"pointer"}}>
+                                    <ModalLg />
+                                </div>
+                            )}
+
+                            {loginName!=="default"&&(
+                                <div className={`col-md-4 ${styles.block}`}>
+                                   <p style={{"cursor":"pointer", "color":"red","fontSize":"14px","width":"100px","textAlign":"center"}}
+                                   onClick={()=>{
+                                    setLogin("default");
+                                    setChange('default');
+                                   }}>
+                                   Đăng xuất
+                                   </p>
+                                </div>
+                            )}
+                            
                             <div className={`col-md-4 ${styles.block}`}>
                                 <Link to='/cart'><i class={`bi bi-basket-fill ${styles.block_icon}`}></i></Link>
                             </div>

@@ -30,6 +30,7 @@ export default function Sub_cart() {
     const [countItem, setCount] = useState(0);
 
 
+
     function total(data) {
         let priceList = data.map(e => e.price);
         return priceList.reduce((a, b) => a + b, 0)
@@ -53,7 +54,7 @@ export default function Sub_cart() {
                 }
                 loop(item);
                 setData(cartItem);
-                console.log(cartItem);
+                // console.log(cartItem);
                 setCheck(cartItem.length)
                 let totalCart = total(cartItem);
                 // console.log(totalCart);
@@ -76,8 +77,8 @@ export default function Sub_cart() {
         })
             .then(res => res.json())
             .then(() => {
-                const item = document.querySelector(`.${idItem}`)
-                item.remove();
+                // const item = document.querySelector(`#${idItem}`)
+                // item.remove();
             })
         setChange("delete")
     }
@@ -113,17 +114,56 @@ export default function Sub_cart() {
         .then(res=>res.json())
         .then(e=>e)
     }
-console.log(document.querySelector('.name'));
-    const checkout = ()=>{
-        // console.log(data);
-        let data = {
-            "user":loginName,
-            "name":document.querySelector('.names').innerHTML,
-            "count":document.querySelector('.count').innerHTML,
-            "type":document.querySelector('.type').innerHTML,
-            "price":document.querySelector('.price').innerHTML
+
+    const checkout = (e)=>{
+        const parent = e.target.parentElement;
+        const idItem = parent.querySelectorAll('.id');
+        let arr = []
+        for(let i=0;i<idItem.length;i++){
+            arr.push(idItem[i].id)
         }
-        checkoutData(data)
+      
+        // console.log(arr);
+        let dataItem = {
+            "user":loginName,
+            "data":data
+            // "name":parent.querySelectorAll('li')[1].innerHTML,
+            // "count":parent.querySelector('h1').innerHTML,
+            // "type":parent.querySelector('p').innerHTML,
+            // "price":parent.querySelectorAll('li')[2].innerHTML
+        }
+        // console.log(dataItem);
+        checkoutData(dataItem);
+
+
+        
+        arr.forEach(el=>{
+           deleteItemCheckout(el);
+        })
+        setChange("deleteItems")  
+        setCheck(0)
+        console.log(data);
+    }
+
+   
+
+
+    // Sau khi checkout, du lieu trong gio hang se bi xoa
+    function deleteItemCheckout(e){
+            fetch(`https://627a232473bad506858340e5.mockapi.io/api/pizza/Cart/${e}`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+        })
+            .then(res => res.json())
+            .then((res) => {
+                // const item = document.querySelector(`#${e}`)
+                console.log(res);
+                // item.remove();
+            })
+        
     }
 
 
@@ -154,7 +194,7 @@ console.log(document.querySelector('.name'));
                                 </div>
                                 {data.map(e => (
                                     <>
-                                        <div className={styles.list} id={e.id}>
+                                        <div className={`id ${styles.list}`} id={e.id}>
                                             <h1 style={{ "display": "none" }} className="count">{e.count}</h1>
                                             <p style={{ "display": "none" }} className="type">{e.type}</p>
                                             <li>
@@ -193,7 +233,7 @@ console.log(document.querySelector('.name'));
                             <div className={styles.alert}>
                                 <div className={styles.alert_cotent}>
 
-                                    <span style={{ "color": "red", "margin": "10px" }}>Xoa thanh cong</span>
+                                    <span style={{ "color": "red", "margin": "10px" }}>Xóa thành công</span>
                                     <button style={{
                                         "fontSize": "20px",
                                         "color": "green",
@@ -205,7 +245,22 @@ console.log(document.querySelector('.name'));
                             </div>
                         )}
 
+                                
+                        {changeCart === "deleteItems" && (
+                            <div className={styles.alert}>
+                                <div className={styles.alert_cotent}>
 
+                                    <span style={{ "color": "red", "margin": "10px" }}>Thanh toán thành công</span>
+                                    <button style={{
+                                        "fontSize": "20px",
+                                        "color": "green",
+                                        "fontWeight": "bold",
+                                        "padding": ".5rem 2.5rem",
+                                        "borderRadius": "5px"
+                                    }} onClick={() => setChange("default")}>OK</button>
+                                </div>
+                            </div>
+                        )}
 
                     </div>
                 </>
@@ -235,6 +290,8 @@ console.log(document.querySelector('.name'));
                 <UpdatePizzaCart setShow={setShow} img={imgItem} name={name} cost={cost} idItem={id} countItem={countItem} />
             )}
 
+
+            
         </>
     )
 }

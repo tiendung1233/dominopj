@@ -1,5 +1,5 @@
 import CartContext from '../../Context/CartContext';
-import React, { useContext,useEffect,useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from "./Cart.module.css";
 import { Link } from 'react-router-dom';
 import UpdateCart from '../../components/Layout/DefaultLayout/UdateCart/UpdateCart';
@@ -8,20 +8,20 @@ import LoginContext from '../../Context/LoginContext';
 
 
 export default function Cart() {
-    const {changeCart, setChange} = useContext(CartContext)
-    const {loginName,setLogin} = useContext(LoginContext)
+    const { changeCart, setChange } = useContext(CartContext)
+    const { loginName, setLogin } = useContext(LoginContext)
     // console.log(changeCart);
 
     const [data, setData] = useState([]);
     const [check, setCheck] = useState(1)
     const [totalPrice, setTotal] = useState(0);
     // console.log(check);
-    const [show,setShow] = useState(false)
-    const [id, setId] =useState()
-    const [imgItem,setImg] =useState();
-    const [cost,setCost] = useState();
-    const [name,setName] = useState();
-    const [typeItem,setType] =useState('');
+    const [show, setShow] = useState(false)
+    const [id, setId] = useState()
+    const [imgItem, setImg] = useState();
+    const [cost, setCost] = useState();
+    const [name, setName] = useState();
+    const [typeItem, setType] = useState('');
     const [countItem, setCount] = useState(0);
 
 
@@ -31,7 +31,7 @@ export default function Cart() {
     }
 
 
-    
+
 
 
     useEffect(() => {
@@ -41,7 +41,7 @@ export default function Cart() {
                 let cartItem = [];
                 function loop(data) {
                     for (let i = 1; i < data.length; i++) {
-                        if(data[i].user===loginName){
+                        if (data[i].user === loginName) {
                             cartItem.push(data[i]);
                         }
                     }
@@ -60,25 +60,25 @@ export default function Cart() {
 
 
     // Delete Item 
-    function deleteCart(el){
+    function deleteCart(el) {
         let idItem = el.target.parentElement.id;
-        fetch(`https://627a232473bad506858340e5.mockapi.io/api/pizza/Cart/${idItem}`,{
-            method:"DELETE",
+        fetch(`https://627a232473bad506858340e5.mockapi.io/api/pizza/Cart/${idItem}`, {
+            method: "DELETE",
             headers: {
                 'Content-Type': 'application/json'
                 // 'Content-Type': 'application/x-www-form-urlencoded',
-              },
+            },
         })
-        .then(res=>res.json())
-        .then(()=>{
-            const item = document.querySelector(`.${idItem}`)
-            item.remove();
-        })
+            .then(res => res.json())
+            .then(() => {
+                // const item = document.querySelector(`.${idItem}`)
+                // item.remove();
+            })
         setChange("delete")
     }
 
     // Handle edit
-    const handleEdit = (el)=>{
+    const handleEdit = (el) => {
         const parrent = el.target.parentElement
         const parrentList = parrent.parentElement
         const liList = parrentList.querySelectorAll('li')
@@ -97,12 +97,157 @@ export default function Cart() {
     }
 
 
+    // Post Checkout:
+    function checkoutData(item) {
+        fetch('https://627a232473bad506858340e5.mockapi.io/api/pizza/CheckoutData', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify(item)
+        })
+            .then(res => res.json())
+            .then(e => e)
+    }
+
+    const checkout = (e) => {
+        const parent = e.target.parentElement;
+        const idItem = parent.querySelectorAll('.id');
+        let arr = []
+        for (let i = 0; i < idItem.length; i++) {
+            arr.push(idItem[i].id)
+        }
+
+        // console.log(arr);
+        let dataItem = {
+            "user": loginName,
+            "data": data
+        }
+        // console.log(dataItem);
+        checkoutData(dataItem);
+
+
+
+        arr.forEach(el => {
+            deleteItemCheckout(el);
+            // console.log(el);
+        })
+        setChange("deleteItems")
+        setCheck(0)
+        // console.log(data);
+    }
+
+
+
+
+    // Sau khi checkout, du lieu trong gio hang se bi xoa
+    function deleteItemCheckout(e) {
+        fetch(`https://627a232473bad506858340e5.mockapi.io/api/pizza/Cart/${e}`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+        })
+            .then(res => res.json())
+            .then((res) => {
+                // const item = document.querySelector(`#${e}`)
+                console.log(res);
+                // item.remove();
+            })
+
+    }
+
+
 
     return (
         <div className={styles.sub_cart} id="flex-1">
-        {(loginName!=="default")&&(
-            <>
-            {(check < 1) && (
+            {(loginName !== "default") && (
+                <>
+                    {(check < 1) && (
+                        <>
+                            <div className={styles.img}>
+                                <img src='https://dominos.vn/img/illustration/empty-cart.svg' />
+                            </div>
+                            <div className={styles.infomation}>
+                                <p className={styles.p}>Giỏ hàng chưa có sản phẩm.</p>
+                                <p className={styles.p}>Xin mời bạn mua hàng</p>
+                                <button className={styles.btn}><Link style={{ color: "white", "fontSize": "18px" }} to='/menu'>Tiep tuc mua hang</Link></button>
+                            </div>
+                        </>
+                    )}
+
+                    {(check >= 1) && (
+                        <div className={`${styles.cart}`}>
+                            <div className={`${styles.list} ${styles.bonus}`} style={{
+                                "borderBottom": "solid black 1.5px"
+                            }}>
+                                <li style={{ "width": "60%" }}>Don hang cua ban</li>
+                            </div>
+                            {data.map(e => (
+                                <>
+                                    <div className={`id ${styles.list}`} id={e.id}>
+                                        <h1 style={{ "display": "none" }}>{e.count}</h1>
+                                        <p style={{ "display": "none" }}>{e.type}</p>
+                                        <li>
+                                            <img className={styles.img_cart} src={e.img} />
+                                            <button className={styles.editBtn} onClick={handleEdit}>Edit</button>
+                                        </li>
+                                        <li style={{ "width": "60%", "textOverflow": "clip", "whiteSpace": "nowrap", "overflow": "hidden" }}>{e.name}</li>
+                                        <li>{e.count}</li>
+                                        <li>{e.price}</li>
+                                        <div onClick={deleteCart}>x</div>
+                                    </div>
+                                   
+                                </>
+                            ))}
+
+                            <div style={{
+                                "textAlign": "center",
+                                "fontWeight": "bolder",
+                                "marginTop": "50vh",
+                                
+                            }}><span style={{
+                                "color": "red"
+                            }}>Tong tien: </span><span>{totalPrice}</span>
+                            </div>
+                            <button style={{
+                                        "margin": "auto",
+                                        "padding": "6.5px",
+                                        "backgroundColor": "red",
+                                        "color": "white",
+                                        "display": "block",
+                                        "borderRadius": "3px",
+                                        "fontSize": "20px"
+                                    }} onClick={checkout}>Thanh toán</button>
+
+                            {changeCart === "deleteItems" && (
+                                <div className={styles.alert}>
+                                    <div className={styles.alert_cotent}>
+
+                                        <span style={{ "color": "red", "margin": "10px" }}>Thanh toán thành công</span>
+                                        <button style={{
+                                            "fontSize": "20px",
+                                            "color": "green",
+                                            "fontWeight": "bold",
+                                            "padding": ".5rem 2.5rem",
+                                            "borderRadius": "5px"
+                                        }} onClick={() => setChange("default")}>OK</button>
+                                    </div>
+                                </div>
+                            )}
+
+                           
+                        </div>
+                    )}
+
+
+
+                </>
+            )}
+
+            {(loginName === "default") && (
                 <>
                     <div className={styles.img}>
                         <img src='https://dominos.vn/img/illustration/empty-cart.svg' />
@@ -110,88 +255,42 @@ export default function Cart() {
                     <div className={styles.infomation}>
                         <p className={styles.p}>Giỏ hàng chưa có sản phẩm.</p>
                         <p className={styles.p}>Xin mời bạn mua hàng</p>
-                        <button className={styles.btn}><Link style={{color:"white","fontSize":"18px"}} to='/menu'>Tiep tuc mua hang</Link></button>
+                        <button className={styles.btn}><Link style={{ color: "white", "fontSize": "18px" }} to='/menu'>Tiep tuc mua hang</Link></button>
                     </div>
                 </>
             )}
 
-            {(check >= 1) && (
-                <div className={`${styles.cart}`}>
-                    <div className={`${styles.list} ${styles.bonus}`} style={{
-                        "borderBottom": "solid black 1.5px"
-                    }}>
-                        <li style={{ "width": "60%" }}>Don hang cua ban</li>
-                    </div>
-                    {data.map(e => (
-                        <div className={styles.list} id={e.id}>
-                        <h1 style={{ "display": "none" }}>{e.count}</h1>
-                            <p style={{ "display": "none" }}>{e.type}</p>
-                            <li>
-                                <img className={styles.img_cart} src={e.img} />
-                                <button className={styles.editBtn} onClick={handleEdit}>Edit</button>
-                            </li>
-                            <li style={{ "width": "60%", "textOverflow": "clip","whiteSpace":"nowrap","overflow":"hidden" }}>{e.name}</li>
-                            <li>{e.count}</li>
-                            <li>{e.price}</li>
-                            <div onClick={deleteCart}>x</div>
-                        </div>
-                    ))}
-
-                    <div style={{
-                        "textAlign":"center",
-                        "fontWeight":"bolder",
-                        "marginTop":"80%"
-                    }}><span style={{
-                        "color":"red"
-                    }}>Tong tien: </span>{totalPrice}</div>
-                </div>
-            )}
-
-         </>
-        )}
-
-        {(loginName==="default")&&(
-            <>
-                    <div className={styles.img}>
-                        <img src='https://dominos.vn/img/illustration/empty-cart.svg' />
-                    </div>
-                    <div className={styles.infomation}>
-                        <p className={styles.p}>Giỏ hàng chưa có sản phẩm.</p>
-                        <p className={styles.p}>Xin mời bạn mua hàng</p>
-                        <button className={styles.btn}><Link style={{color:"white","fontSize":"18px"}} to='/menu'>Tiep tuc mua hang</Link></button>
-                    </div>
-                </>
-        )}
-       
 
 
 
             {/* Modal Alert */}
 
-            {changeCart==="delete"&&(
+            {changeCart === "delete" && (
                 <div className={styles.alert}>
                     <div className={styles.alert_cotent}>
-                    
-                        <span style={{"color":"red","margin":"10px"}}>Xoa thanh cong</span>
+
+                        <span style={{ "color": "red", "margin": "10px" }}>Xoa thanh cong</span>
                         <button style={{
-                            "fontSize":"20px",
-                            "color":"green",
-                            "fontWeight":"bold",
-                            "padding":".5rem 2.5rem",
-                            "borderRadius":"5px"
-                        }} onClick={()=>setChange("default")}>OK</button>
+                            "fontSize": "20px",
+                            "color": "green",
+                            "fontWeight": "bold",
+                            "padding": ".5rem 2.5rem",
+                            "borderRadius": "5px"
+                        }} onClick={() => setChange("default")}>OK</button>
                     </div>
                 </div>
             )}
 
 
-             {/* UI Update Cart */}
-          {(show&&typeItem==="none")&&(
-                <UpdateCart setShow={setShow} img={imgItem} name = {name} cost = {cost} idItem = {id} countItem = {countItem}/>
+
+
+            {/* UI Update Cart */}
+            {(show && typeItem === "none") && (
+                <UpdateCart setShow={setShow} img={imgItem} name={name} cost={cost} idItem={id} countItem={countItem} />
             )}
 
-            {(show&&(typeItem==="premium"||typeItem==="signature"||typeItem==="favorite"))&&(
-                <UpdatePizzaCart setShow={setShow} img={imgItem} name = {name} cost = {cost} idItem = {id}/>
+            {(show && (typeItem === "premium" || typeItem === "signature" || typeItem === "favorite")) && (
+                <UpdatePizzaCart setShow={setShow} img={imgItem} name={name} cost={cost} idItem={id} />
             )}
 
 

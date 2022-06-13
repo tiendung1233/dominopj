@@ -116,10 +116,12 @@ export default function ModalLg() {
         })
         console.log(check);
         if (check) {
+            // setShow(true);
+            alert("Đăng nhập thành công")
+            setModal(!modal);
             setChange("userData")
             setLogin(emailLogin.value);
-            setShow(true);
-            setModal(!modal);
+            
             // alert(loginName);
             // console.log();
         }
@@ -286,7 +288,7 @@ export default function ModalLg() {
                 </div>
             )}
 
-            {show && (
+            {/* {(show) && (
                 <div className="modal">
                     <div className="overlay"></div>
                     <div className="modal-content">
@@ -300,7 +302,7 @@ export default function ModalLg() {
                     }}>
                     OK</button>
                 </div>
-            )}
+            )} */}
         </>
     );
 }
