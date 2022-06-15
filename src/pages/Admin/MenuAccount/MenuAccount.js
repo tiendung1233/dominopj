@@ -18,14 +18,6 @@ function MenuAccount() {
         <>
             <HeaderAD />
             <div className={Styles.MenuAccount}>
-                <div className={Styles.MenuAccount_Them}>
-                    <div>
-                        <p style={{ "marginLeft": "400px", "alignItems": "center" }}>Thêm tài khoản có quyền quản trị ADMIN :</p>
-                    </div>
-                    <div>
-                        <button className="btn-themAC" style={{ "background": "#1baf60", "borderRadius": "5px", "marginLeft": "50px", "padding": "10px" }}>Thêm</button>
-                    </div>
-                </div>
                 <div style={{ "textAlign": "center", "fontWeight": "600","marginBottom":"10px","marginTop":"20px" }}>Danh sách tài khoản được cấp</div>
                 <div className={Styles.MenuAccount_list}>
                     {data.map((e) =>

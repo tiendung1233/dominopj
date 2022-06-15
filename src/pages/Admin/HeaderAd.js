@@ -6,7 +6,7 @@ export default function HeaderAD() {
         <div class="container-fluid">
             <div style={{"textAlign":"center","fontWeight":"800","fontSize":"20px","marginTop":"40px","marginBottom":"20px"}}>
                 <p>
-                    Quản trị ADMIN
+                    Quản lý tài khoản
                 </p>
             </div>
             
@@ -37,6 +37,7 @@ export default function HeaderAD() {
                 </div>
             </div>
         </div>
+
     )
 }
 

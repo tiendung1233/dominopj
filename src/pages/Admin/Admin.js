@@ -4,6 +4,7 @@ import MenuManager from "./MenuManager/MenuManager";
 import MenuBill from "./MenuBill/MenuBill";
 import MenuAccount from "./MenuAccount/MenuAccount";
 
+
 export default function Admin()
 {
     return(
@@ -12,6 +13,7 @@ export default function Admin()
             <MenuManager/>
             <MenuBill/>
             <MenuAccount/>
+            
        </div>
     )
 }

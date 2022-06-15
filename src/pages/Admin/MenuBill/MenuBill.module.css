@@ -1,0 +1,9 @@
+.MenuBill
+{
+    margin: 50px 0;
+}
+.MenuBill_list
+{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}

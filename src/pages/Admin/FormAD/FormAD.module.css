@@ -1,0 +1,25 @@
+.FormAD{
+    margin: auto;
+    width: 600px;
+    display: block;
+    padding: 40px;
+    background: rgb(79, 140, 140);
+    position: absolute;
+    z-index: 100;
+    left: 50%;
+    transform: translate(-50%);
+    top: 20%;
+    border-radius: 5px;
+    border: 2px solid rgb(95, 95, 165);
+}
+
+.FormAD div{
+    display: flex;
+    justify-content: center;
+}
+
+.FormAD label{
+    width: 200px;
+    font-weight: 500;
+}
+

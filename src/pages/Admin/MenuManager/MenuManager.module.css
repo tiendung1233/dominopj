@@ -1,11 +1,21 @@
 .MenuManager_list
 {
-    display: grid;
-    grid-template-columns: auto auto auto auto auto;
     list-style: none;
     max-width: 1250px;
     margin: auto;
 }
+
+.MenuManager_list div{
+    max-width: 1250px;
+    display: flex;
+    justify-content: left;
+}
+
+.MenuManager_list div ul{
+    height: 125px ;
+    width: 20%;
+}
+
 .MenuManager_item
 {
     border:2px solid #666 ;
@@ -28,7 +38,17 @@
     margin: 50px 0;
 }
 
+.MenuManager_list ul li{
+    font-size: 18px !important;
+    font-weight: 500;
+}
+
 .MenuManager_Them{
     display: flex;
     align-items: center;
+}
+
+.MenuManager_button
+{
+    margin: auto;
 }
