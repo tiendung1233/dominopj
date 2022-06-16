@@ -81,9 +81,66 @@ function Header() {
                     </div>
                 </div>
                 {/* tablet */}
-                <div className={styles.header_tl}>
-                    <div className={styles.logo_img}>
-                        <img src='https://dominos.vn/img/logo/domino-horizontal-dark.svg' />
+                <div className={`row ${styles.header_tablet}`}>
+                    <div className="col-md-2">
+                        <Link to='/'>
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <Link to='/home'>  <img className={styles.logo_img_mb} src='https://dominos.vn/img/logo/domino.svg' />
+                                    </Link>
+                                </div>
+                                <div className="col-md-6 color-white">
+                                    <h3 className={styles.text_cl}>
+                                    </h3>
+                                </div>
+                            </div>
+                        </Link>
+                    </div>
+                    <div className={`col-md-8 ${styles.wrap} ${styles.menu} `}  style={{"width":"auto"}}>
+                        <div className={`row ${styles.wauto} `}>
+                            <div className={`col-md-3 ${styles.block}`}>
+                                <Link to='/code' className={`badge badge-default `}>MÃ E-VOUCHER</Link>
+                            </div>
+                            <div className={`col-md-3 ${styles.block}`}>
+                                <Link to='/voucher' className={`badge badge-default `}>KHUYẾN MÃI</Link>
+                            </div>
+                            <div className={`col-md-3 ${styles.block}`}>
+                                <Link to='/menu' className={`badge badge-default `}>THỰC ĐƠN</Link>
+                            </div>
+                            <div className={`col-md-3 ${styles.block} `}>
+                                <Link to ='/follow' className={`badge badge-default `}>THEO DÕI ĐƠN HÀNG</Link>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div className={`col-md-2  ${styles.wauto}`}  style={{"width":"auto"}}>
+                        <div className={`row ${styles.wrap}  `} >
+
+                        {/* Fix login*/}
+                            {loginName==="default"&&(
+                                <div className={`col-md-4 ${styles.block}`} style={{"cursor":"pointer"}}>
+                                    <ModalLg />
+                                </div>
+                            )}
+
+                            {loginName!=="default"&&(
+                                <div className={`col-md-4 ${styles.block}`}>
+                                   <p style={{"cursor":"pointer", "color":"red","fontSize":"14px","width":"100px","textAlign":"center"}}
+                                   onClick={()=>{
+                                    setLogin("default");
+                                    setChange('default');
+                                   }}>
+                                   Đăng xuất
+                                   </p>
+                                </div>
+                            )}
+                            
+                            <div className={`col-md-4 ${styles.block}`}>
+                                <Link to='/cart'><i class={`bi bi-basket-fill ${styles.block_icon}`}></i></Link>
+                            </div>
+
+
+                        </div>
                     </div>
                 </div>
                 {/* mobile */}

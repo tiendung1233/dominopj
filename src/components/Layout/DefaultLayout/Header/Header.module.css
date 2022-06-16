@@ -56,6 +56,9 @@ a{
 .header_tl{
     display: none;
 }
+.header_tablet{
+    display: none;
+}
 @media (max-width: 768px){
     
 .header_mb{
@@ -64,9 +67,19 @@ a{
 .header_pc{
     display: none;
 }
+
+.header_tablet{
+    display: flex;
+}
+.wauto div{
+    width: auto;
+}
 }
 
 @media (max-width: 576px){
+    .header_tablet{
+        display: none;
+    }
     .header_pc{
         display: none;
     }

@@ -12,7 +12,9 @@
     animation: FadeIn linear 0.2s ;
 
 }
-
+.form_login{
+    padding-left: 30px;
+}
 @keyframes FadeIn{
     from{
         opacity: 0;
@@ -70,7 +72,7 @@
 .pass,
 .email{
     text-align: initial;
-    height: 30px;
+    line-height: 40px;
 }
 .number_text,
 .name_text,
@@ -81,6 +83,7 @@
     font-size: 14px;
     color: #0078ae !important;
     font-weight: 600;
+    line-height: 40px;
 }
 
 .box_lg{
@@ -117,4 +120,18 @@
     font-weight: 600;
     text-align: initial;
     height: 30px;
+    line-height: 40px !important;
+}
+
+@media (max-width: 768px){
+    .img_Lg_sm{
+        display: none;
+        
+    }
+    .box_lg{
+        padding: 30px;
+    }
+    .box_regin{
+        padding: 30px;
+    }
 }
