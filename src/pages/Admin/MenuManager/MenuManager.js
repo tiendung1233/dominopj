@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Styles from "./MenuManager.module.css";
 import FormAD from "../FormAD/FormAD";
+import FormSMD from "../FormAD/FormSMD";
 import DeleteMD from "../FormAD/DeleteMD";
 function MenuManager() {
     const [data, setData] = useState([]);
     const [showCreate, setShowCreate] = useState(false);
     const [showDelete,setShowDelete]=useState(false);
+    const [showFix,setShowFix]=useState(false);
+    const [id,setId]=useState();
     const [render,setRender]= useState("openning");
     const deleteDataAPI = (e) =>
     {
@@ -28,6 +31,14 @@ function MenuManager() {
         setRender("delete");
         setShowDelete(true);
     }
+
+
+    const fixData =(e)=>{
+        const parent = e.target.parentElement.parentElement.parentElement.id;
+        setId(parent);
+        setShowFix(true);
+
+    } 
     useEffect(() => {
         fetch("https://627a232473bad506858340e5.mockapi.io/api/pizza/pizza")
             .then((res) => res.json())
@@ -41,7 +52,10 @@ function MenuManager() {
             {showCreate && (
                     <FormAD setShow={setShowCreate} setRender={setRender} />
             )}
-            
+            {showFix&&(
+                    <FormSMD setShow={setShowFix} setRender={setRender} idItem={id}/>
+                )
+                }
             <div className={Styles.MenuManager_Them}>
                 <div>
                     <p style={{ "marginLeft": "400px", "alignItems": "center" }}>Thêm dữ liệu vào quản lý thực đơn :</p>
@@ -72,7 +86,7 @@ function MenuManager() {
 
                         <ul className={Styles.MenuManager_item}>
                             <div className={Styles.MenuManager_button}>
-                                <button style={{ "background": "#00bff8", "borderRadius": "5px", "padding": "15px" }}>Sửa</button>
+                                <button style={{ "background": "#00bff8", "borderRadius": "5px", "padding": "15px" }} onClick={fixData}>Sửa</button>
                                 <button style={{ "background": "red", "borderRadius": "5px", "padding": "15px","marginLeft":"20px" }} onClick={deleteData}>Xóa</button>
                             </div>
                         </ul>
@@ -81,6 +95,7 @@ function MenuManager() {
                 {showDelete && (
                     <DeleteMD setShow={setShowDelete} setRender={setRender} />
                 )}
+                
             </div>
         </div>
     );

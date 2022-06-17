@@ -56,7 +56,7 @@ function MenuAccount() {
                         <button style={{ "background": "#1baf60", "borderRadius": "5px", "marginLeft": "30px", "padding": "10px" }} onClick={() => setShowCreate(true)}>Thêm</button>
                     </div>
                 </div>
-                <div style={{ "textAlign": "center", "fontWeight": "600", "marginBottom": "10px", "marginTop": "20px" }} >Danh sách tài khoản được cấp</div>
+                <div style={{ "textAlign": "center", "fontWeight": "600", "marginBottom": "10px", "marginTop": "20px" }} >Danh sách tài khoản người dùng</div>
                 <div className={Styles.MenuAccount_list}>
                     {data.map((e) =>
                     (
