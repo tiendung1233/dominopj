@@ -10,7 +10,7 @@ function MenuAccount() {
     const [render, setRender] = useState("openning");
     const deleteDataAPI = (e) => 
     {
-        fetch(`https://627a232473bad506858340e5.mockapi.io/api/pizza/Logi_User?fbclid=IwAR2-4MBHgA6mtRxZ5X1-H8tTKIy37zeltGOvCOCCq8lNEdnREOl0Q6aA96w/${e}`,{
+        fetch(`https://627a232473bad506858340e5.mockapi.io/api/pizza/Logi_User/${e}`,{
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json'
@@ -31,7 +31,7 @@ function MenuAccount() {
     }
 
     useEffect(() => {
-        fetch("https://627a232473bad506858340e5.mockapi.io/api/pizza/Logi_User?fbclid=IwAR2-4MBHgA6mtRxZ5X1-H8tTKIy37zeltGOvCOCCq8lNEdnREOl0Q6aA96w")
+        fetch("https://627a232473bad506858340e5.mockapi.io/api/pizza/Logi_User")
             .then((res) => res.json())
             .then((item) => {
                 let itemArr = [];
