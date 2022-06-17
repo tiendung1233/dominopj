@@ -1,0 +1,24 @@
+.FormAC
+{
+    position: fixed;
+    margin: auto;
+    width: 600px;
+    display: block;
+    z-index: 100;
+    left: 50%;
+    transform: translate(-50%);
+    top: 20%;
+    background:rgb(79, 140, 140);
+    border-radius: 5px;
+    padding: 40px;
+    border: 2px solid rgb(95, 95, 165);
+}
+
+.FormAC div{
+    display: flex;
+    justify-content: center;
+}
+.FormAC label{
+    width: 200px;
+    font-weight: 500;
+}

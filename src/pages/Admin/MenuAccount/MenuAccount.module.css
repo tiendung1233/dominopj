@@ -1,10 +1,19 @@
 .MenuAccount_list
 {
-    display: grid;
-    grid-template-columns: auto auto auto auto auto auto;
     list-style: none;
     max-width: 1250px;
     margin: auto;
+}
+
+.MenuAccount_list div{
+    max-width: 1250px;
+    display: flex;
+    justify-content: left;
+}
+
+.MenuAccount_list div ul{
+    height: 125px ;
+    width: 20%;
 }
 .MenuAccount_Them
 {
@@ -30,7 +39,7 @@
 .MenuAccount_Them
 {
     display: flex;
-    align-items: center;
+    margin-left:650px;
 }
 
 .MenuAccount

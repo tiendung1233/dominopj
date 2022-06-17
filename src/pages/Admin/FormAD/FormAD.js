@@ -20,7 +20,7 @@ export default function FormAD({ setShow,setRender }) {
             })
     }
 
-    const pushData = (e) => {
+    const pushData = () => {
         const parent = document.querySelector("form");
         const values = document.querySelectorAll("input");
         const title = values[0].value;
