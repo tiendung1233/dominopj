@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import Styles from "./MenuAccount.module.css";
 import HeaderAD from "../HeaderAd";
 import FormAC from "../FormAD/FormAC";
+import FormSAC from "../FormAD/FormSAC";
 import DeleteAC from "../FormAD/DeleteAC";
 function MenuAccount() {
     const [data, setData] = useState([]);
     const [showCreate, setShowCreate] = useState(false);
     const [showDelete, setShowDelete] = useState(false);
+    const [showFixData,setShowFix]=useState(false);
+    const [id,setId]=useState();
     const [render, setRender] = useState("openning");
     const deleteDataAPI = (e) => 
     {
@@ -29,6 +32,12 @@ function MenuAccount() {
         setRender("delete");
         setShowDelete(true)
     }
+    
+    const fixData = (e)=>{
+        const parent = e.target.parentElement.parentElement.parentElement.id;
+        setId(parent);
+        setShowFix(true);
+    }
 
     useEffect(() => {
         fetch("https://627a232473bad506858340e5.mockapi.io/api/pizza/Logi_User")
@@ -48,6 +57,11 @@ function MenuAccount() {
                 {showCreate && (
                     <FormAC setShow={setShowCreate} setRender={setRender}></FormAC>
                 )}
+                {
+                    showFixData&&(
+                        <FormSAC setShow={setShowFix} setRender={setRender} idAC={id}/>
+                    )
+                }
                 <div className={Styles.MenuAccount_Them}>
                     <div>
                         <p style={{ "alignItems": "center", "fontWeight": "600" }}> Thêm tài khoản:</p>
@@ -78,7 +92,7 @@ function MenuAccount() {
                             </ul>
                             <ul className={Styles.MenuAccount_item}>
                                 <div className={Styles.MenuAccount_button}>
-                                    <button style={{ "background": "#00bff8", "borderRadius": "5px", "padding": "10px", "marginRight": "20px" }}>Sửa</button>
+                                    <button style={{ "background": "#00bff8", "borderRadius": "5px", "padding": "10px", "marginRight": "20px" }} onClick={fixData}>Sửa</button>
                                     <button style={{ "background": "red", "borderRadius": "5px", "padding": "10px" }} onClick={deleteData}>Xóa</button>
                                 </div>
                             </ul>
@@ -90,7 +104,6 @@ function MenuAccount() {
                     }
                 </div>
             </div>
-
         </div>
     );
 }
