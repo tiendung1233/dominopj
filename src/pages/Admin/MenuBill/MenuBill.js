@@ -3,8 +3,10 @@ import Styles from "./MenuBill.module.css";
 import HeaderAD from "../HeaderAd";
 function MenuBill() {
   const [data, setData] = useState([]);
+  const [showCreate,setShowCreate] = useState(false);
+  //const createDataAPI = ();
   useEffect(() => {
-    fetch("https://627a232473bad506858340e5.mockapi.io/api/pizza/CheckoutData?fbclid=IwAR1WyrTaBJXTxJExoaliOJh1b97yyk2WSJ4VwFba-rBJ4i01M3biYUI_cd0")
+    fetch("https://627a232473bad506858340e5.mockapi.io/api/pizza/CheckoutData")
       .then((res) => res.json())
       .then((item) => {
         let itemArr = [];
@@ -13,36 +15,21 @@ function MenuBill() {
         for (let i = 1; i < itemLength; i++) {
           itemArr.push(item[i]);
         }
-        console.log(itemArr);
+
         for (let i = 0; i < itemArr.length; i++) {
           itemArrUser.push(itemArr[i].user);
         }
-        console.log(itemArrUser);
-        //bat trung lap du lieu
-        let userItem = Array.from(new Set(itemArrUser));
-        console.log(userItem);
-        let userData = [];
-
-
-        const newData = [...new Set(userItem.forEach(e=>
-          {
-            for (let i = 0; i < itemArr.length; i++) {
-              if(e===itemArr[i].user)
-              {
-                userData.push({e:itemArr[i].data});
-              }
+        function test() {
+          let newData;
+          return newData = [...new Set(itemArr.map(d => d.user))].map(user => {
+            return {
+              user,
+              data: itemArr.filter(d => d.user === user).map(d => d.data)
             }
-          }))]
-        console.log(newData);
-        // userItem.forEach((e) => {
-        //   const name=e.target;
-        //   for (let i = 0; i < itemArr.length; i++) {
-        //     if (e === itemArr[i].user) {
-        //       userData.push({[name]:itemArr[i].data});
-        //     }
-        //   }
-        // })
-        console.log(userData);
+          })
+        }
+        console.log(test());
+        setData(test());
       }, [])
   })
   return (
@@ -51,7 +38,7 @@ function MenuBill() {
       <div className={Styles.MenuBill}>
         <div className={Styles.MenuBill_Them}>
           <div>
-            <p style={{ "marginLeft": "400px", "alignItems": "center" }}>Thêm tài khoản có quyền quản trị ADMIN :</p>
+            <p style={{ "marginLeft": "400px", "alignItems": "center" }}></p>
           </div>
           <div>
             <button className="btn-themAC" style={{ "background": "#1baf60", "borderRadius": "5px", "marginLeft": "50px", "padding": "10px" }}>Thêm</button>
@@ -63,13 +50,13 @@ function MenuBill() {
           (
             <>
               <ul className={Styles.MenuBill_item}>
-                <li>{e.id - 1}</li>
-              </ul>
-              <ul className={Styles.MenuBill_item}>
                 <li>{e.user}</li>
               </ul>
               <ul className={Styles.MenuBill_item}>
                 <li>
+                  {e.data.map(item=>{
+                    item.map(it=>it.img)
+                  })}
                 </li>
               </ul>
               <ul className={Styles.MenuBill_item}>

@@ -58,7 +58,7 @@ function MenuManager() {
                 }
             <div className={Styles.MenuManager_Them}>
                 <div>
-                    <p style={{ "marginLeft": "400px", "alignItems": "center" }}>Thêm dữ liệu vào quản lý thực đơn :</p>
+                    <p style={{ "marginLeft": "400px", "alignItems": "center","fontWeight":"600" }}>Thêm dữ liệu vào quản lý thực đơn :</p>
                 </div>
                 <div>
                     <button className="btn-themTD" style={{ "background": "#1baf60", "borderRadius": "5px", "marginLeft": "50px", "padding": "10px" }} onClick={() => setShowCreate(true)}>Thêm</button>

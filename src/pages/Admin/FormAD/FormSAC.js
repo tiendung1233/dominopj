@@ -50,16 +50,16 @@ export default function FormSAC({ setShow , setRender ,idAC}) {
                     Sửa tài khoản
                 </div>
                 <div>
-                    <label>userName</label><input type="text" /><br />
+                    <label>Tài khoản</label><input type="text" /><br />
                 </div>
                 <div>
-                    <label>passWord</label><input type="text" /><br />
+                    <label>Mật khẩu</label><input type="text" /><br />
                 </div>
                 <div>
-                    <label>email</label><input type="text" /><br />
+                    <label>Email</label><input type="text" /><br />
                 </div>
                 <div>
-                    <label>phone</label><input type="text" /><br />
+                    <label>Điện thoại</label><input type="text" /><br />
                 </div>
                 <div>
                     <button style={{ "textAlign": "center", "borderRadius": "3px", "background": "#1baf60", "marginTop": "10px", "padding": "4px" }} onClick={fixData}>Thêm</button>

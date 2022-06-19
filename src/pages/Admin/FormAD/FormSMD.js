@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Style from "./FormAD.module.css";
 export default function FormSMD({ setShow,setRender,idItem }) {
-    console.log(idItem);
     const subMit = (e) => {
         e.preventDefault();
     }
@@ -57,22 +56,22 @@ export default function FormSMD({ setShow,setRender,idItem }) {
                     Sửa thực đơn
                 </div>
                 <div>
-                    <label>Title</label><input type="text"/><br />
+                    <label>Tiêu đề</label><input type="text"/><br />
                 </div>
                 <div>
-                    <label>Type</label><input type="text"/><br />
+                    <label>Kiểu</label><input type="text"/><br />
                 </div>
                 <div>
-                    <label>Name</label><input type="text"/><br />
+                    <label>Tên</label><input type="text"/><br />
                 </div>
                 <div>
-                    <label> Image</label><input type="text" /><br />
+                    <label>Link ảnh</label><input type="text" /><br />
                 </div>
                 <div>
-                    <label>Cost</label><input type="text"/><br />
+                    <label>Giá</label><input type="text"/><br />
                 </div>
                 <div>
-                    <label>Rate</label><input type="text"/><br />
+                    <label>Đánh giá</label><input type="text" placeholder="Có thể bỏ trống"/><br />
                 </div>
                 <div>
                     <button onClick={fixData} style={{ "textAlign": "center", "borderRadius": "3px", "background": "#1baf60", "marginTop": "10px", "padding": "4px" }}>Sửa</button>
