@@ -11,9 +11,6 @@ export default function Admin()
        <div>
             <HeaderAD/>
             <MenuManager/>
-            <MenuBill/>
-            <MenuAccount/>
-            
        </div>
     )
 }

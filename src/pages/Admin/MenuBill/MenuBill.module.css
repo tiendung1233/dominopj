@@ -4,6 +4,28 @@
 }
 .MenuBill_list
 {
+    
+    margin: auto;
+    width: 1250px;
+}
+.MenuBill_items
+{
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    justify-content: space-between;
+}
+.MenuBill_item{
+    border: 2px solid #666;
+    padding: 10px;
+    text-align: center;
+    
+}
+.MenuBill_item,
+.MenuBill_button{
+    padding: 8px 10px;
+    display: inline-grid;
+    align-items: center;
+    height: 100%;
+    padding: auto;
+    text-align: center;
 }

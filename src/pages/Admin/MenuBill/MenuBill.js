@@ -1,10 +1,50 @@
 import React, { useEffect, useState } from "react";
 import Styles from "./MenuBill.module.css";
 import HeaderAD from "../HeaderAd";
+import DeleteMNB from "../FormAD/DeleteMNB";
+import ModalBill from "../FormAD/ModalBill";
 function MenuBill() {
   const [data, setData] = useState([]);
-  const [showCreate,setShowCreate] = useState(false);
-  //const createDataAPI = ();
+  const [showDelete, setShowDelete] = useState(false);
+
+  // showbill
+  const [showCount, setShowCount] = useState();
+  const [showName, setShowName] = useState();
+  const [showPrice, setShowPrice] = useState();
+
+
+  const [showBill, setShowBill] = useState(false);
+  const [id, setId] = useState();
+  const [render, setRender] = useState("openning");
+
+  // xu ly show intail
+  const handleDetail = () => {
+    setShowBill(true);
+  }
+
+
+
+  const deleteDataAPI = (e) => {
+    fetch(`https://627a232473bad506858340e5.mockapi.io/api/pizza/CheckoutData/${e}`, {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((res) => res.json())
+      .then(() => {
+        console.log("delete");
+      })
+  }
+
+  const deleteData = (e) => {
+    const parent = e.target.parentElement.parentElement.parentElement.parentElement.id;
+    console.log(parent);
+    deleteDataAPI(parent);
+    setRender("delete");
+    setShowDelete(true);
+  }
+
   useEffect(() => {
     fetch("https://627a232473bad506858340e5.mockapi.io/api/pizza/CheckoutData")
       .then((res) => res.json())
@@ -16,61 +56,80 @@ function MenuBill() {
           itemArr.push(item[i]);
         }
 
-        for (let i = 0; i < itemArr.length; i++) {
+        for (let i = 0; i < itemArr.dlength; i++) {
           itemArrUser.push(itemArr[i].user);
         }
-        function test() {
-          let newData;
-          return newData = [...new Set(itemArr.map(d => d.user))].map(user => {
-            return {
-              user,
-              data: itemArr.filter(d => d.user === user).map(d => d.data)
-            }
-          })
-        }
-        console.log(test());
-        setData(test());
-      }, [])
-  })
-  return (
-    <>
-      <HeaderAD />
-      <div className={Styles.MenuBill}>
-        <div className={Styles.MenuBill_Them}>
-          <div>
-            <p style={{ "marginLeft": "400px", "alignItems": "center" }}></p>
-          </div>
-          <div>
-            <button className="btn-themAC" style={{ "background": "#1baf60", "borderRadius": "5px", "marginLeft": "50px", "padding": "10px" }}>Thêm</button>
-          </div>
+
+
+        let newData = [...new Set(itemArr.map(d => d.user))].map(user => {
+          return {
+            user,
+            data: itemArr.filter(d => d.user === user).map(d => d.data),
+            cost: itemArr.filter(d => d.user === user).map(d => d.data.reduce((a, b) => a.price + b.price)).reduce((c, d) => c + d),
+            "count": itemArr.filter(d => d.user === user).map(d => d.data).map(e => e.map(f => f.count)).reduce((a, b) => a.concat(b)),
+            "name": itemArr.filter(d => d.user === user).map(d => d.data).map(e => e.map(f => f.name)).reduce((a, b) => a.concat(b)),
+            "price": itemArr.filter(d => d.user === user).map(d => d.data).map(e => e.map(f => f.price)).reduce((a, b) => a.concat(b)),
+          }
+        })
+        setData(newData);
+        data.forEach(e => {
+          setShowCount(e.count);
+        setShowName(e.name);
+        setShowPrice(e.price);
+      })
+  }, [render])
+})
+return (
+  <>
+    <HeaderAD />
+    <div className={Styles.MenuBill}>
+      <div style={{ "textAlign": "center", "fontWeight": "600", "marginBottom": "10px", "marginTop": "20px" }}>Danh sách đơn hàng</div>
+
+      <div className={Styles.MenuBill_list}>
+        <div className={Styles.MenuBill_items} style={{ "fontWeight": "500" }}>
+          <ul className={Styles.MenuBill_item}>STT</ul>
+          <ul className={Styles.MenuBill_item}>Tên khách hàng</ul>
+          <ul className={Styles.MenuBill_item}>Số lượng đơn hàng</ul>
+          <ul className={Styles.MenuBill_item}>Tổng tiền</ul>
+          <ul className={Styles.MenuBill_item}>Xử lý</ul>
         </div>
-        <div style={{ "textAlign": "center", "fontWeight": "600", "marginBottom": "10px", "marginTop": "20px" }}>Danh sách tài khoản được cấp</div>
-        <div className={Styles.MenuBill_list}>
-          {data.map((e) =>
-          (
-            <>
+
+
+        {data.map((e, index) =>
+        (
+          <div id={index}>
+            <div className={Styles.MenuBill_items}>
               <ul className={Styles.MenuBill_item}>
+                <li>{index + 1}</li>
+              </ul>
+              <ul style={{ "textOverflow": "clip", "whiteSpace": "nowrap", "overflow": "hidden" }} className={Styles.MenuBill_item}>
                 <li>{e.user}</li>
               </ul>
               <ul className={Styles.MenuBill_item}>
-                <li>
-                  {e.data.map(item=>{
-                    item.map(it=>it.img)
-                  })}
-                </li>
+                <li>{e.data.length}</li>
+              </ul>
+              <ul className={Styles.MenuBill_item}>
+                <li>{e.cost}</li>
               </ul>
               <ul className={Styles.MenuBill_item}>
                 <div className={Styles.MenuBill_button}>
-                  <button style={{ "background": "#00bff8", "borderRadius": "5px", "padding": "10px" }}>Sửa</button>
-                  <button style={{ "background": "red", "borderRadius": "5px", "padding": "10px" }}>Xóa</button>
+                  <button style={{ "background": "red", "borderRadius": "5px", "padding": "10px" }} onClick={deleteData}>Xóa</button>
+                  <button style={{ "background": "#7cab23", "borderRadius": "5px", "padding": "10px" }} onClick={handleDetail}>Chi tiết</button>
                 </div>
               </ul>
-            </>
-          ))}
-        </div>
+            </div>
+          </div>
+        ))}
       </div>
-    </>
-  );
+      {showDelete && (
+        <DeleteMNB setRender={setRender} setShow={setShowDelete} />
+      )}
+      {showBill && (
+        <ModalBill setShow={setShowBill} name={showName} count={showCount} price={showPrice}></ModalBill>
+      )}
+    </div>
+  </>
+);
 }
 
 export default MenuBill;

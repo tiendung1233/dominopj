@@ -1,0 +1,25 @@
+.ModalBill_item
+{
+    display: flex;
+    justify-content: space-around;
+}
+.ModalBill_bt{
+    display: block;
+    text-align: center;
+    font-weight: 500;
+}
+.ModalBill
+{
+    position: fixed;
+    top:50%;
+    background: #f2ff03;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid #333;
+}
+.ModalBill_items
+{
+    width: 900px;
+    padding: 20px;
+    border: 2px solid;
+}
