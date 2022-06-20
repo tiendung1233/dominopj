@@ -30,7 +30,6 @@ export default function Modal() {
                     <div className="modal-content">
                         
                         <ul className="ul_list">
-                            <li ><Link onClick={toggleModal} to ='/'>Đăng nhập / Tạo tài khoản</Link></li>
                             
                             <li > <Link onClick={toggleModal} to ='/code'>Mã e-voucher</Link></li>
                             <li > <Link onClick={toggleModal} to ='/voucher'>Khuyến mãi</Link></li>

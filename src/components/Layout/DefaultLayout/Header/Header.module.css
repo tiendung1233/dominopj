@@ -58,8 +58,9 @@ a{
 }
 .header_tablet{
     display: none;
+    
 }
-@media (max-width: 768px){
+@media (max-width: 968px){
     
 .header_mb{
     display: none;
@@ -70,9 +71,15 @@ a{
 
 .header_tablet{
     display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
 }
 .wauto div{
     width: auto;
+}
+
+.logo_img_mb{
+    display: block;
 }
 }
 
@@ -110,4 +117,15 @@ a{
         padding-top: 8px;
     }
 
+}
+
+.logout{
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    width: 100px;
+    text-align: center;
+    font-weight: 600;
+    padding-right: 14px;
+    line-height: 16px;
 }

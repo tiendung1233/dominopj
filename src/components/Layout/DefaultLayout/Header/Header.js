@@ -33,7 +33,7 @@ function Header() {
                             </div>
                         </Link>
                     </div>
-                    <div className={`col-md-8 ${styles.wrap} ${styles.menu}`}>
+                    <div className={`col-md-7 ${styles.wrap} ${styles.menu}`}>
                         <div className={`row `}>
                             <div className={`col-md-3 ${styles.block}`}>
                                 <Link to='/code' className={`badge badge-default `}>MÃ E-VOUCHER</Link>
@@ -50,7 +50,7 @@ function Header() {
                             </div>
                         </div>
                     </div>
-                    <div className={`col-md-2`}>
+                    <div className={`col-md-3`}>
                         <div className={`row ${styles.wrap} `} >
 
                         {/* Fix login*/}
@@ -62,7 +62,7 @@ function Header() {
 
                             {loginName!=="default"&&(
                                 <div className={`col-md-4 ${styles.block}`}>
-                                   <p style={{"cursor":"pointer", "color":"red","fontSize":"14px","width":"100px","textAlign":"center"}}
+                                   <p className={styles.logout}
                                    onClick={()=>{
                                     setLogin("default");
                                     setChange('default');
@@ -82,7 +82,7 @@ function Header() {
                 </div>
                 {/* tablet */}
                 <div className={`row ${styles.header_tablet}`}>
-                    <div className="col-md-2">
+                    <div className="col-md-2" style={{"width":"14%"}}>
                         <Link to='/'>
                             <div className="row">
                                 <div className="col-md-6">
@@ -96,24 +96,23 @@ function Header() {
                             </div>
                         </Link>
                     </div>
-                    <div className={`col-md-8 ${styles.wrap} ${styles.menu} `}  style={{"width":"auto"}}>
+                    <div className={`col-md-7 ${styles.wrap} ${styles.menu} `}  style={{"width":"auto"}}>
                         <div className={`row ${styles.wauto} `}>
                             <div className={`col-md-3 ${styles.block}`}>
-                                <Link to='/code' className={`badge badge-default `}>MÃ E-VOUCHER</Link>
+                                <Link to='/code' className={`badge badge-default `}>MÃ E- <br/>VOUCHER</Link>
                             </div>
                             <div className={`col-md-3 ${styles.block}`}>
-                                <Link to='/voucher' className={`badge badge-default `}>KHUYẾN MÃI</Link>
+                                <Link to='/voucher' className={`badge badge-default `}>KHUYẾN<br/> MÃI</Link>
                             </div>
                             <div className={`col-md-3 ${styles.block}`}>
-                                <Link to='/menu' className={`badge badge-default `}>THỰC ĐƠN</Link>
+                                <Link to='/menu' className={`badge badge-default `}>THỰC<br/> ĐƠN</Link>
                             </div>
                             <div className={`col-md-3 ${styles.block} `}>
-                                <Link to ='/follow' className={`badge badge-default `}>THEO DÕI ĐƠN HÀNG</Link>
-
+                                <Link to ='/follow' className={`badge badge-default `}>THEO DÕI<br/> ĐƠN HÀNG</Link>
                             </div>
                         </div>
                     </div>
-                    <div className={`col-md-2  ${styles.wauto}`}  style={{"width":"auto"}}>
+                    <div className={`col-md-3  ${styles.wauto}`}  style={{"width":"auto"}}>
                         <div className={`row ${styles.wrap}  `} >
 
                         {/* Fix login*/}
@@ -125,7 +124,7 @@ function Header() {
 
                             {loginName!=="default"&&(
                                 <div className={`col-md-4 ${styles.block}`}>
-                                   <p style={{"cursor":"pointer", "color":"red","fontSize":"14px","width":"100px","textAlign":"center"}}
+                                   <p className={styles.logout} 
                                    onClick={()=>{
                                     setLogin("default");
                                     setChange('default');
@@ -158,8 +157,12 @@ function Header() {
                         <li className={styles.nav_icon}>
                             <Link to='/menu'><img src='	https://dominos.vn/img/logo/menu.svg' /></Link>
                         </li>
-                        <li className={styles.nav_icon}><i class="color bi bi-person-fill"></i></li>
-                        <li className={styles.nav_icon}><i class="color bi bi-basket-fill"></i></li>
+                        <li className={styles.nav_icon}>
+                        <ModalLg/>
+                        </li>
+                        <li className={styles.nav_icon}>
+                            <Link to ='/cart'><i class="color bi bi-basket-fill"></i></Link>
+                        </li>
                         <li className={styles.nav_icon}>
                             <Modal />
                         </li>
