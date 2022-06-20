@@ -117,7 +117,7 @@ export default function ModalLg() {
         console.log(check);
         if (check) {
             // setShow(true);
-            alert("Đăng nhập thành công")
+            // alert("Đăng nhập thành công")
             setModal(!modal);
             setChange("userData")
             setLogin(emailLogin.value);

@@ -127,10 +127,6 @@ export default function Sub_cart() {
         let dataItem = {
             "user":loginName,
             "data":data
-            // "name":parent.querySelectorAll('li')[1].innerHTML,
-            // "count":parent.querySelector('h1').innerHTML,
-            // "type":parent.querySelector('p').innerHTML,
-            // "price":parent.querySelectorAll('li')[2].innerHTML
         }
         // console.log(dataItem);
         checkoutData(dataItem);

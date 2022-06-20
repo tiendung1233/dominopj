@@ -132,6 +132,20 @@ export default function Menu() {
     return (
             <UpdateCartContext.Provider value={{ updateItems, setUpdate }}>
                 <div className={`${styles.container_menu}`}>
+                <div style={{width:'100%'}}>
+                     {/* Nhap dia chi */}
+                 <div>
+                    <div className={styles.btn_oder}>
+                       <div className={styles.conten}>
+                            <button className={styles.btn_oder1}>Giao hàng tận nơi</button>
+                            <button className={styles.btn_oder2}>Đặt đến lấy</button>
+                       </div>
+                       <div className={styles.box_input}>
+                        <input className={styles.input} placeholder='Vui lòng nhập địa chỉ nhận hàng'/>
+                        <i className={`bi bi-search ${styles.seacher}`}></i>
+                       </div>
+                    </div>
+                </div>
                     <div className={`${styles.content_menu}`} id="flex-2">
                         <div className={`${styles.header_menu}`}>
                             <Link to='/voucher' className={`${styles.link}`}>Khuyen mai moi ngay</Link>
@@ -395,6 +409,8 @@ export default function Menu() {
                             </div>
                         )}
                     </div>
+
+                </div>   
 
 
                     {/* Show detail Pizza Menu when user click products */}
