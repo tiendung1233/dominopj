@@ -38,9 +38,9 @@ function App() {
             <Route path='/promotion' element={<DefaultLayout><Promotion /></DefaultLayout>} />
             <Route path='/voucher' element={<DefaultLayout><Voucher /></DefaultLayout>} />
             <Route path='/code' element={<DefaultLayout><Code /></DefaultLayout>} />
-            <Route path='/admin/MenuManager' element={<DefaultLayout><Admin /></DefaultLayout>} />
-            <Route path='/admin/MenuBill' element={<DefaultLayout><MenuBill /></DefaultLayout>} />
-            <Route path='/admin/MenuAccount' element={<DefaultLayout><MenuAccount /></DefaultLayout>} />
+            <Route path='/admin/MenuManager' element={<Admin />} />
+            <Route path='/admin/MenuBill' element={<MenuBill />} />
+            <Route path='/admin/MenuAccount' element={<MenuAccount />} />
           
           </Routes>
         </CartContext.Provider>
