@@ -65,12 +65,13 @@ function MenuBill() {
           return {
             user,
             data: itemArr.filter(d => d.user === user).map(d => d.data),
-            cost: itemArr.filter(d => d.user === user).map(d => d.data.reduce((a, b) => a.price + b.price)).reduce((c, d) => c + d),
+            cost: itemArr.filter(d => d.user === user).map(d => d.data).map(e=>e.map(el=>el.price)).reduce((a,b)=>a.concat(b)).reduce((a,b)=>a+b),
             "count": itemArr.filter(d => d.user === user).map(d => d.data).map(e => e.map(f => f.count)).reduce((a, b) => a.concat(b)),
             "name": itemArr.filter(d => d.user === user).map(d => d.data).map(e => e.map(f => f.name)).reduce((a, b) => a.concat(b)),
             "price": itemArr.filter(d => d.user === user).map(d => d.data).map(e => e.map(f => f.price)).reduce((a, b) => a.concat(b)),
           }
         })
+        console.log(newData);
         setData(newData);
         data.forEach(e => {
           setShowCount(e.count);
