@@ -3,6 +3,8 @@ import Styles from "./MenuManager.module.css";
 import FormAD from "../FormAD/FormAD";
 import FormSMD from "../FormAD/FormSMD";
 import DeleteMD from "../FormAD/DeleteMD";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap-icons/font/bootstrap-icons.css";
 function MenuManager() {
     const [data, setData] = useState([]);
     const [miY, setMiY] = useState([]);
@@ -84,8 +86,9 @@ function MenuManager() {
             {showCreate && (<FormAD setShow={setShowCreate} setRender={setRender} />)}
             {showFix && (<FormSMD setShow={setShowFix} setRender={setRender} idItem={id} />)}
             <div className={Styles.MenuManager_Them}>
+                <div><i class="bi bi-person-circle" style={{ "marginLeft": "400px","fontSize":"50px"}}></i></div>
                 <div>
-                    <p style={{ "marginLeft": "400px", "alignItems": "center", "fontWeight": "600" }}>Thêm dữ liệu vào quản lý thực đơn :</p>
+                    <p style={{ "marginLeft": "20px","alignItems": "center", "fontWeight": "600" }}>Thêm dữ liệu vào quản lý thực đơn :</p>
                 </div>
                 <div>
                     <button className="btn-themTD" style={{ "background": "#1baf60", "borderRadius": "5px", "marginLeft": "50px", "padding": "10px" }} onClick={() => setShowCreate(true)}>Thêm</button>

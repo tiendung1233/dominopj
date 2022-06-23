@@ -3,6 +3,8 @@ import Styles from "./MenuBill.module.css";
 import HeaderAD from "../HeaderAd";
 import DeleteMNB from "../FormAD/DeleteMNB";
 import ModalBill from "../FormAD/ModalBill";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap-icons/font/bootstrap-icons.css";
 function MenuBill() {
   const [data, setData] = useState([]);
   const [showDelete, setShowDelete] = useState(false);
@@ -74,7 +76,7 @@ function MenuBill() {
         console.log(newData);
         setData(newData);
         data.forEach(e => {
-          setShowCount(e.count);
+        setShowCount(e.count);
         setShowName(e.name);
         setShowPrice(e.price);
       })
@@ -84,6 +86,7 @@ return (
   <>
     <HeaderAD />
     <div className={Styles.MenuBill}>
+    <div><i class="bi bi-person-circle" style={{ "marginLeft": "400px","fontSize":"50px"}}></i></div>
       <div style={{ "textAlign": "center", "fontWeight": "600", "marginBottom": "10px", "marginTop": "20px" }}>Danh sách đơn hàng</div>
 
       <div className={Styles.MenuBill_list}>

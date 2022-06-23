@@ -4,6 +4,8 @@ import HeaderAD from "../HeaderAd";
 import FormAC from "../FormAD/FormAC";
 import FormSAC from "../FormAD/FormSAC";
 import DeleteAC from "../FormAD/DeleteAC";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap-icons/font/bootstrap-icons.css";
 function MenuAccount() {
     const [data, setData] = useState([]);
     const [saveValue, setSaveValue] = useState("tkAD");
@@ -63,6 +65,7 @@ function MenuAccount() {
                         <FormSAC setShow={setShowFix} setRender={setRender} idAC={id} />
                     )
                 }
+                <span class="bi bi-person-circle" style={{ "marginLeft": "400px","fontSize":"50px"}}></span>
                 <select style={{ "textAlign": "center", "margin": "auto", "display": "block", "fontWeight": "500", "marginBottom": "20px" }} onChange={(ev) => {
                     if (ev.target.value === "tkAD") {
                         setSaveValue(ev.target.value);
